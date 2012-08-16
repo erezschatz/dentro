@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<window
+    id="main"
+    title="Dentro"
+    onload="init();"
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+  <script type="application/javascript" src="chrome://dentro/content/main.js"/>
+  <toolbox>
+    <menubar>
+      <menu id="file" label="File">
+        <menupopup>
+          <menuitem label="New" />
+          <menuitem label="Open" />
+          <menuitem label="Quit" oncommand="window.close()" />
+        </menupopup>
+      </menu>
+      <menu id="help" label="Help">
+      </menu>
+    </menubar>
+  </toolbox>
+<tree id="elementList" flex="1">
+  <treecols>
+    <treecol id="element" label="Element" primary="true" flex="1" />
+  </treecols>
+  <treechildren/>
+</tree>
+</window>
