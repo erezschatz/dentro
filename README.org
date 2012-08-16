@@ -2,11 +2,13 @@
 ** An Outliner with an agenda
 
 *** What is an Outliner
-Accouding to Wikipedia, an outliner is a computer program that allows text to be organized into discrete sections 
+Accouding to [[http://en.wikipedia.org/wiki/Outliner][Wikipedia]], 
+an outliner is a computer program that allows text to be organized into discrete sections 
 that are related in a tree structure or hierarchy. 
 Text may be collapsed into a node, or expanded and edited.
 Outliners are typically used for computer programming, collecting or organizing ideas, 
 as personal information management or for project management.
 
 *** What is Dentro
-Dentro is a cross platform outliner, written in XUL/Javascript and based on Mozilla technology.
+Dentro is a cross platform single-pane outliner, written in XUL/Javascript and based on Mozilla technology. 
+It reads from and writes to [[http://dev.opml.org/][OPML]]
