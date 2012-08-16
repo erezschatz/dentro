@@ -1,0 +1,5 @@
+* Dentro
+** An Outliner with an agenda
+
+*** Written in XUL/Javascript
+*** Based on Mozilla technology
