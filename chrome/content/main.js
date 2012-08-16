@@ -60,7 +60,7 @@ var treeView = {
     isContainerOpen: function(idx) {
         return this.childData[idx].isContainerOpen;
     },
-    isContainerEmpty: function(idx)    { return false; }, //this.childData[idx].text; },
+    isContainerEmpty: function(idx)    { return false; },
     isSeparator: function(idx)         { return false; },
     isSorted: function()               { return false; },
     isEditable: function(idx, column)  { return true; },
