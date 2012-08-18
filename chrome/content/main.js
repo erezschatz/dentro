@@ -1,7 +1,7 @@
 var objID = 0;
 
 function init() {
-  document.getElementById("elementList").view = treeView;
+    document.getElementById("elementList").view = treeView;
 }
 
 function outline() {
