@@ -50,7 +50,6 @@ white.parent = red.parent = gold;
 
 var treeView = {
     childData : [ solids, liquids, gases ],
-
     treeBox: null,
     selection: null,
     get rowCount() { return this.childData.length },
@@ -72,7 +71,7 @@ var treeView = {
         }
     },
 
-    // if element has a .parent, level++ until no parent (root)
+    // to figure level, go until the root, incrementing in each step
     getLevel: function(idx) {
         level = 0;
         checked_element = this.childData[idx];
@@ -132,4 +131,8 @@ var treeView = {
     getRowProperties: function(idx, prop) {},
     getCellProperties: function(idx, column, prop) {},
     getColumnProperties: function(column, element, prop) {},
+    setCellText: function(row, col, value) {
+        this.childData[row].text = value;
+        this.treeBox.invalidateRow(row);
+    },
 };
