@@ -4,6 +4,13 @@ function init() {
     document.getElementById("elementList").view = treeView;
 }
 
+function doaction(event) {
+    if (event.keyCode == 13 &&
+        document.getElementById("elementList").editingRow == -1) {
+        treeView.performAction();
+    }
+}
+
 function outline() {
     this.id = objID++; //should really be self-incrementing
     this.isContainerOpen = false;
@@ -11,6 +18,9 @@ function outline() {
 }
 
 //hard coded test data
+
+var data;
+
 var solids = new outline();
 var liquids = new outline();
 var gases = new outline();
@@ -46,10 +56,11 @@ helium.parent = nitrogen.parent = gases;
 gold.childs = [ white, red ];
 white.parent = red.parent = gold;
 
+data = [ solids, liquids, gases ];
 //end of hard coded test data
 
 var treeView = {
-    childData : [ solids, liquids, gases ],
+    childData : data,
     treeBox: null,
     selection: null,
     get rowCount() { return this.childData.length },
@@ -119,15 +130,39 @@ var treeView = {
         }
         this.treeBox.invalidateRow(idx);
     },
-
     getImageSrc: function(idx, column) {},
     getProgressMode : function(idx,column) {},
     getCellValue: function(idx, column) {},
     cycleHeader: function(col, elem) {},
     selectionChanged: function() {},
     cycleCell: function(idx, column) {},
-    performAction: function(action) {},
+    performAction: function(action) {
+        var start = new Object();
+        var end = new Object();
+        document.getElementById("elementList").view.selection.getRangeAt(
+            0,start,end
+        );
+        last = end.value;
+        if (last == -1) return;
+        var newCell = new outline();
+        var sibling = this.childData[last];
+
+        if (sibling.parent) {
+            sibling.parent.childs.push(newCell);
+            alert ("newCell.text");
+        } else {
+            alert (data.length);
+            data.push(newCell);
+            alert (data.length);
+        }
+
+        this.childData.splice(last + i + 1, 0, newCell)
+        this.treeBox.rowCountChanged(last + 1, 1);
+        this.treeBox.invalidateRow(last);
+    },
+
     performActionOnCell: function(action, index, column) {},
+    performActionOnRow: function(action, index, column) {},
     getRowProperties: function(idx, prop) {},
     getCellProperties: function(idx, column, prop) {},
     getColumnProperties: function(column, element, prop) {},

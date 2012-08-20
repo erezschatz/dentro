@@ -21,7 +21,7 @@
       </menu>
     </menubar>
   </toolbox>
-<tree id="elementList" flex="1" editable="true">
+<tree id="elementList" flex="1" editable="true" onkeypress="doaction(event);">
   <treecols>
     <treecol id="element" label="Element" primary="true" flex="1" editable="true"/>
   </treecols>
