@@ -140,7 +140,7 @@ var treeView = {
         var start = new Object();
         var end = new Object();
         document.getElementById("elementList").view.selection.getRangeAt(
-            0,start,end
+            0, start, end
         );
         last = end.value;
         if (last == -1) return;
@@ -149,16 +149,14 @@ var treeView = {
 
         if (sibling.parent) {
             sibling.parent.childs.push(newCell);
-            alert ("newCell.text");
         } else {
-            alert (data.length);
             data.push(newCell);
-            alert (data.length);
         }
 
-        this.childData.splice(last + i + 1, 0, newCell)
+        this.childData.splice(last + 1, 0, newCell);
+        alert(this.childData);
         this.treeBox.rowCountChanged(last + 1, 1);
-        this.treeBox.invalidateRow(last);
+        this.treeBox.invalidate;
     },
 
     performActionOnCell: function(action, index, column) {},
