@@ -154,7 +154,6 @@ var treeView = {
         }
 
         this.childData.splice(last + 1, 0, newCell);
-        alert(this.childData);
         this.treeBox.rowCountChanged(last + 1, 1);
         this.treeBox.invalidate;
     },
