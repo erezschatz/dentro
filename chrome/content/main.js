@@ -7,7 +7,9 @@ function init() {
 function doaction(event) {
     if (event.keyCode == 13 &&
         document.getElementById("elementList").editingRow == -1) {
-        treeView.performAction();
+        treeView.performAction('insert');
+    } else if (event.keyCode == 9 ) {
+        treeView.performAction('indent');
     }
 }
 
@@ -137,6 +139,7 @@ var treeView = {
     selectionChanged: function() {},
     cycleCell: function(idx, column) {},
     performAction: function(action) {
+
         var start = new Object();
         var end = new Object();
         document.getElementById("elementList").view.selection.getRangeAt(
@@ -144,18 +147,25 @@ var treeView = {
         );
         last = end.value;
         if (last == -1) return;
-        var newCell = new outline();
-        var sibling = this.childData[last];
+        var lastItem = this.childData[last];
 
-        if (sibling.parent) {
-            newCell.parent = sibling.parent;
-            sibling.parent.childs.push(newCell);
-        } else {
-            data.push(newCell);
+        if (action == 'insert') {
+
+            var newCell = new outline();
+            if (lastItem.parent) {
+                newCell.parent = lastItem.parent;
+                lastItem.parent.childs.push(newCell);
+            } else {
+                data.push(newCell);
+            }
+
+            this.childData.splice(last + 1, 0, newCell);
+            this.treeBox.rowCountChanged(last + 1, 1);
+        } else if (action == 'indent') {
+            if (this.getLevel(last - 1) == this.getLevel(last)) {
+                lastItem.parent = this.childData[last - 1];
+            }
         }
-
-        this.childData.splice(last + 1, 0, newCell);
-        this.treeBox.rowCountChanged(last + 1, 1);
         this.treeBox.invalidate;
     },
 
