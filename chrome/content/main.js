@@ -148,6 +148,7 @@ var treeView = {
         var sibling = this.childData[last];
 
         if (sibling.parent) {
+            newCell.parent = sibling.parent;
             sibling.parent.childs.push(newCell);
         } else {
             data.push(newCell);
