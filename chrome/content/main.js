@@ -115,10 +115,12 @@ var treeView = {
 
             // needs to open also opened childs.
             var toinsert = this.childData[idx].childs;
-            for (var i = 0; i < toinsert.length; i++) {
+            var length = 0;
+            if (toinsert) length = toinsert.length;
+            for (var i = 0; i < length; i++) {
                 this.childData.splice(idx + i + 1, 0, toinsert[i]);
             }
-            this.treeBox.rowCountChanged(idx + 1, toinsert.length);
+            this.treeBox.rowCountChanged(idx + 1, length);
         }
         this.treeBox.invalidateRow(idx);
     },
