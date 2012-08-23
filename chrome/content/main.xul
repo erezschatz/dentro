@@ -9,6 +9,7 @@
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
   <script type="application/javascript" src="chrome://dentro/content/main.js"/>
+  <script src="chrome://venkman/content/venkman-overlay.js" />
   <toolbox>
     <menubar>
       <menu id="file" label="File">
