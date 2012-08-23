@@ -150,7 +150,7 @@ var treeView = {
         var lastItem = this.childData[last];
 
         if (action == 'insert') {
-
+            //FIXME: if has open children, insert after children
             var newCell = new outline();
             if (lastItem.parent) {
                 newCell.parent = lastItem.parent;
@@ -162,11 +162,20 @@ var treeView = {
             this.childData.splice(last + 1, 0, newCell);
             this.treeBox.rowCountChanged(last + 1, 1);
         } else if (action == 'indent') {
+            //FIXME: 1. the indent happens only after another action is taken
+            //FIXME 2. remove from parent.childs
             if (this.getLevel(last - 1) == this.getLevel(last)) {
+                for (var i = 0; i < lastItem.parent.childs.length; i++ ) {
+                    if (lastItem.parent.childs[i].id == lastItem.id) {
+                        lastItem.parent.childs.splice(i, 1);
+                        break;
+                    }
+                }
                 lastItem.parent = this.childData[last - 1];
             }
         }
-        this.treeBox.invalidate;
+        this.treeBox.invalidate();
+
     },
 
     performActionOnCell: function(action, index, column) {},
