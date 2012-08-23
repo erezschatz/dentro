@@ -5,6 +5,7 @@
     id="main"
     title="Dentro"
     onload="init();"
+    xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
   <script type="application/javascript" src="chrome://dentro/content/main.js"/>
@@ -21,10 +22,10 @@
       </menu>
     </menubar>
   </toolbox>
-<tree id="elementList" flex="1" editable="true">
-  <treecols>
-    <treecol id="element" label="Element" primary="true" flex="1" editable="true"/>
-  </treecols>
-  <treechildren/>
-</tree>
+  <tree id="elementList" flex="1" editable="true">
+    <treecols>
+      <treecol id="element" label="Element" primary="true" flex="1" editable="true" />
+    </treecols>
+    <treechildren/>
+  </tree>
 </window>

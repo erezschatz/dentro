@@ -65,16 +65,19 @@ var treeView = {
     isEditable: function(idx, column)  { return true; },
 
     getParentIndex: function(idx) {
-        if (this.isContainer(idx)) return -1;
+        if (this.isContainer(idx))
+            return -1;
         for (var t = idx - 1; t >= 0 ; t--) {
-            if (this.isContainer(t)) return t;
+            if (this.isContainer(t))
+                return t;
         }
+        return 0;
     },
 
     // to figure level, go until the root, incrementing in each step
     getLevel: function(idx) {
-        level = 0;
-        checked_element = this.childData[idx];
+        var level = 0;
+        var checked_element = this.childData[idx];
         while (checked_element.parent) {
             level++;
             checked_element = checked_element.parent;
