@@ -69,7 +69,11 @@ var treeView = {
     selection: null,
     get rowCount() { return this.childData.length; },
     setTree: function(treeBox) { this.treeBox = treeBox; },
-    getCellText: function(idx, column) { return this.childData[idx].text; },
+    getCellText: function(idx, column) {
+        return typeof this.childData[idx].text != 'undefined' ?
+            this.childData[idx].text :
+            '';
+    },
     isContainer: function(idx) { return true; },
     isContainerOpen: function(idx) {
         return this.childData[idx].isContainerOpen;
@@ -93,7 +97,7 @@ var treeView = {
     getLevel: function(idx) {
         var level = 0;
         var checked_element = this.childData[idx];
-        while (checked_element.parent) {
+        while (typeof checked_element.parent != 'undefined') {
             level++;
             checked_element = checked_element.parent;
         }
@@ -167,22 +171,21 @@ var treeView = {
 
             this.childData.splice(last + 1, 0, newCell);
             this.treeBox.rowCountChanged(last + 1, 1);
-        } else if (action == 'indent') {
-            if (this.getLevel(last - 1) == this.getLevel(last)) {
-                if (lastItem.parent) {
-                    for (var i = 0; i < lastItem.parent.childs.length; i++ ) {
-                        if (lastItem.parent.childs[i].id == lastItem.id) {
+        } else if (action == 'indent' &&
+                   this.getLevel(last - 1) == this.getLevel(last)) {
+            if (typeof lastItem.parent != 'undefined') {
+                for (var i = 0; i < lastItem.parent.childs.length; i++ ) {
+                    if (lastItem.parent.childs[i].id == lastItem.id) {
 
-                            lastItem.parent.childs.splice(i, 1);
-                            break;
-                        }
+                        lastItem.parent.childs.splice(i, 1);
+                        break;
                     }
                 }
-                lastItem.parent = this.childData[last - 1];
-                if (typeof this.childData[last - 1].childs == 'undefined')
-                    this.childData[last - 1].childs = [];
-                this.childData[last - 1].childs.push(lastItem);
             }
+            lastItem.parent = this.childData[last - 1];
+            if (typeof this.childData[last - 1].childs == 'undefined')
+                this.childData[last - 1].childs = [];
+            this.childData[last - 1].childs.push(lastItem);
         }
         this.treeBox.invalidate();
 
