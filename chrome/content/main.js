@@ -10,6 +10,8 @@ function doaction(event) {
         treeView.performAction('insert');
     } else if (event.keyCode == 9 ) {
         treeView.performAction('indent');
+    } else if (event.keyCode == 112) {
+        //launch venkman
     }
 }
 
@@ -150,7 +152,7 @@ var treeView = {
         document.getElementById("elementList").view.selection.getRangeAt(
             0, start, end
         );
-        last = end.value;
+        var last = end.value;
         if (last == -1) return;
         var lastItem = this.childData[last];
 
@@ -167,16 +169,20 @@ var treeView = {
             this.childData.splice(last + 1, 0, newCell);
             this.treeBox.rowCountChanged(last + 1, 1);
         } else if (action == 'indent') {
-            //FIXME: 1. the indent happens only after another action is taken
-            //FIXME 2. remove from parent.childs
             if (this.getLevel(last - 1) == this.getLevel(last)) {
-                for (var i = 0; i < lastItem.parent.childs.length; i++ ) {
-                    if (lastItem.parent.childs[i].id == lastItem.id) {
-                        lastItem.parent.childs.splice(i, 1);
-                        break;
+                if (lastItem.parent) {
+                    for (var i = 0; i < lastItem.parent.childs.length; i++ ) {
+                        if (lastItem.parent.childs[i].id == lastItem.id) {
+
+                            lastItem.parent.childs.splice(i, 1);
+                            break;
+                        }
                     }
                 }
                 lastItem.parent = this.childData[last - 1];
+                if (typeof this.childData[last - 1].childs == 'undefined')
+                    this.childData[last - 1].childs = [];
+                this.childData[last - 1].childs.push(lastItem);
             }
         }
         this.treeBox.invalidate();
