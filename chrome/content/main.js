@@ -67,7 +67,7 @@ var treeView = {
     childData : data,
     treeBox: null,
     selection: null,
-    get rowCount() { return this.childData.length },
+    get rowCount() { return this.childData.length; },
     setTree: function(treeBox) { this.treeBox = treeBox; },
     getCellText: function(idx, column) { return this.childData[idx].text; },
     isContainer: function(idx) { return true; },
@@ -146,7 +146,6 @@ var treeView = {
     selectionChanged: function() {},
     cycleCell: function(idx, column) {},
     performAction: function(action) {
-
         var start = new Object();
         var end = new Object();
         document.getElementById("elementList").view.selection.getRangeAt(
