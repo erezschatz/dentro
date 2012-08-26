@@ -167,6 +167,10 @@ var treeView = {
             } else {
                 data.push(newCell);
             }
+            if (lastItem.isContainerOpen &&
+                typeof lastItem.childs != 'undefined') {
+                last += this.childData[siblingIdx].childs.length;
+            }
 
             this.childData.splice(last + 1, 0, newCell);
             this.treeBox.rowCountChanged(last + 1, 1);
@@ -177,7 +181,7 @@ var treeView = {
             if (! this.childData[siblingIdx].isContainerOpen) {
                 this.toggleOpenState(siblingIdx);
                 if (typeof this.childData[siblingIdx].childs != 'undefined')
-                    this.childData[siblingIdx].childs.length;
+                    last += this.childData[siblingIdx].childs.length;
             }
             if (typeof lastItem.parent != 'undefined') {
                 for (var i = 0; i < lastItem.parent.childs.length; i++ ) {
