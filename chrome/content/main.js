@@ -172,9 +172,13 @@ var treeView = {
             this.treeBox.rowCountChanged(last + 1, 1);
         } else if (action == 'indent' &&
                    this.getLevel(last - 1) == this.getLevel(last)) {
-            // if (! this.childData[last -1].isContainerOpen) {
-            // is it even an option?
-            this.childData[last -1].toggle
+
+            var siblingIdx = last - 1;
+            if (! this.childData[siblingIdx].isContainerOpen) {
+                this.toggleOpenState(siblingIdx);
+                if (typeof this.childData[siblingIdx].childs != 'undefined')
+                    this.childData[siblingIdx].childs.length;
+            }
             if (typeof lastItem.parent != 'undefined') {
                 for (var i = 0; i < lastItem.parent.childs.length; i++ ) {
                     if (lastItem.parent.childs[i].id == lastItem.id) {
@@ -184,10 +188,10 @@ var treeView = {
                     }
                 }
             }
-            lastItem.parent = this.childData[last - 1];
-            if (typeof this.childData[last - 1].childs == 'undefined')
-                this.childData[last - 1].childs = [];
-            this.childData[last - 1].childs.push(lastItem);
+            lastItem.parent = this.childData[siblingIdx];
+            if (typeof this.childData[siblingIdx].childs == 'undefined')
+                this.childData[siblingIdx].childs = [];
+            this.childData[siblingIdx].childs.push(lastItem);
         }
         this.treeBox.invalidate();
 
