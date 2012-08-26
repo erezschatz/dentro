@@ -129,7 +129,6 @@ var treeView = {
             }
         }
         else {
-
             item.isContainerOpen = true;
 
             // needs to open also opened childs.
@@ -173,6 +172,9 @@ var treeView = {
             this.treeBox.rowCountChanged(last + 1, 1);
         } else if (action == 'indent' &&
                    this.getLevel(last - 1) == this.getLevel(last)) {
+            // if (! this.childData[last -1].isContainerOpen) {
+            // is it even an option?
+            this.childData[last -1].toggle
             if (typeof lastItem.parent != 'undefined') {
                 for (var i = 0; i < lastItem.parent.childs.length; i++ ) {
                     if (lastItem.parent.childs[i].id == lastItem.id) {
