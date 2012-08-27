@@ -7,9 +7,9 @@ function init() {
 function doaction(event) {
     if (event.keyCode == 13 &&
         document.getElementById("elementList").editingRow == -1) {
-        treeView.performAction('insert');
+        treeView.insertNode();
     } else if (event.keyCode == 9 ) {
-        treeView.performAction('indent');
+        treeView.indentIn();
     } else if (event.keyCode == 112) {
         //launch venkman
     }
@@ -120,8 +120,12 @@ var treeView = {
             var thisLevel = this.getLevel(idx);
             var deletecount = 0;
             for (var t = idx + 1; t < visible; t++) {
-                if (this.getLevel(t) > thisLevel) deletecount++;
-                else break;
+                if (this.getLevel(t) > thisLevel) {
+                    deletecount++;
+                    if (this.childData[t].isContainerOpen) {
+                        this.toggleOpenState(t);
+                    }
+                } else break;
             }
             if (deletecount) {
                 this.childData.splice(idx + 1, deletecount);
@@ -131,7 +135,6 @@ var treeView = {
         else {
             item.isContainerOpen = true;
 
-            // needs to open also opened childs.
             var toinsert = this.childData[idx].childs;
             var length = 0;
             if (toinsert) length = toinsert.length;
@@ -148,18 +151,19 @@ var treeView = {
     cycleHeader: function(col, elem) {},
     selectionChanged: function() {},
     cycleCell: function(idx, column) {},
-    performAction: function(action) {
+    getSelectedIndex: function () {
         var start = new Object();
         var end = new Object();
         document.getElementById("elementList").view.selection.getRangeAt(
             0, start, end
         );
-        var last = end.value;
+        return end.value;
+    },
+    insertNode: function() {
+        var last = this.getSelectedIndex();
         if (last == -1) return;
         var lastItem = this.childData[last];
-
         if (action == 'insert') {
-            //FIXME: if has open children, insert after children
             var newCell = new outline();
             if (lastItem.parent) {
                 newCell.parent = lastItem.parent;
@@ -174,9 +178,20 @@ var treeView = {
 
             this.childData.splice(last + 1, 0, newCell);
             this.treeBox.rowCountChanged(last + 1, 1);
-        } else if (action == 'indent' &&
-                   this.getLevel(last - 1) == this.getLevel(last)) {
-
+        }
+        this.treeBox.invalidate();
+    },
+    deleteNode: function () {
+        var selectedIdx = this.getSelectedIndex();
+        if (selectedIdx == -1) return;
+        var toDelete = this.childData[selectedIdx];
+        this.treeBox.invalidate();
+    },
+    indentIn: function () {
+        var last = this.getSelectedIndex();
+        if (last == -1) return;
+        var lastItem = this.childData[last];
+        if (this.getLevel(last - 1) == this.getLevel(last)) {
             var siblingIdx = last - 1;
             if (! this.childData[siblingIdx].isContainerOpen) {
                 this.toggleOpenState(siblingIdx);
@@ -198,9 +213,13 @@ var treeView = {
             this.childData[siblingIdx].childs.push(lastItem);
         }
         this.treeBox.invalidate();
-
     },
-
+    indentOut: function() {
+        var selectedIdx = this.getSelectedIndex();
+        if (selectedIdx == -1) return;
+        var toDelete = this.childData[selectedIdx];
+        this.treeBox.invalidate();
+    },
     performActionOnCell: function(action, index, column) {},
     performActionOnRow: function(action, index, column) {},
     getRowProperties: function(idx, prop) {},
