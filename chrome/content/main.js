@@ -1,3 +1,5 @@
+"use strict";
+
 var objID = 0;
 
 function init() {
@@ -11,12 +13,12 @@ function doaction(event) {
     } else if (event.keyCode == 9 ) {
         treeView.indentIn();
     } else if (event.keyCode == 112) {
-        //launch venkman
+        alert("venkman!");
     }
 }
 
-function outline() {
-    this.id = objID++; //should really be self-incrementing
+function Outline() {
+    this.id = objID++;
     this.isContainerOpen = false;
     return this;
 }
@@ -25,22 +27,22 @@ function outline() {
 
 var data;
 
-var solids = new outline();
-var liquids = new outline();
-var gases = new outline();
+var solids = new Outline();
+var liquids = new Outline();
+var gases = new Outline();
 
 solids.text = 'Solids';
 liquids.text = 'Liquids';
 gases.text = 'Gases';
 
-var silver = new outline();
-var gold = new outline();
-var lead = new outline();
-var mercury = new outline();
-var helium = new outline();
-var nitrogen = new outline();
-var white = new outline();
-var red = new outline();
+var silver = new Outline();
+var gold = new Outline();
+var lead = new Outline();
+var mercury = new Outline();
+var helium = new Outline();
+var nitrogen = new Outline();
+var white = new Outline();
+var red = new Outline();
 
 silver.text = 'Silver';
 gold.text = 'Gold';
@@ -152,8 +154,7 @@ var treeView = {
     selectionChanged: function() {},
     cycleCell: function(idx, column) {},
     getSelectedIndex: function () {
-        var start = new Object();
-        var end = new Object();
+        var start = end = {};
         document.getElementById("elementList").view.selection.getRangeAt(
             0, start, end
         );
@@ -164,7 +165,7 @@ var treeView = {
         if (last == -1) return;
         var lastItem = this.childData[last];
         if (action == 'insert') {
-            var newCell = new outline();
+            var newCell = new Outline();
             if (lastItem.parent) {
                 newCell.parent = lastItem.parent;
                 lastItem.parent.childs.push(newCell);
@@ -173,7 +174,7 @@ var treeView = {
             }
             if (lastItem.isContainerOpen &&
                 typeof lastItem.childs != 'undefined') {
-                last += this.childData[siblingIdx].childs.length;
+                last += this.childData[].childs.length;
             }
 
             this.childData.splice(last + 1, 0, newCell);
@@ -228,5 +229,5 @@ var treeView = {
     setCellText: function(row, col, value) {
         this.childData[row].text = value;
         this.treeBox.invalidateRow(row);
-    },
+    }
 };
