@@ -3,7 +3,8 @@
 var objID = 0;
 
 function init() {
-    document.getElementById("elementList").view = treeView;
+    document.getElementById("mainWindow").setAttribute('src',
+        'file:///home/erez/dev/erez/dentro/dentro.opml');
 }
 
 function doKeyAction(event) {

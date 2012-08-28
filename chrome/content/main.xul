@@ -22,5 +22,5 @@
       </menu>
     </menubar>
   </toolbox>
-<browser type="content" src="file:///home/erez/dev/erez/dentro/" flex="1"/>
+<browser type="content" id="mainWindow" flex="1"/>
 </window>
