@@ -14,8 +14,6 @@ function doKeyAction(event) {
         treeView.indentIn();
     } else if (event.keyCode == 46) {
         treeView.deleteNode();
-    } else if (event.keyCode == 112) {
-        //launch venkman
     }
 }
 
