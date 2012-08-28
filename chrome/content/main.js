@@ -4,25 +4,26 @@ function init() {
     document.getElementById("elementList").view = treeView;
 }
 
-function doaction(event) {
-    if (event.keyCode == 13 &&
-        document.getElementById("elementList").editingRow == -1) {
+function doKeyAction(event) {
+
+    if (event.keyCode == 13) {
         treeView.insertNode();
-    } else if (event.keyCode == 9 ) {
+    } else if (event.keyCode == 9) {
         treeView.indentIn();
+    } else if (event.keyCode == 46) {
+        treeView.deleteNode();
     } else if (event.keyCode == 112) {
         //launch venkman
     }
 }
 
 function outline() {
-    this.id = objID++; //should really be self-incrementing
+    this.id = objID++;
     this.isContainerOpen = false;
     return this;
 }
 
 //hard coded test data
-
 var data;
 
 var solids = new outline();
@@ -84,11 +85,11 @@ var treeView = {
     isEditable: function(idx, column)  { return true; },
 
     getParentIndex: function(idx) {
-        if (this.isContainer(idx))
-            return -1;
-        for (var t = idx - 1; t >= 0 ; t--) {
-            if (this.isContainer(t))
-                return t;
+        var parent = this.childData[idx].parent;
+
+        for (var i = idx; i >= 0; i--) {
+            if (this.childData[i] === parent)
+                return i;
         }
         return 0;
     },
@@ -97,7 +98,8 @@ var treeView = {
     getLevel: function(idx) {
         var level = 0;
         var checked_element = this.childData[idx];
-        while (typeof checked_element.parent != 'undefined') {
+        while (typeof checked_element != 'undefined' &&
+               typeof checked_element.parent != 'undefined') {
             level++;
             checked_element = checked_element.parent;
         }
@@ -115,17 +117,17 @@ var treeView = {
         var item = this.childData[idx];
         var visible = this.childData.length;
         if (item.isContainerOpen) {
+            return;
             item.isContainerOpen = false;
-
             var thisLevel = this.getLevel(idx);
             var deletecount = 0;
-            for (var t = idx + 1; t < visible; t++) {
-                if (this.getLevel(t) > thisLevel) {
-                    deletecount++;
-                    if (this.childData[t].isContainerOpen) {
-                        this.toggleOpenState(t);
-                    }
-                } else break;
+
+            for (var t = idx + 1; t < visible &&
+                 this.getLevel(t) > thisLevel; t++) {
+                deletecount++;
+                if (this.childData[t].isContainerOpen) {
+                    this.toggleOpenState(t);
+                }
             }
             if (deletecount) {
                 this.childData.splice(idx + 1, deletecount);
@@ -160,26 +162,25 @@ var treeView = {
         return end.value;
     },
     insertNode: function() {
-        var last = this.getSelectedIndex();
-        if (last == -1) return;
-        var lastItem = this.childData[last];
-        if (action == 'insert') {
-            var newCell = new outline();
-            if (lastItem.parent) {
-                newCell.parent = lastItem.parent;
-                lastItem.parent.childs.push(newCell);
-            } else {
-                data.push(newCell);
-            }
-            if (lastItem.isContainerOpen &&
-                typeof lastItem.childs != 'undefined') {
-                last += this.childData[siblingIdx].childs.length;
-            }
+        var idx = this.getSelectedIndex();
+        if (idx == -1) return;
+        var selectedItem = this.childData[idx];
+        var newRow = new outline();
 
-            this.childData.splice(last + 1, 0, newCell);
-            this.treeBox.rowCountChanged(last + 1, 1);
+        if (selectedItem.parent) {
+            newRow.parent = selectedItem.parent;
+            selectedItem.parent.childs.push(newRow);
+        } else {
+            data.push(newRow);
         }
-        this.treeBox.invalidate();
+        if (selectedItem.isContainerOpen &&
+            typeof selectedItem.childs != 'undefined') {
+            idx += selectedItem.childs.length;
+        }
+        //move selection to new row
+        this.childData.splice(idx + 1, 0, newRow);
+        this.treeBox.rowCountChanged(idx + 1, 1);
+        this.treeBox.invalidateRow(idx);
     },
     deleteNode: function () {
         var selectedIdx = this.getSelectedIndex();
