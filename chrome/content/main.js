@@ -1,21 +1,19 @@
 "use strict";
 
-var objID = 0;
-
-function init() {
-    document.getElementById("mainWindow").setAttribute('src',
-        'file:///home/erez/dev/erez/dentro/dentro.opml');
+function loadOPMLfile(){
+    var params = { file: null };
+    window.openDialog("open_file.xul", "",
+	              "chrome, dialog, modal",params).focus();
+    parseAndLoad(params.file);
 }
 
-function doKeyAction(event) {
-
-    if (event.keyCode == 13) {
-        treeView.insertNode();
-    } else if (event.keyCode == 9 ) {
-        treeView.indentIn();
-    } else if (event.keyCode == 46) {
-        treeView.deleteNode();
-    }
+var objID = 0;
+var dude;
+function init() {
+    document.getElementById("mainWindow").setAttribute(
+        'src',
+        'chrome://dentro/content/test.html'
+    );
 }
 
 function Outline() {

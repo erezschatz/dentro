@@ -14,7 +14,7 @@
       <menu id="file" label="File">
         <menupopup>
           <menuitem label="New" />
-          <menuitem label="Open" />
+          <menuitem label="Open" oncommand="loadOPMLfile()"/>
           <menuitem label="Quit" oncommand="window.close()" />
         </menupopup>
       </menu>
@@ -22,5 +22,5 @@
       </menu>
     </menubar>
   </toolbox>
-<browser type="content" id="mainWindow" flex="1"/>
+  <iframe type="chrome" id="mainWindow" flex="1" />
 </window>
