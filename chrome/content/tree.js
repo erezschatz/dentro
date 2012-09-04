@@ -58,35 +58,45 @@ var childData = [ solids, liquids, gases ];
 //end of hard coded test data
 
 var loadFile = function () {
-    Components.utils.import("resource://gre/modules/NetUtil.jsm");
-    Components.utils.import("resource://gre/modules/FileUtils.jsm");
+    // Components.utils.import("resource://gre/modules/NetUtil.jsm");
+    // Components.utils.import("resource://gre/modules/FileUtils.jsm");
 
-    var file = new FileUtils.File(
-        "/home/erez/dev/projects/dentro/dentro.opml"
-    );
-    NetUtil.asyncFetch(file, function(inputStream, status) {
-        if (!Components.isSuccessCode(status)) {
-            return;
-        }
-        var stream = NetUtil.readInputStreamToString(
-            inputStream,
-            inputStream.available());
+    // var file = new FileUtils.File(
+    //     "/home/erez/dev/projects/dentro/dentro.opml"
+    // );
+    // NetUtil.asyncFetch(file, function(inputStream, status) {
+    //     if (!Components.isSuccessCode(status)) {
+    //         return;
+    //     }
+    //     var stream = NetUtil.readInputStreamToString(
+    //         inputStream,
+    //         inputStream.available());
         //childData = parseOPML(stream);
         populateData(childData);
-    });
+//    });
 }
 
 var populateData = function () {
     var output = '<ul>';
-    var output;
     for (var i = 0; i < childData.length; i++) {
-        output += '<li onclick="toggleOpenState(' + i +  ')">' +
-            childData[i].text +  '</li>';
+
+        var cssClass = childData[i].isContainerOpen ?
+            'open' : 'closed';
+
+        output += '<li id="outline' + i + '" class="' + cssClass +
+            '" onclick="toggleOpenState(' + i +  ')">' +
+            '<input type="text" value="' + childData[i].text + '"></li>';
+
         if (childData[i].isContainerOpen &&
             typeof childData[i].childs !== 'undefined')
             output += '<ul>';
 
-        if (! childData[i].isContainerOpen &&
+        if (childData[i].isContainerOpen &&
+            typeof childData[i].childs === 'undefined' &&
+            !hasNextSibling(i))
+            output += '</ul>';
+
+        if (!childData[i].isContainerOpen &&
             typeof childData[i].parent !== 'undefined' &&
             ! hasNextSibling(i) )
             output += '</ul>';
@@ -99,6 +109,7 @@ var populateData = function () {
 var parseOPML = function (input) {
     var oParser = new DOMParser();
     var oDOM = oParser.parseFromString(input, "text/xml");
+    return xmlToJson(oDOM);
 }
 
 var getCellText = function(idx) {
@@ -167,6 +178,8 @@ var toggleOpenState = function(idx) {
         }
     }
     populateData();
+    var foo = document.getElementById('outline' + idx).value;
+    alert();
 }
 
 var insertNode =  function() {

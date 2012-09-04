@@ -1,0 +1,11 @@
+ul {
+    list-style-type: none;
+}
+
+li .open {
+    background: url(downArrow.png);
+}
+
+li .closed {
+    background: url(rightArrow.png);
+}
