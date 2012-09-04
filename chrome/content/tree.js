@@ -1,3 +1,4 @@
+
 var objID = 0;
 
 var Outline = function () {
@@ -5,6 +6,10 @@ var Outline = function () {
     this.isContainerOpen = false;
     return this;
 }
+
+$(document).ready(function(){
+    loadFile();
+});
 
 var doKeyAction = function (event) {
 
@@ -171,15 +176,12 @@ var toggleOpenState = function(idx) {
         item.isContainerOpen = true;
 
         var toinsert = childData[idx].childs;
-        var length = 0;
-        if (toinsert) length = toinsert.length;
+        var length = toinsert ? toinsert.length : 0;
         for (var i = 0; i < length; i++) {
             childData.splice(idx + i + 1, 0, toinsert[i]);
         }
     }
     populateData();
-    var foo = document.getElementById('outline' + idx).value;
-    alert();
 }
 
 var insertNode =  function() {
