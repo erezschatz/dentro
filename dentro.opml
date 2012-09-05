@@ -21,12 +21,12 @@
 				<outline text="Dentro">
 					<outline text="Tree in Greek"/>
 					<outline text="      "/>
-					</outline>
 				</outline>
+			</outline>
 			<outline text="Why?">
 				<outline text="this is a comment" isComment="true"/>
 				<outline text="OPML Editor - not in Linux"/>
-				</outline>
+			</outline>
 			</outline>
 		<outline text="features">
 			<outline text="Cross platform">

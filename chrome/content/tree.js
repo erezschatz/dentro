@@ -75,6 +75,7 @@ var loadFile = function () {
         var stream = NetUtil.readInputStreamToString(
             inputStream,
             inputStream.available());
+
         parseOPML(stream);
         populateData(childData);
         $('input[id=outline0]').focus().select();
@@ -115,16 +116,27 @@ var populateData = function () {
 var parseOPML = function (input) {
     var oParser = new DOMParser();
     var oDOM = oParser.parseFromString(input, "text/xml");
-    var iterator = oDOM.evaluate('//outline', oDOM, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null );
 
-    try {
-        var thisNode;
-        while (thisNode = iterator.iterateNext()) {
-            alert(thisNode);
+    var nodesSnapshot = oDOM.evaluate('//outline', oDOM, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null );
+    childData=[];
+
+    for ( var i = 0; i < nodesSnapshot.snapshotLength; i++ ) {
+        var node = $(nodesSnapshot.snapshotItem(i));
+        var outline = new Outline();
+        outline.text = node.attr("text");
+
+        var t = 0;
+        for (t = 0; t < node.children().length; t++) {
+            var child = new Outline();
+            child.parent = outline;
+            child.text = $(nodesSnapshot.snapshotItem(i + t)).attr("text");
+            if (typeof outline.childs === 'undefined')
+                outline.childs = [];
+            outline.childs.push(child);
         }
-    }
-    catch (e) {
-        dump(e);
+        i += t;
+
+        childData.push(outline);
     }
 }
 
