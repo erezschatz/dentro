@@ -9,18 +9,17 @@ var Outline = function () {
 
 $(document).ready(function(){
     loadFile();
+
+    $('input[type=textbox]').keypress(function(event) {
+        if (event.keyCode == 13) {
+            insertNode();
+        } else if (event.keyCode == 9 ) {
+            indentIn();
+        } else if (event.keyCode == 46) {
+            deleteNode();
+        }
+    });
 });
-
-var doKeyAction = function (event) {
-
-    if (event.keyCode == 13) {
-        insertNode();
-    } else if (event.keyCode == 9 ) {
-        indentIn();
-    } else if (event.keyCode == 46) {
-        deleteNode();
-    }
-}
 
 //hard coded test data
 
@@ -63,22 +62,23 @@ var childData = [ solids, liquids, gases ];
 //end of hard coded test data
 
 var loadFile = function () {
-    // Components.utils.import("resource://gre/modules/NetUtil.jsm");
-    // Components.utils.import("resource://gre/modules/FileUtils.jsm");
+    Components.utils.import("resource://gre/modules/NetUtil.jsm");
+    Components.utils.import("resource://gre/modules/FileUtils.jsm");
 
-    // var file = new FileUtils.File(
-    //     "/home/erez/dev/projects/dentro/dentro.opml"
-    // );
-    // NetUtil.asyncFetch(file, function(inputStream, status) {
-    //     if (!Components.isSuccessCode(status)) {
-    //         return;
-    //     }
-    //     var stream = NetUtil.readInputStreamToString(
-    //         inputStream,
-    //         inputStream.available());
-        //childData = parseOPML(stream);
+    var file = new FileUtils.File(
+        "/home/erez/dev/projects/dentro/dentro.opml"
+    );
+    NetUtil.asyncFetch(file, function(inputStream, status) {
+        if (!Components.isSuccessCode(status)) {
+            return;
+        }
+        var stream = NetUtil.readInputStreamToString(
+            inputStream,
+            inputStream.available());
+        parseOPML(stream);
         populateData(childData);
-//    });
+        $('input[id=outline0]').focus().select();
+    });
 }
 
 var populateData = function () {
@@ -88,9 +88,10 @@ var populateData = function () {
         var cssClass = childData[i].isContainerOpen ?
             'open' : 'closed';
 
-        output += '<li id="outline' + i + '" class="' + cssClass +
+        output += '<li class="' + cssClass +
             '" onclick="toggleOpenState(' + i +  ')">' +
-            '<input type="text" value="' + childData[i].text + '"></li>';
+            '<input id="outline' + i + '" type="text" value="' +
+            childData[i].text + '"></li>';
 
         if (childData[i].isContainerOpen &&
             typeof childData[i].childs !== 'undefined')
@@ -108,13 +109,23 @@ var populateData = function () {
     }
     output += '</ul>';
     document.getElementById("mainTree").innerHTML = output;
-//    alert(output);
+//    $('div[id=mainTree]').attr('innerHTML', output);
 }
 
 var parseOPML = function (input) {
     var oParser = new DOMParser();
     var oDOM = oParser.parseFromString(input, "text/xml");
-    return xmlToJson(oDOM);
+    var iterator = oDOM.evaluate('//outline', oDOM, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null );
+
+    try {
+        var thisNode;
+        while (thisNode = iterator.iterateNext()) {
+            alert(thisNode);
+        }
+    }
+    catch (e) {
+        dump(e);
+    }
 }
 
 var getCellText = function(idx) {
@@ -182,6 +193,7 @@ var toggleOpenState = function(idx) {
         }
     }
     populateData();
+    $('input[id=outline' + idx + ']').focus().select();
 }
 
 var insertNode =  function() {
