@@ -27,7 +27,7 @@
 				<outline text="this is a comment" isComment="true"/>
 				<outline text="OPML Editor - not in Linux"/>
 			</outline>
-			</outline>
+		</outline>
 		<outline text="features">
 			<outline text="Cross platform">
 				<outline text="XUL based"/>
@@ -44,7 +44,7 @@
 					</outline>
 				</outline>
 			<outline text="extendable"/>
-			</outline>
+		</outline>
 		<outline text="development">
 			<outline text="0.1">
 				<outline text="read file"/>

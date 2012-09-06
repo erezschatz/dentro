@@ -1,4 +1,4 @@
-
+var childData;
 var objID = 0;
 
 var Outline = function () {
@@ -20,46 +20,6 @@ $(document).ready(function(){
         }
     });
 });
-
-//hard coded test data
-
-var solids = new Outline();
-var liquids = new Outline();
-var gases = new Outline();
-
-solids.text = 'Solids';
-liquids.text = 'Liquids';
-gases.text = 'Gases';
-
-var silver = new Outline();
-var gold = new Outline();
-var lead = new Outline();
-var mercury = new Outline();
-var helium = new Outline();
-var nitrogen = new Outline();
-var white = new Outline();
-var red = new Outline();
-
-silver.text = 'Silver';
-gold.text = 'Gold';
-lead.text = 'Lead';
-mercury.text = 'Mercury';
-helium.text = 'Helium';
-nitrogen.text = 'Nitrogen';
-red.text = 'Red';
-white.text = 'White';
-
-solids.childs = [ silver, gold, lead ];
-silver.parent = gold.parent = lead.parent = solids;
-liquids.childs = [ mercury ];
-mercury.parent = liquids;
-gases.childs = [ helium, nitrogen ];
-helium.parent = nitrogen.parent = gases;
-gold.childs = [ white, red ];
-white.parent = red.parent = gold;
-
-var childData = [ solids, liquids, gases ];
-//end of hard coded test data
 
 var loadFile = function () {
     Components.utils.import("resource://gre/modules/NetUtil.jsm");
@@ -110,6 +70,7 @@ var populateData = function () {
     }
     output += '</ul>';
     document.getElementById("mainTree").innerHTML = output;
+    alert(childData.length);
 //    $('div[id=mainTree]').attr('innerHTML', output);
 }
 
@@ -117,27 +78,30 @@ var parseOPML = function (input) {
     var oParser = new DOMParser();
     var oDOM = oParser.parseFromString(input, "text/xml");
 
-    var nodesSnapshot = oDOM.evaluate('//outline', oDOM, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null );
+    var nodesSnapshot = oDOM.evaluate('/opml/body/outline', oDOM, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null );
     childData=[];
 
     for ( var i = 0; i < nodesSnapshot.snapshotLength; i++ ) {
         var node = $(nodesSnapshot.snapshotItem(i));
         var outline = new Outline();
         outline.text = node.attr("text");
-
-        var t = 0;
-        for (t = 0; t < node.children().length; t++) {
-            var child = new Outline();
-            child.parent = outline;
-            child.text = $(nodesSnapshot.snapshotItem(i + t)).attr("text");
-            if (typeof outline.childs === 'undefined')
-                outline.childs = [];
-            outline.childs.push(child);
-        }
-        i += t;
-
+        outline.childs = [];
+        node.children().each(function() {
+            outline.childs.push(generateChildNode(outline, this));
+        });
         childData.push(outline);
     }
+}
+
+var generateChildNode = function(parentNode, childNode) {
+    var child = new Outline();
+    child.parent = parentNode;
+    child.text = $(childNode).attr("text");
+    child.childs = [];
+    $(childNode).children().each(function() {
+        child.childs.push(generateChildNode(child, this));
+    });
+    return child;
 }
 
 var getCellText = function(idx) {
@@ -171,8 +135,7 @@ var getLevel = function(idx) {
 // basically checks the next item in the tree
 // and sees if its the level
 var hasNextSibling =  function(idx) {
-    var thisLevel = getLevel(idx);
-    return getLevel(idx + 1) == thisLevel;
+    return getLevel(idx + 1) == getLevel(idx);
 };
 
 var toggleOpenState = function(idx) {
