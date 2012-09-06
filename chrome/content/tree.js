@@ -9,17 +9,19 @@ var Outline = function () {
 
 $(document).ready(function(){
     loadFile();
-
-    $('input[type=textbox]').keypress(function(event) {
-        if (event.keyCode == 13) {
-            insertNode();
-        } else if (event.keyCode == 9 ) {
-            indentIn();
-        } else if (event.keyCode == 46) {
-            deleteNode();
-        }
-    });
 });
+
+var keypressaction = function(event, i) {
+    if (event.keyCode == 13) {
+        insertNode(i);
+    } else if (event.keyCode == 9 ) {
+        indentIn(i);
+    } else if (event.keyCode == 46) {
+        deleteNode(i);
+    } else {
+        childData[i].text = $('input[id=' + i + ']').attr('text');
+    }
+}
 
 var loadFile = function () {
     Components.utils.import("resource://gre/modules/NetUtil.jsm");
@@ -52,7 +54,8 @@ var populateData = function () {
         output += '<li class="' + cssClass +
             '" onclick="toggleOpenState(' + i +  ')">' +
             '<input id="outline' + i + '" type="text" value="' +
-            childData[i].text + '"></li>';
+            childData[i].text + '" onkeypress="keypressaction(event, ' +
+            i + ');"></li>';
 
         if (childData[i].isContainerOpen &&
             typeof childData[i].childs !== 'undefined' &&
@@ -117,28 +120,12 @@ var generateChildNode = function(parentNode, childNode) {
     return child;
 }
 
-var getCellText = function(idx) {
-    return typeof childData[idx].text != 'undefined' ?
-        childData[idx].text :
-        '';
-}
-
-var getParentIndex = function(idx) {
-    var parent = childData[idx].parent;
-
-    for (var i = idx; i >= 0; i--) {
-        if (childData[i] === parent)
-            return i;
-    }
-    return 0;
-}
-
 // to figure level, go until the root, incrementing in each step
 var getLevel = function(idx) {
     var level = 0;
     var checked_element = childData[idx];
-    while (typeof checked_element != 'undefined' &&
-           typeof checked_element.parent != 'undefined') {
+    while (typeof checked_element !== 'undefined' &&
+           typeof checked_element.parent !== 'undefined') {
         level++;
         checked_element = checked_element.parent;
     }
@@ -184,49 +171,45 @@ var toggleOpenState = function(idx) {
     $('input[id=outline' + idx + ']').focus().select();
 }
 
-var insertNode =  function() {
-    var idx = getSelectedIndex();
-    if (idx == -1) return;
+var insertNode =  function(idx) {
     var selectedItem = childData[idx];
-    var newRow = new outline();
+    var newRow = new Outline();
+    newRow.text = '';
 
-    if (selectedItem.parent) {
+    if (typeof selectedItem.parent !== 'undefined') {
         newRow.parent = selectedItem.parent;
         selectedItem.parent.childs.push(newRow);
-    } else {
-        data.push(newRow);
     }
     if (selectedItem.isContainerOpen &&
-        typeof selectedItem.childs != 'undefined') {
+        typeof selectedItem.childs !== 'undefined' &&
+        selectedItem.childs.length > 0) {
         idx += selectedItem.childs.length;
     }
     //move selection to new row
     childData.splice(idx + 1, 0, newRow);
     populateData();
+    var next = idx + 1;
+    $('input[id=outline' + next + ']').focus().select();
 }
 
-var deleteNode =  function () {
-    var selectedIdx = getSelectedIndex();
-    if (selectedIdx == -1) return;
-    var toDelete = childData[selectedIdx];
+var deleteNode =  function (idx) {
+     var toDelete = childData[idx];
     populateData();
 }
 
-var indentIn = function () {
-    var last = getSelectedIndex();
-    if (last == -1) return;
-    var lastItem = childData[last];
-    if (getLevel(last - 1) == getLevel(last)) {
-        var siblingIdx = last - 1;
+var indentIn = function (idx) {
+    var lastItem = childData[idx];
+    if (getLevel(idx - 1) == getLevel(idx)) {
+        var siblingIdx = idx - 1;
         if (! childData[siblingIdx].isContainerOpen) {
             toggleOpenState(siblingIdx);
-            if (typeof childData[siblingIdx].childs != 'undefined')
-                last += childData[siblingIdx].childs.length;
+            if (typeof childData[siblingIdx].childs !== 'undefined' &&
+                childData[siblingIdx].childs.length > 0)
+                idx += childData[siblingIdx].childs.length;
         }
         if (typeof lastItem.parent != 'undefined') {
             for (var i = 0; i < lastItem.parent.childs.length; i++ ) {
                 if (lastItem.parent.childs[i].id == lastItem.id) {
-
                     lastItem.parent.childs.splice(i, 1);
                     break;
                 }
@@ -240,13 +223,6 @@ var indentIn = function () {
     populateData();
 }
 
-var indentOut = function() {
-    var selectedIdx = getSelectedIndex();
-    if (selectedIdx == -1) return;
-    var toDelete = childData[selectedIdx];
+var indentOut = function(idx) {
     populateData();
-}
-
-var setCellText = function(row, value) {
-    childData[row].text = value;
 }
