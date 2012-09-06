@@ -55,22 +55,32 @@ var populateData = function () {
             childData[i].text + '"></li>';
 
         if (childData[i].isContainerOpen &&
-            typeof childData[i].childs !== 'undefined')
+            typeof childData[i].childs !== 'undefined' &&
+           childData[i].childs.length > 0) {
             output += '<ul>';
+        }
 
         if (childData[i].isContainerOpen &&
-            typeof childData[i].childs === 'undefined' &&
-            !hasNextSibling(i))
-            output += '</ul>';
+            (typeof childData[i].childs === 'undefined' ||
+            childData[i].childs.length == 0) &&
+            !hasNextSibling(i)) {
+            var diff = getLevel(i) - getLevel(i + 1);
+            for (var d = 0; d < diff; d++) {
+                output += '</ul>';
+            }
+        }
 
         if (!childData[i].isContainerOpen &&
             typeof childData[i].parent !== 'undefined' &&
-            ! hasNextSibling(i) )
-            output += '</ul>';
+            ! hasNextSibling(i) ) {
+            var diff = getLevel(i) - getLevel(i + 1);
+            for (var d = 0; d < diff; d++) {
+                output += '</ul>';
+            }
+        }
     }
     output += '</ul>';
     document.getElementById("mainTree").innerHTML = output;
-    alert(childData.length);
 //    $('div[id=mainTree]').attr('innerHTML', output);
 }
 
@@ -78,7 +88,10 @@ var parseOPML = function (input) {
     var oParser = new DOMParser();
     var oDOM = oParser.parseFromString(input, "text/xml");
 
-    var nodesSnapshot = oDOM.evaluate('/opml/body/outline', oDOM, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null );
+    var nodesSnapshot = oDOM.evaluate(
+        '/opml/body/outline', oDOM, null,
+        XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null );
+
     childData=[];
 
     for ( var i = 0; i < nodesSnapshot.snapshotLength; i++ ) {
