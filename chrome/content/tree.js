@@ -12,6 +12,7 @@ $(document).ready(function(){
 });
 
 var keypressaction = function(event, i) {
+    assignContent(i);
     if (event.keyCode == 13) {
         insertNode(i);
     } else if (event.keyCode == 9 ) {
@@ -19,7 +20,6 @@ var keypressaction = function(event, i) {
     } else if (event.keyCode == 46) {
         deleteNode(i);
     } else {
-        childData[i].text = $('input[id=' + i + ']').attr('text');
     }
 }
 
@@ -89,6 +89,10 @@ var populateData = function () {
     }
     output += '</ul>';
     document.getElementById("mainTree").innerHTML = output;
+}
+
+var assignContent = function(idx) {
+    childData[idx].text = $('input[id=outline' + idx + ']').attr('value');
 }
 
 var parseOPML = function (input) {
