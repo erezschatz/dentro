@@ -44,6 +44,10 @@ var loadFile = function () {
     });
 }
 
+/* not the cleanest code, and could use some heavy refactoring, but works.
+iterates over 'childData' array, and sets ul,li tags according to
+whether item has childs, is open, has next sibling etc. */
+
 var populateData = function () {
     var output = '<ul>';
     for (var i = 0; i < childData.length; i++) {
@@ -57,6 +61,7 @@ var populateData = function () {
             childData[i].text + '" onkeypress="keypressaction(event, ' +
             i + ');"></li>';
 
+        // parents with visible children
         if (childData[i].isContainerOpen &&
             typeof childData[i].childs !== 'undefined' &&
            childData[i].childs.length > 0) {
@@ -84,7 +89,6 @@ var populateData = function () {
     }
     output += '</ul>';
     document.getElementById("mainTree").innerHTML = output;
-//    $('div[id=mainTree]').attr('innerHTML', output);
 }
 
 var parseOPML = function (input) {
