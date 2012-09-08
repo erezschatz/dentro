@@ -70,17 +70,11 @@ var populateData = function () {
 
         if (childData[i].isContainerOpen &&
             (typeof childData[i].childs === 'undefined' ||
-            childData[i].childs.length == 0) &&
-            !hasNextSibling(i)) {
-            var diff = getLevel(i) - getLevel(i + 1);
-            for (var d = 0; d < diff; d++) {
-                output += '</ul>';
-            }
-        }
-
-        if (!childData[i].isContainerOpen &&
-            typeof childData[i].parent !== 'undefined' &&
-            ! hasNextSibling(i) ) {
+             childData[i].childs.length == 0) &&
+            !hasNextSibling(i) ||
+            (!childData[i].isContainerOpen &&
+             typeof childData[i].parent !== 'undefined' &&
+             ! hasNextSibling(i) )) {
             var diff = getLevel(i) - getLevel(i + 1);
             for (var d = 0; d < diff; d++) {
                 output += '</ul>';
@@ -103,9 +97,11 @@ var parseOPML = function (input) {
         '/opml/body/outline', oDOM, null,
         XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null );
 
-    childData=[];
+    //initialise the main array;
 
-    for ( var i = 0; i < nodesSnapshot.snapshotLength; i++ ) {
+    childData = [];
+
+    for (var i = 0; i < nodesSnapshot.snapshotLength; i++) {
         var node = $(nodesSnapshot.snapshotItem(i));
         var outline = new Outline();
         outline.text = node.attr("text");
@@ -146,6 +142,8 @@ var hasNextSibling =  function(idx) {
     return getLevel(idx + 1) == getLevel(idx);
 };
 
+// tree manipulation is done on the childData array,
+// then the app regenerates the tree html
 var toggleOpenState = function(idx) {
     var item = childData[idx];
     var visible = childData.length;
@@ -209,6 +207,7 @@ var indentIn = function (idx) {
     var lastItem = childData[idx];
     if (getLevel(idx - 1) == getLevel(idx)) {
         var siblingIdx = idx - 1;
+    } else
         if (! childData[siblingIdx].isContainerOpen) {
             toggleOpenState(siblingIdx);
             if (typeof childData[siblingIdx].childs !== 'undefined' &&
@@ -227,7 +226,6 @@ var indentIn = function (idx) {
         if (typeof childData[siblingIdx].childs == 'undefined')
             childData[siblingIdx].childs = [];
         childData[siblingIdx].childs.push(lastItem);
-    }
     populateData();
 }
 
