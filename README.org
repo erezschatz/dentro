@@ -10,6 +10,14 @@ Text may be collapsed into a node, or expanded and edited.
 Outliners are typically used for computer programming, collecting or organizing ideas, 
 as personal information management or for project management.
 
+I found, during the past year, that for all our attempts to bridge the gap between man and machine,
+the most accessible, immediate solution is the tree structure, and its impementations, mostly the outliner.
+It fits with the way we think, with the way we organize our thoughs, and, most importantly,
+with the way machines "think" and with the way computers organize their data.
+
 *** What is Dentro
 Dentro is a cross platform single-pane outliner, written in XUL/Javascript and based on Mozilla technology. 
 It reads from and writes to [[http://dev.opml.org/][OPML]]
+
+*** Why is Dentro
+As always, an itch was in need to be scratched, and nothing available was there to scratch it.
