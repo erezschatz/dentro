@@ -17,7 +17,11 @@ with the way machines "think" and with the way computers organize their data.
 
 *** What is Dentro
 Dentro is a cross platform single-pane outliner, written in XUL/Javascript and based on Mozilla technology. 
-It reads from and writes to [[http://dev.opml.org/][OPML]]
+It reads from and writes to [[http://dev.opml.org/][OPML]], which is a format designed from the ground up to handle
+outliners. One of its purposes will be to serve as a project manager/to-do list.
+It also has some other features in the pipeline.
 
 *** Why is Dentro
 As always, an itch was in need to be scratched, and nothing available was there to scratch it.
+Everything was either too limited, not cross-platform, or non-GUI. I realised the only way to have my cake and eat
+it too will be to design a cake that can be both had and eaten.
