@@ -12,15 +12,14 @@ $(document).ready(function(){
 });
 
 var keypressaction = function(event, i) {
-//    alert (event.keyCode);
     assignContent(i);
     if (event.keyCode == 13) { //enter
         insertNode(i);
     } else if (event.keyCode == 9 ) { //tab
-        if (shiftKey)
+        if (event.shiftKey)
             indentOut(i);
         else
-            indeyntIn(i);
+            indentIn(i);
     } else if (event.keyCode == 46) { //delete
         deleteNode(i);
     } else if (event.keyCode == 40) { //down arrow
@@ -48,7 +47,7 @@ var loadFile = function () {
             inputStream.available());
 
         parseOPML(stream);
-        populateData(childData);
+        populateData();
         $('input[id=outline0]').focus().select();
     });
 }
@@ -143,6 +142,7 @@ var populateData = function () {
         }
     }
     output += '</ul>';
+//    alert(output);
     document.getElementById("mainTree").innerHTML = output;
 }
 
@@ -264,30 +264,33 @@ var deleteNode =  function (idx) {
     populateData();
 }
 
+// if element before selected is the same level, indent under
+// if not, indent under element's parent
 var indentIn = function (idx) {
     var lastItem = childData[idx];
+    var siblingIdx = -1;
     if (getLevel(idx - 1) == getLevel(idx)) {
-        var siblingIdx = idx - 1;
-    } else
-        if (! childData[siblingIdx].isContainerOpen) {
-            toggleOpenState(siblingIdx);
-            if (typeof childData[siblingIdx].childs !== 'undefined' &&
-                childData[siblingIdx].childs.length > 0)
-                idx += childData[siblingIdx].childs.length;
-        }
-        if (typeof lastItem.parent != 'undefined') {
-            for (var i = 0; i < lastItem.parent.childs.length; i++ ) {
-                if (lastItem.parent.childs[i].id == lastItem.id) {
-                    lastItem.parent.childs.splice(i, 1);
-                    break;
-                }
+         siblingIdx = idx - 1;
+    } else if (childData[idx - 1] !== lastItem.parent) {
+        for (var i = idx - 1; i >= 0; i--) {
+            // find element's parent
+            if (childData[i] === childData[idx - 1].parent) {
+                siblingIdx = i;
+                break;
             }
         }
+    }
+    if (siblingIdx > -1) {
         lastItem.parent = childData[siblingIdx];
-        if (typeof childData[siblingIdx].childs == 'undefined')
+        if (! childData[siblingIdx].isContainerOpen) {
+            toggleOpenState(siblingIdx);
+        }
+        if (typeof childData[siblingIdx].childs === 'undefined')
             childData[siblingIdx].childs = [];
         childData[siblingIdx].childs.push(lastItem);
-    populateData();
+        populateData();
+    }
+    $('input[id=outline' + idx + ']').focus().select();
 }
 
 var indentOut = function(idx) {
