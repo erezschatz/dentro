@@ -13,3 +13,7 @@ function init() {
         'chrome://dentro/content/test.html'
     );
 }
+
+function saveOPMLfile() {
+    document.getElementById("mainWindow").contentWindow.saveFile();
+}

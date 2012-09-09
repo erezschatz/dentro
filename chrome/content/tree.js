@@ -12,14 +12,23 @@ $(document).ready(function(){
 });
 
 var keypressaction = function(event, i) {
+//    alert (event.keyCode);
     assignContent(i);
-    if (event.keyCode == 13) {
+    if (event.keyCode == 13) { //enter
         insertNode(i);
-    } else if (event.keyCode == 9 ) {
-        indentIn(i);
-    } else if (event.keyCode == 46) {
+    } else if (event.keyCode == 9 ) { //tab
+        if (shiftKey)
+            indentOut(i);
+        else
+            indeyntIn(i);
+    } else if (event.keyCode == 46) { //delete
         deleteNode(i);
-    } else {
+    } else if (event.keyCode == 40) { //down arrow
+        var newfocus = i + 1;
+        $('input[id=outline' + newfocus + ']').focus().select();
+    } else if (event.keyCode == 38) { //up arrow
+        var newfocus = i - 1;
+        $('input[id=outline' + newfocus + ']').focus().select();
     }
 }
 
@@ -44,6 +53,58 @@ var loadFile = function () {
     });
 }
 
+// currently generates OPML (standard not fully implemented)
+
+var saveFile = function() {
+    var output = '<?xml version="1.0" encoding="ISO-8859-1"?>' +
+        '<opml version="2.0">' +
+        '<head>' +
+        '<title>dentro.opml</title>' +
+        '<dateCreated>' + new Date() + '</dateCreated>'+
+        '<dateModified>' + new Date() + '</dateModified>' +
+        '<ownerName></ownerName>' +
+        '<ownerEmail></ownerEmail>' +
+        '</head>' +
+        '<body>';
+    for (var i = 0; i < childData.length; i++) {
+        //just top level nodes and recourse from there
+        if (typeof childData[i].parent === 'undefined') {
+            output += formatOPMLElement(childData[i]);
+        }
+    }
+    output += '</body>' +
+        '</opml>';
+    // file is nsIFile, data is a string
+    var foStream = Components.classes["@mozilla.org/network/file-output-stream;1"].
+        createInstance(Components.interfaces.nsIFileOutputStream);
+
+    var file = new FileUtils.File(
+        "/home/erez/dev/projects/dentro/dentro.out.opml"
+    );
+
+    // use 0x02 | 0x10 to open file for appending.
+    foStream.init(file, 0x02 | 0x08 | 0x20, 0666, 0);
+    var converter = Components.classes["@mozilla.org/intl/converter-output-stream;1"].
+                createInstance(Components.interfaces.nsIConverterOutputStream);
+    converter.init(foStream, "UTF-8", 0, 0);
+    converter.writeString(output);
+    converter.close();
+}
+
+var formatOPMLElement = function (node) {
+    var output = '<outline text="' + node.text + '" ';
+    if (typeof node.childs !== 'undefined' ||
+        node.childs.length > 0) {
+        output += '>';
+        for (var c = 0; c < node.childs.length; c++) {
+            output += formatOPMLElement(node.childs[c]);
+            output += '</outline>'
+        }
+    } else {
+            output += '/>'
+    }
+    return output;
+}
 /* not the cleanest code, and could use some heavy refactoring, but works.
 iterates over 'childData' array, and sets ul,li tags according to
 whether item has childs, is open, has next sibling etc. */

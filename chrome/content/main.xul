@@ -15,6 +15,7 @@
         <menupopup>
           <menuitem label="New" />
           <menuitem label="Open" oncommand="loadOPMLfile()"/>
+          <menuitem label="Save" oncommand="saveOPMLfile()"/>
           <menuitem label="Quit" oncommand="window.close()" />
         </menupopup>
       </menu>
