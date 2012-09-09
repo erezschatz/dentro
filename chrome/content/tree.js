@@ -264,9 +264,10 @@ var insertNode =  function(idx) {
     $('input[id=outline' + next + ']').focus().select();
 }
 
-var deleteNode =  function (idx) {
-     var toDelete = childData[idx];
+var deleteNode = function (idx) {
+    childData.splice(idx, 1);
     populateData();
+        $('input[id=outline' + idx + ']').focus().select();
 }
 
 // if element before selected is the same level, indent under
