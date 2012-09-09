@@ -28,6 +28,8 @@ var keypressaction = function(event, i) {
     } else if (event.keyCode == 38) { //up arrow
         var newfocus = i - 1;
         $('input[id=outline' + newfocus + ']').focus().select();
+    } else {
+        assignContent(i);
     }
 }
 
@@ -69,6 +71,7 @@ var saveFile = function() {
         //just top level nodes and recourse from there
         if (typeof childData[i].parent === 'undefined') {
             output += formatOPMLElement(childData[i]);
+            output += '</outline>';
         }
     }
     output += '</body>' +
@@ -81,10 +84,10 @@ var saveFile = function() {
         "/home/erez/dev/projects/dentro/dentro.out.opml"
     );
 
-    // use 0x02 | 0x10 to open file for appending.
     foStream.init(file, 0x02 | 0x08 | 0x20, 0666, 0);
-    var converter = Components.classes["@mozilla.org/intl/converter-output-stream;1"].
-                createInstance(Components.interfaces.nsIConverterOutputStream);
+    var converter = Components.classes[
+        "@mozilla.org/intl/converter-output-stream;1"
+    ].createInstance(Components.interfaces.nsIConverterOutputStream);
     converter.init(foStream, "UTF-8", 0, 0);
     converter.writeString(output);
     converter.close();
@@ -102,6 +105,7 @@ var formatOPMLElement = function (node) {
     } else {
             output += '/>'
     }
+
     return output;
 }
 /* not the cleanest code, and could use some heavy refactoring, but works.
@@ -119,7 +123,7 @@ var populateData = function () {
             '" onclick="toggleOpenState(' + i +  ')">' +
             '<input id="outline' + i + '" type="text" value="' +
             childData[i].text + '" onkeypress="keypressaction(event, ' +
-            i + ');"></li>';
+            i + ');" onkeyup="assignContent(' + i + ');"></li>';
 
         // parents with visible children
         if (childData[i].isContainerOpen &&
@@ -206,6 +210,7 @@ var hasNextSibling =  function(idx) {
 // tree manipulation is done on the childData array,
 // then the app regenerates the tree html
 var toggleOpenState = function(idx) {
+    assignContent(idx);
     var item = childData[idx];
     var visible = childData.length;
     if (item.isContainerOpen) {
