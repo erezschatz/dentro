@@ -8,9 +8,7 @@ var Outline = function () {
     return this;
 }
 
-$(document).ready(function(){
-    //loadFile();
-});
+$(document).ready(function(){});
 
 var keypressaction = function(event, i) {
     assignContent(i);
@@ -44,7 +42,7 @@ var keypressaction = function(event, i) {
 
 var loadFile = function (chosenFile) {
     Components.utils.import("resource://gre/modules/NetUtil.jsm");
-    if (chosenFile == '') {
+    if (typeof chosenFile === 'undefined') {
         Components.utils.import("resource://gre/modules/FileUtils.jsm");
 
         file = new FileUtils.File(
@@ -86,14 +84,15 @@ var saveFile = function(toFile) {
             output += '</outline>';
         }
     }
-    output += '</body>' +
-        '</opml>';
+    output += '</body></opml>';
+
     // file is nsIFile, data is a string
     var foStream = Components.classes["@mozilla.org/network/file-output-stream;1"].
         createInstance(Components.interfaces.nsIFileOutputStream);
 
-    if (toFile != '')
+    if (typeof toFile !== 'undefined') {
         file = toFile;
+    }
 
     foStream.init(file, 0x02 | 0x08 | 0x20, 0666, 0);
     var converter = Components.classes[
