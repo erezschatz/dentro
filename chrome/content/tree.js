@@ -24,8 +24,9 @@ var keypressaction = function(event, i) {
         if (event.shiftKey) {
             indentOut(i);
         }
-        else
+        else {
             indentIn(i);
+        }
     } else if (event.keyCode == 46) { //delete
         if (event.ctrlKey)
             deleteNode(i);
@@ -273,9 +274,22 @@ var insertNode =  function(idx) {
 }
 
 var deleteNode = function (idx) {
-    var toDelete = childData[idx].isContainerOpen ?
-        childData[idx].childs.length : 1;
+    var currentItem = childData[idx];
+    var toDelete = currentItem.isContainerOpen &&
+        currentItem.childs.length > 0 ?
+        currentItem.childs.length + 1: 1;
+
     childData.splice(idx, toDelete);
+    var currentParent = currentItem.parent;
+    if (typeof currentParent !== 'undefined') {
+        var length = currentParent.childs.length;
+        for (var i = 0; i < length; i++) {
+            if (currentParent.childs[i].id === currentItem.id) {
+                currentParent.childs.splice(i, 1);
+                break;
+            }
+        }
+    }
 
     populateData(idx);
 }
@@ -322,7 +336,6 @@ var indentOut = function(idx) {
             break;
         }
     }
-    alert(length);
     currentItem.parent = currentParent.parent;
     childData.splice(idx, 1);
     childData.splice(idx + length, 0, currentItem);
