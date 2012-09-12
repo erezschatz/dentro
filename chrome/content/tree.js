@@ -14,14 +14,22 @@ $(document).ready(function(){
 var keypressaction = function(event, i) {
     assignContent(i);
     if (event.keyCode == 13) { //enter
-        insertNode(i);
+        if (event.altKey) {
+            toggleOpenState(i);
+        } else if (event.ctrlKey) {
+            //insert comment
+        } else {
+            insertNode(i);
+        }
     } else if (event.keyCode == 9 ) { //tab
-        if (event.shiftKey)
+        if (event.shiftKey) {
             indentOut(i);
+        }
         else
             indentIn(i);
     } else if (event.keyCode == 46) { //delete
-        deleteNode(i);
+        if (event.ctrlKey)
+            deleteNode(i);
     } else if (event.keyCode == 40) { //down arrow
         var newfocus = i + 1;
         $('input[id=outline' + newfocus + ']').focus().select();
@@ -49,8 +57,7 @@ var loadFile = function () {
             inputStream.available());
 
         parseOPML(stream);
-        populateData();
-        $('input[id=outline0]').focus().select();
+        populateData(0);
     });
 }
 
@@ -95,15 +102,15 @@ var saveFile = function() {
 
 var formatOPMLElement = function (node) {
     var output = '<outline text="' + node.text + '" ';
-    if (typeof node.childs !== 'undefined' ||
+    if (typeof node.childs !== 'undefined' &&
         node.childs.length > 0) {
         output += '>';
         for (var c = 0; c < node.childs.length; c++) {
             output += formatOPMLElement(node.childs[c]);
-            output += '</outline>'
+            output += '</outline>';
         }
     } else {
-            output += '/>'
+        output += '/>';
     }
 
     return output;
@@ -112,7 +119,7 @@ var formatOPMLElement = function (node) {
 iterates over 'childData' array, and sets ul,li tags according to
 whether item has childs, is open, has next sibling etc. */
 
-var populateData = function () {
+var populateData = function (idx) {
     var output = '<ul>';
     for (var i = 0; i < childData.length; i++) {
 
@@ -148,6 +155,7 @@ var populateData = function () {
     output += '</ul>';
 //    alert(output);
     document.getElementById("mainTree").innerHTML = output;
+    $('input[id=outline' + idx + ']').focus().select();
 }
 
 var assignContent = function(idx) {
@@ -239,8 +247,7 @@ var toggleOpenState = function(idx) {
             childData.splice(idx + i + 1, 0, toinsert[i]);
         }
     }
-    populateData();
-    $('input[id=outline' + idx + ']').focus().select();
+    populateData(idx);
 }
 
 var insertNode =  function(idx) {
@@ -259,15 +266,15 @@ var insertNode =  function(idx) {
     }
     //move selection to new row
     childData.splice(idx + 1, 0, newRow);
-    populateData();
-    var next = idx + 1;
-    $('input[id=outline' + next + ']').focus().select();
+    populateData(idx + 1);
 }
 
 var deleteNode = function (idx) {
-    childData.splice(idx, 1);
-    populateData();
-        $('input[id=outline' + idx + ']').focus().select();
+    var toDelete = childData[idx].isContainerOpen ?
+        childData[idx].childs.length : 1;
+    childData.splice(idx, toDelete);
+
+    populateData(idx);
 }
 
 // if element before selected is the same level, indent under
@@ -294,11 +301,28 @@ var indentIn = function (idx) {
         if (typeof childData[siblingIdx].childs === 'undefined')
             childData[siblingIdx].childs = [];
         childData[siblingIdx].childs.push(lastItem);
-        populateData();
+        populateData(idx);
     }
-    $('input[id=outline' + idx + ']').focus().select();
 }
 
 var indentOut = function(idx) {
-    populateData();
+    var currentItem = childData[idx];
+    var currentParent = currentItem.parent;
+    if (typeof currentParent === 'undefined' )
+        return;
+
+    var length = currentParent.childs.length;
+    for (var i = 0; i < length; i++) {
+        if (currentParent.childs[i].id === currentItem.id) {
+            currentParent.childs.splice(i, 1);
+            length -=  i + 1;
+            break;
+        }
+    }
+    alert(length);
+    currentItem.parent = currentParent.parent;
+    childData.splice(idx, 1);
+    childData.splice(idx + length, 0, currentItem);
+
+    populateData(idx);
 }
