@@ -1,5 +1,6 @@
 var childData;
 var objID = 0;
+var file;
 
 var Outline = function () {
     this.id = objID++;
@@ -41,14 +42,16 @@ var keypressaction = function(event, i) {
     }
 }
 
-var loadFile = function (file) {
+var loadFile = function (chosenFile) {
     Components.utils.import("resource://gre/modules/NetUtil.jsm");
-    if (file == '') {
+    if (chosenFile == '') {
         Components.utils.import("resource://gre/modules/FileUtils.jsm");
 
         file = new FileUtils.File(
             "/home/erez/dev/projects/dentro/dentro.opml"
         );
+    } else {
+        file = chosenFile;
     }
     NetUtil.asyncFetch(file, function(inputStream, status) {
         if (!Components.isSuccessCode(status)) {
@@ -65,7 +68,7 @@ var loadFile = function (file) {
 
 // currently generates OPML (standard not fully implemented)
 
-var saveFile = function() {
+var saveFile = function(toFile) {
     var output = '<?xml version="1.0" encoding="ISO-8859-1"?>' +
         '<opml version="2.0">' +
         '<head>' +
@@ -89,9 +92,8 @@ var saveFile = function() {
     var foStream = Components.classes["@mozilla.org/network/file-output-stream;1"].
         createInstance(Components.interfaces.nsIFileOutputStream);
 
-    var file = new FileUtils.File(
-        "/home/erez/dev/projects/dentro/dentro.out.opml"
-    );
+    if (toFile != '')
+        file = toFile;
 
     foStream.init(file, 0x02 | 0x08 | 0x20, 0666, 0);
     var converter = Components.classes[
@@ -112,7 +114,7 @@ var formatOPMLElement = function (node) {
             output += '</outline>';
         }
     } else {
-        output += '/>';
+        output += '>';
     }
 
     return output;
