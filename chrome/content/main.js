@@ -1,10 +1,14 @@
 "use strict";
 
-function loadOPMLfile(){
-    var params = { file: null };
-    window.openDialog("open_file.xul", "",
-	              "chrome, dialog, modal",params).focus();
-    parseAndLoad(params.file);
+function loadOPMLfile() {
+    var nsIFilePicker = Components.interfaces.nsIFilePicker;
+    var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
+    fp.init(window, "Select a File", nsIFilePicker.modeOpen);
+    var res = fp.show();
+    if (res != nsIFilePicker.returnCancel){
+        var file = fp.file;
+        document.getElementById("mainWindow").contentWindow.loadFile(file);
+    }
 }
 
 function init() {

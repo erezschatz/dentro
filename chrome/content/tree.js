@@ -8,7 +8,7 @@ var Outline = function () {
 }
 
 $(document).ready(function(){
-    loadFile();
+    //loadFile();
 });
 
 var keypressaction = function(event, i) {
@@ -41,13 +41,15 @@ var keypressaction = function(event, i) {
     }
 }
 
-var loadFile = function () {
+var loadFile = function (file) {
     Components.utils.import("resource://gre/modules/NetUtil.jsm");
-    Components.utils.import("resource://gre/modules/FileUtils.jsm");
+    if (file == '') {
+        Components.utils.import("resource://gre/modules/FileUtils.jsm");
 
-    var file = new FileUtils.File(
-        "/home/erez/dev/projects/dentro/dentro.opml"
-    );
+        file = new FileUtils.File(
+            "/home/erez/dev/projects/dentro/dentro.opml"
+        );
+    }
     NetUtil.asyncFetch(file, function(inputStream, status) {
         if (!Components.isSuccessCode(status)) {
             return;
