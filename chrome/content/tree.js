@@ -8,7 +8,7 @@ var Outline = function () {
     return this;
 }
 
-$(document).ready(function(){});
+//$(document).ready(function(){});
 
 var keypressaction = function(event, i) {
     assignContent(i);
@@ -87,9 +87,10 @@ var saveFile = function(toFile) {
     }
     output += '</body></opml>';
 
-    // file is nsIFile, data is a string
-    var foStream = Components.classes["@mozilla.org/network/file-output-stream;1"].
-        createInstance(Components.interfaces.nsIFileOutputStream);
+    var foStream =
+        Components.classes[
+            "@mozilla.org/network/file-output-stream;1"
+        ].createInstance(Components.interfaces.nsIFileOutputStream);
 
     if (typeof toFile !== 'undefined') {
         file = toFile;
@@ -99,7 +100,7 @@ var saveFile = function(toFile) {
     var converter = Components.classes[
         "@mozilla.org/intl/converter-output-stream;1"
     ].createInstance(Components.interfaces.nsIConverterOutputStream);
-    converter.init(foStream, "UTF-8", 0, 0);
+    converter.init(foStream, "ISO-8859-1", 0, 0);
     converter.writeString(output);
     converter.close();
 }
@@ -124,39 +125,18 @@ iterates over 'childData' array, and sets ul,li tags according to
 whether item has childs, is open, has next sibling etc. */
 
 var populateData = function (idx) {
-    var output = '<ul>';
+    var output = '';
     for (var i = 0; i < childData.length; i++) {
 
         var cssClass = childData[i].isContainerOpen ?
             'open' : 'closed';
-
-        output += '<li class="' + cssClass +
-            '" onclick="toggleOpenState(' + i +  ')">' +
+        var level = getLevel(i) * 15;
+        output += '<div style="margin-left:' + level + 'px">' +
+            '<div class="' + cssClass +'"  onclick="toggleOpenState"></div> '+
             '<input id="outline' + i + '" type="text" value="' +
             childData[i].text + '" onkeypress="keypressaction(event, ' +
-            i + ');" onkeyup="assignContent(' + i + ');"></li>';
-
-        // parents with visible children
-        if (childData[i].isContainerOpen &&
-            typeof childData[i].childs !== 'undefined' &&
-           childData[i].childs.length > 0) {
-            output += '<ul>';
-        }
-
-        if (childData[i].isContainerOpen &&
-            (typeof childData[i].childs === 'undefined' ||
-             childData[i].childs.length == 0) &&
-            !hasNextSibling(i) ||
-            (!childData[i].isContainerOpen &&
-             typeof childData[i].parent !== 'undefined' &&
-             ! hasNextSibling(i) )) {
-            var diff = getLevel(i) - getLevel(i + 1);
-            for (var d = 0; d < diff; d++) {
-                output += '</ul>';
-            }
-        }
+            i + ');" onkeyup="assignContent(' + i + ');"></div>';
     }
-    output += '</ul>';
 //    alert(output);
     document.getElementById("mainTree").innerHTML = output;
     $('input[id=outline' + idx + ']').focus().select();
