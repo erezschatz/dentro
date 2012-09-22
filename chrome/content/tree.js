@@ -120,9 +120,9 @@ var formatOPMLElement = function (node) {
 
     return output;
 }
-/* not the cleanest code, and could use some heavy refactoring, but works.
-iterates over 'childData' array, and sets ul,li tags according to
-whether item has childs, is open, has next sibling etc. */
+/* iterates over 'childData' array, creates a bullet
+   div and an input box for each item, indented it according to level, creating
+   the illusion of nested lists */
 
 var populateData = function (idx) {
     var output = '';
@@ -132,7 +132,7 @@ var populateData = function (idx) {
             'open' : 'closed';
         var level = getLevel(i) * 15;
         output += '<div style="margin-left:' + level + 'px">' +
-            '<div class="' + cssClass +'"  onclick="toggleOpenState"></div> '+
+            '<div class="' + cssClass + '" onclick="toggleOpenState(' + i + ');">&nbsp;</div>'+
             '<input id="outline' + i + '" type="text" value="' +
             childData[i].text + '" onkeypress="keypressaction(event, ' +
             i + ');" onkeyup="assignContent(' + i + ');"></div>';
