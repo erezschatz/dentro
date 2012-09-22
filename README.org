@@ -25,3 +25,22 @@ It also has some other features in the pipeline.
 As always, an itch was in need to be scratched, and nothing available was there to scratch it.
 Everything was either too limited, not cross-platform, or non-GUI. I realised the only way to have my cake and eat
 it too will be to design a cake that can be both had and eaten.
+
+*** How to run Dentro
+You'll need XULrunner (not included), which you can get from  
+[[https://developer.mozilla.org/en-US/docs/XULRunner][Mozilla's Site]], or from your package manager (if you 
+happen to run a distro that happen to have XULRunner packaged, like [[http://debian.org][Debian]]).
+Once that's installed or unzipped, download dentro (or git-clone it), then run the following from a terminal:
+
+$ [/path/to/]xulrunner /path/to/dentro/application.ini
+
+It should work from windows as well, just replace the paths with the appropriate paths.
+
+*** Keyboard Shortcuts:
+
+Enter creates an empty sibling node.
+Tab indents it under the immediate parent, Shift+Tab indents-out.
+Alt-Enter expands/collapses the node, you can also Alt-Enter.
+Ctrl+delete deletes the focused node.
+Down and up arrow moves to the next/previous node
+
