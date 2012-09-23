@@ -68,21 +68,21 @@ var loadFile = function (chosenFile) {
 // currently generates OPML (standard not fully implemented)
 
 var saveFile = function(toFile) {
-    var output = '<?xml version="1.0" encoding="ISO-8859-1"?>' +
-        '<opml version="2.0">' +
-        '<head>' +
-        '<title>dentro.opml</title>' +
-        '<dateCreated>' + new Date() + '</dateCreated>'+
-        '<dateModified>' + new Date() + '</dateModified>' +
-        '<ownerName></ownerName>' +
-        '<ownerEmail></ownerEmail>' +
-        '</head>' +
-        '<body>';
+    var output = '<?xml version="1.0" encoding="ISO-8859-1"?>\n' +
+        '<opml version="2.0">\n' +
+        '  <head>\n' +
+        '  <title>dentro.opml</title>\n' +
+        '    <dateCreated>' + new Date() + '</dateCreated>\n'+
+        '    <dateModified>' + new Date() + '</dateModified>\n' +
+        '    <ownerName></ownerName>\n' +
+        '    <ownerEmail></ownerEmail>\n' +
+        '  </head>\n' +
+        '  <body>\n';
     for (var i = 0; i < childData.length; i++) {
         //just top level nodes and recourse from there
         if (typeof childData[i].parent === 'undefined') {
-            output += formatOPMLElement(childData[i]);
-            output += '</outline>';
+            output += formatOPMLElement(childData[i], getLevel(i));
+            output += '</outline>\n';
         }
     }
     output += '</body></opml>';
@@ -105,17 +105,20 @@ var saveFile = function(toFile) {
     converter.close();
 }
 
-var formatOPMLElement = function (node) {
-    var output = '<outline text="' + node.text + '" ';
+var formatOPMLElement = function (node, level) {
+    var space = '    ';
+    for (var i = 0; i < level; i++)
+        space += '    ';
+    var output = space + '<outline text="' + node.text + '"';
     if (typeof node.childs !== 'undefined' &&
         node.childs.length > 0) {
-        output += '>';
+        output += '>\n';
         for (var c = 0; c < node.childs.length; c++) {
-            output += formatOPMLElement(node.childs[c]);
-            output += '</outline>';
+            output += formatOPMLElement(node.childs[c], level + 1);
+            output += space + '</outline>\n';
         }
     } else {
-        output += '>';
+        output += '>\n';
     }
 
     return output;

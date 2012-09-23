@@ -2,67 +2,97 @@
 <opml version="2.0">
   <head>
     <title>dentro.opml</title>
-    <dateCreated>Sun, 19 Aug 2012 21:03:51 GMT</dateCreated>
-    <dateModified>Mon, 27 Aug 2012 05:26:59 GMT</dateModified>
+    <dateCreated>Sun Sep 23 2012 07:48:45 GMT+0200 (IST)</dateCreated>
+    <dateModified>Sun Sep 23 2012 07:48:45 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
   <body>
     <outline text="Dentro">
       <outline text="name">
-	<outline text="Dentro">
-	  <outline text="Tree in Greek"/>
-	  <outline text="      "/>
-	</outline>
+        <outline text="Dentro">
+          <outline text="Tree in Greek">
+          </outline>
+        </outline>
       </outline>
       <outline text="Why?">
-	<outline text="this is a comment" isComment="true"/>
-	<outline text="OPML Editor - not in Linux"/>
+        <outline text="OPML Editor - not in Linux">
+        </outline>
+        <outline text="Other solutions">
+          <outline text="either not as good">
+          </outline>
+          <outline text="or lacking features">
+          </outline>
+        </outline>
+        <outline text="either not as good">
+        </outline>
       </outline>
     </outline>
     <outline text="features">
       <outline text="Cross platform">
-	<outline text="XUL based"/>
+        <outline text="XUL based">
+        </outline>
       </outline>
-      <outline text="Everything is an outline"/>
-      <outline text="reads opml"/>
-      <outline text="writes opml"/>
+      <outline text="Everything is an outline">
+      </outline>
+      <outline text="reads opml">
+      </outline>
+      <outline text="writes opml">
+      </outline>
       <outline text="auto-saves">
-	<outline text="a tmp file"/>
-	<outline text="overwrites original on">
-	  <outline text="exit"/>
-	  <outline text="document close"/>
-	  <outline text="after crash/restart"/>
-	</outline>
+        <outline text="a tmp file">
+        </outline>
+        <outline text="overwrites original on">
+          <outline text="exit">
+          </outline>
+          <outline text="document close">
+          </outline>
+          <outline text="after crash/restart">
+          </outline>
+        </outline>
       </outline>
-      <outline text="extendable"/>
+      <outline text="extendable">
+        <outline text="uses a simple JSON data structure">
+        </outline>
+        <outline text="extensions only need to read/write that JSON">
+        </outline>
+      </outline>
+      <outline text="uses a simple JSON data structure">
+      </outline>
     </outline>
     <outline text="development">
+      <outline text="0.2"></outline>
       <outline text="0.1">
-	<outline text="read file"/>
-	<outline text="write file"/>
-	<outline text="tree manipulation">
-	  <outline text="insert new item">
-	    <outline text="create new, empty item under selected item">
-	    <outline text="focus on new item"/>
-	    </outline>
-	  <outline text="delete item"/>
-	  <outline text="indent">
-	    <outline text="in">
-	      <outline text="selected item now a child of immediate item sibling"/>
-	      <outline text="selected item now a child of sibling above, even if not immedate above"/>
-	    </outline>
-	    <outline text="out"/>
-	  </outline>
-	  <outline text="open OPML file"/>
-	  <outline text="save OPML file"/>
+        <outline text="read file">
+          <outline text="done">
+          </outline>
+        </outline>
+        <outline text="write file">
+          <outline text="done">
+          </outline>
+        </outline>
+        <outline text="tree manipulation">
+          <outline text="insert new item">
+            <outline text="create new, empty item under selected item">
+              <outline text="focus on new item">
+              </outline>
+              <outline text="keyboard shortcut Enter">
+              </outline>
+            </outline>
+            <outline text="done">
+            </outline>
+            <outline text="deletes current item">
+              <outline text="also all children">
+              </outline>
+            </outline>
           </outline>
           <outline text="future versions">
-            <outline text="tabbed interface" />
-            <outline text="side by side" />
+            <outline text="tabbed interface">
+            </outline>
+            <outline text="side by side">
+            </outline>
           </outline>
         </outline>
       </outline>
     </outline>
-  </body>
-</opml>
+</body></opml>
