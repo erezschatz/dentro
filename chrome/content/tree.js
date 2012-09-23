@@ -138,7 +138,7 @@ var populateData = function (idx) {
             '<div class="' + cssClass + '" onclick="toggleOpenState(' + i + ');">&nbsp;</div>'+
             '<input id="outline' + i + '" type="text" value="' +
             childData[i].text + '" onkeypress="keypressaction(event, ' +
-            i + ');" onkeyup="assignContent(' + i + ');"></div>';
+            i + ');" onkeyup="assignContent(' + i + ');" style="width:' + childData[i].text.length + '0px;"></div>';
     }
 //    alert(output);
     document.getElementById("mainTree").innerHTML = output;
