@@ -319,7 +319,12 @@ var indentOut = function(idx) {
             break;
         }
     }
-    currentItem.parent = currentParent.parent;
+    for (var i = 0; i < childData.length; i++) {
+        if (childData[i].id === currentParent.parent.id) {
+            currentItem.parent = childData[i].id;
+            childData[i].childs.push(currentItem);
+        }
+    }
     childData.splice(idx, 1);
     childData.splice(idx + length, 0, currentItem);
 
