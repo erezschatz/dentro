@@ -140,7 +140,7 @@ var populateData = function (idx) {
             childData[i].text + '" onkeypress="keypressaction(event, ' +
             i + ');" onkeyup="assignContent(' + i + ');" style="width:' + childData[i].text.length + '0px;"></div>';
     }
-//    alert(output);
+    //alert(output);
     document.getElementById("mainTree").innerHTML = output;
     $('input[id=outline' + idx + ']').focus().select();
 }
