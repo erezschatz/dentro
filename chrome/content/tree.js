@@ -135,10 +135,12 @@ var populateData = function (idx) {
             'open' : 'closed';
         var level = getLevel(i) * 15;
         output += '<div style="margin-left:' + level + 'px">' +
-            '<div class="' + cssClass + '" onclick="toggleOpenState(' + i + ');">&nbsp;</div>'+
+            '<div class="' + cssClass +
+            '" onclick="toggleOpenState(' + i + ');">&nbsp;</div>' +
             '<input id="outline' + i + '" type="text" value="' +
             childData[i].text + '" onkeypress="keypressaction(event, ' +
-            i + ');" onkeyup="assignContent(' + i + ');" style="width:' + childData[i].text.length + '0px;"></div>';
+            i + ');" onkeyup="assignContent(' + i + ');" style="width:' +
+            childData[i].text.length + '0px;"></div>';
     }
     //alert(output);
     document.getElementById("mainTree").innerHTML = output;
@@ -147,6 +149,12 @@ var populateData = function (idx) {
 
 var assignContent = function(idx) {
     childData[idx].text = $('input[id=outline' + idx + ']').attr('value');
+    var length = childData[idx].text.length > 10 ?
+        childData[idx].text.length :
+        10;
+    $('input[id=outline' + idx + ']').attr(
+        'style', 'width:' + length + '0px;'
+    );
 }
 
 var parseOPML = function (input) {

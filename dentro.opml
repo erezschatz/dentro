@@ -2,8 +2,8 @@
 <opml version="2.0">
   <head>
     <title>dentro.opml</title>
-    <dateCreated>Sun Sep 23 2012 18:57:53 GMT+0200 (IST)</dateCreated>
-    <dateModified>Sun Sep 23 2012 18:57:53 GMT+0200 (IST)</dateModified>
+    <dateCreated>Mon Sep 24 2012 18:21:50 GMT+0200 (IST)</dateCreated>
+    <dateModified>Mon Sep 24 2012 18:21:50 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -22,8 +22,6 @@
           <outline text="either not as good">
             <outline text="or lacking features">
             </outline>
-          </outline>
-          <outline text="or lacking features">
           </outline>
         </outline>
       </outline>
@@ -55,42 +53,6 @@
         <outline text="uses a simple JSON data structure">
         </outline>
         <outline text="extensions only need to read/write that JSON">
-        </outline>
-      </outline>
-    </outline>
-    <outline text="development">
-      <outline text="0.2">
-      </outline>
-      <outline text="0.1">
-        <outline text="read file">
-          <outline text="done">
-          </outline>
-        </outline>
-        <outline text="write file">
-          <outline text="done">
-          </outline>
-        </outline>
-        <outline text="tree manipulation">
-          <outline text="insert new item">
-            <outline text="create new, empty item under selected item">
-              <outline text="focus on new item">
-              </outline>
-              <outline text="keyboard shortcut Enter">
-              </outline>
-            </outline>
-            <outline text="done">
-            </outline>
-            <outline text="deletes current item">
-              <outline text="also all children">
-              </outline>
-            </outline>
-          </outline>
-        </outline>
-        <outline text="future versions">
-          <outline text="tabbed interface">
-          </outline>
-          <outline text="side by side">
-          </outline>
         </outline>
       </outline>
     </outline>
