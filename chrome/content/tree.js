@@ -8,7 +8,7 @@ var Outline = function () {
     return this;
 }
 
-//$(document).ready(function(){});
+//$(document).ready(function(){alert(window.width)});
 
 var keypressaction = function(event, i) {
     assignContent(i);
@@ -17,6 +17,8 @@ var keypressaction = function(event, i) {
             toggleOpenState(i);
         } else if (event.ctrlKey) {
             //insert comment
+        } else if (event.shiftKey) {
+            //insert with cut+paste from point
         } else {
             insertNode(i);
         }
@@ -32,10 +34,10 @@ var keypressaction = function(event, i) {
             deleteNode(i);
     } else if (event.keyCode == 40) { //down arrow
         var newfocus = i + 1;
-        $('input[id=outline' + newfocus + ']').focus().select();
+        $('textarea[id=outline' + newfocus + ']').focus().select();
     } else if (event.keyCode == 38) { //up arrow
         var newfocus = i - 1;
-        $('input[id=outline' + newfocus + ']').focus().select();
+        $('textarea[id=outline' + newfocus + ']').focus().select();
     } else {
         assignContent(i);
     }
@@ -124,7 +126,7 @@ var formatOPMLElement = function (node, level) {
     return output;
 }
 /* iterates over 'childData' array, creates a bullet
-   div and an input box for each item, indented it according to level, creating
+   div and a textarea for each item, indented it according to level, creating
    the illusion of nested lists */
 
 var populateData = function (idx) {
@@ -137,23 +139,44 @@ var populateData = function (idx) {
         output += '<div style="margin-left:' + level + 'px">' +
             '<div class="' + cssClass +
             '" onclick="toggleOpenState(' + i + ');">&nbsp;</div>' +
-            '<input id="outline' + i + '" type="text" value="' +
-            childData[i].text + '" onkeypress="keypressaction(event, ' +
-            i + ');" onkeyup="assignContent(' + i + ');" style="width:' +
-            childData[i].text.length + '0px;"></div>';
+            '<div id="container' + i +
+            '" style="display:inline-block"><textarea id="outline' + i +
+            '" onkeypress="keypressaction(event, ' + i +
+            ');" onkeyup="assignContent(' + i + ');">' +
+            childData[i].text + '</textarea></div></div>';
     }
-    //alert(output);
     document.getElementById("mainTree").innerHTML = output;
-    $('input[id=outline' + idx + ']').focus().select();
+    for (var i = 0; i < childData.length; i++) {
+        assignContent(i);
+    }
+    alert(output);
+    $('textarea[id=outline' + idx + ']').focus().select();
+}
+
+var calculateTextAreaSize = function(idx) {
+    var maxwidth = $(window).width() - (getLevel(idx) * 20);
+    var length = childData[idx].text.length * 10;
+    document.getElementById('debug').innerHTML = maxwidth + ':' +  length;
+    if (length <= maxwidth) {
+        return {
+            'width': length,
+            'height': 18
+        };
+    } else {
+        var rows = parseInt(maxwidth / length) + 1;
+        return {
+            'width': maxwidth,
+            'height': rows * 18
+        };
+    }
 }
 
 var assignContent = function(idx) {
-    childData[idx].text = $('input[id=outline' + idx + ']').attr('value');
-    var length = childData[idx].text.length > 10 ?
-        childData[idx].text.length :
-        10;
-    $('input[id=outline' + idx + ']').attr(
-        'style', 'width:' + length + '0px;'
+    childData[idx].text = $('textarea[id=outline' + idx + ']').attr('value');
+    var newSize = calculateTextAreaSize(idx);
+    $('textarea[id=outline' + idx + ']').attr(
+        'style',
+        'height:' + newSize.height + 'px; width:' + newSize.width+ 'px;'
     );
 }
 
