@@ -3,6 +3,7 @@
     padding-right: 5px;
     display:inline-block;
     cursor: default;
+    background-position:top;
 }
 
 .open {
@@ -18,4 +19,5 @@ textarea {
     font-size: 12px;
     border:none;
     resize: none;
+    height:18px;
 }

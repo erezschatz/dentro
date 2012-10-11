@@ -8,8 +8,6 @@ var Outline = function () {
     return this;
 }
 
-//$(document).ready(function(){alert(window.width)});
-
 var keypressaction = function(event, i) {
     assignContent(i);
     if (event.keyCode == 13) { //enter
@@ -131,8 +129,9 @@ var formatOPMLElement = function (node, level) {
 
 var populateData = function (idx) {
     var output = '';
+    var winwidth = $(window).width();
     for (var i = 0; i < childData.length; i++) {
-
+        var maxwidth =  winwidth - (30 + (getLevel(i) * 15));
         var cssClass = childData[i].isContainerOpen ?
             'open' : 'closed';
         var level = getLevel(i) * 15;
@@ -142,42 +141,22 @@ var populateData = function (idx) {
             '<div id="container' + i +
             '" style="display:inline-block"><textarea id="outline' + i +
             '" onkeypress="keypressaction(event, ' + i +
-            ');" onkeyup="assignContent(' + i + ');">' +
+            ');" onkeyup="assignContent(' + i +
+            ');" style="width: ' + maxwidth + '">' +
             childData[i].text + '</textarea></div></div>';
     }
     document.getElementById("mainTree").innerHTML = output;
-    for (var i = 0; i < childData.length; i++) {
-        assignContent(i);
-    }
-    alert(output);
-    $('textarea[id=outline' + idx + ']').focus().select();
-}
-
-var calculateTextAreaSize = function(idx) {
-    var maxwidth = $(window).width() - (getLevel(idx) * 20);
-    var length = childData[idx].text.length * 10;
-    document.getElementById('debug').innerHTML = maxwidth + ':' +  length;
-    if (length <= maxwidth) {
-        return {
-            'width': length,
-            'height': 18
-        };
+    if ($(window).width() < winwidth) {
+        populateData(idx);
     } else {
-        var rows = parseInt(maxwidth / length) + 1;
-        return {
-            'width': maxwidth,
-            'height': rows * 18
-        };
+        //slows down the whole thing, but for now it's very convenient
+        $('textarea').autosize();
+        $('textarea[id=outline' + idx + ']').focus().select();
     }
 }
 
 var assignContent = function(idx) {
     childData[idx].text = $('textarea[id=outline' + idx + ']').attr('value');
-    var newSize = calculateTextAreaSize(idx);
-    $('textarea[id=outline' + idx + ']').attr(
-        'style',
-        'height:' + newSize.height + 'px; width:' + newSize.width+ 'px;'
-    );
 }
 
 var parseOPML = function (input) {
@@ -257,9 +236,12 @@ var toggleOpenState = function(idx) {
         }
     }
     else {
+        if (item.childs.length == 0) {
+            return;
+        }
         item.isContainerOpen = true;
 
-        var toinsert = childData[idx].childs;
+        var toinsert = item.childs;
         var length = toinsert ? toinsert.length : 0;
         for (var i = 0; i < length; i++) {
             childData.splice(idx + i + 1, 0, toinsert[i]);
@@ -352,7 +334,7 @@ var indentOut = function(idx) {
     }
     for (var i = 0; i < childData.length; i++) {
         if (childData[i].id === currentParent.parent.id) {
-            currentItem.parent = childData[i].id;
+            currentItem.parent = childData[i];
             childData[i].childs.push(currentItem);
         }
     }

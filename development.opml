@@ -2,8 +2,8 @@
 <opml version="2.0">
   <head>
   <title>dentro.opml</title>
-    <dateCreated>Tue Oct 09 2012 19:36:16 GMT+0200 (IST)</dateCreated>
-    <dateModified>Tue Oct 09 2012 19:36:16 GMT+0200 (IST)</dateModified>
+    <dateCreated>Thu Oct 11 2012 20:22:18 GMT+0200 (IST)</dateCreated>
+    <dateModified>Thu Oct 11 2012 20:22:18 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -19,6 +19,8 @@
             <outline text="write file">
                 <outline text="done">
             </outline>
+                <outline text="both save and save as">
+            </outline>
         </outline>
             <outline text="tree manipulation">
                 <outline text="insert new item">
@@ -29,12 +31,6 @@
                     </outline>
                 </outline>
                     <outline text="done">
-                </outline>
-                    <outline text="delete current item">
-                        <outline text="also all children">
-                    </outline>
-                        <outline text="done">
-                    </outline>
                 </outline>
             </outline>
                 <outline text="bugs">
@@ -53,14 +49,20 @@
                     </outline>
                 </outline>
             </outline>
+                <outline text="delete current item">
+                    <outline text="also all children">
+                </outline>
+                    <outline text="done">
+                </outline>
+            </outline>
         </outline>
-            <outline text="future versions">
-                <outline text="tabbed interface">
-            </outline>
-                <outline text="side by side">
-            </outline>
-                <outline text="mouse control">
-            </outline>
+    </outline>
+        <outline text="future versions">
+            <outline text="tabbed interface">
+        </outline>
+            <outline text="side by side">
+        </outline>
+            <outline text="mouse control">
         </outline>
     </outline>
 </outline>
