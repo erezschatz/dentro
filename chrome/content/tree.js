@@ -52,6 +52,7 @@ var loadFile = function (chosenFile) {
     } else {
         file = chosenFile;
     }
+
     NetUtil.asyncFetch(file, function(inputStream, status) {
         if (!Components.isSuccessCode(status)) {
             return;
@@ -68,7 +69,8 @@ var loadFile = function (chosenFile) {
 // currently generates OPML (standard not fully implemented)
 
 var saveFile = function(toFile) {
-    var output = '<?xml version="1.0" encoding="ISO-8859-1"?>\n' +
+    var output =
+        '<?xml version="1.0" encoding="ISO-8859-1"?>\n' +
         '<opml version="2.0">\n' +
         '  <head>\n' +
         '  <title>dentro.opml</title>\n' +
@@ -78,6 +80,7 @@ var saveFile = function(toFile) {
         '    <ownerEmail></ownerEmail>\n' +
         '  </head>\n' +
         '  <body>\n';
+
     for (var i = 0; i < childData.length; i++) {
         //just top level nodes and recourse from there
         if (typeof childData[i].parent === 'undefined') {
@@ -107,8 +110,10 @@ var saveFile = function(toFile) {
 
 var formatOPMLElement = function (node, level) {
     var space = '    ';
-    for (var i = 0; i < level; i++)
+    for (var i = 0; i < level; i++) {
         space += '    ';
+    }
+
     var output = space + '<outline text="' + node.text + '"';
     if (typeof node.childs !== 'undefined' &&
         node.childs.length > 0) {
@@ -123,6 +128,7 @@ var formatOPMLElement = function (node, level) {
 
     return output;
 }
+
 /* iterates over 'childData' array, creates a bullet
    div and a textarea for each item, indented it according to level, creating
    the illusion of nested lists */
@@ -135,6 +141,7 @@ var populateData = function (idx) {
         var cssClass = childData[i].isContainerOpen ?
             'open' : 'closed';
         var level = getLevel(i) * 15;
+
         output += '<div style="margin-left:' + level + 'px">' +
             '<div class="' + cssClass +
             '" onclick="toggleOpenState(' + i + ');">&nbsp;</div>' +
@@ -145,7 +152,9 @@ var populateData = function (idx) {
             ');" style="width: ' + maxwidth + '">' +
             childData[i].text + '</textarea></div></div>';
     }
+
     document.getElementById("mainTree").innerHTML = output;
+
     if ($(window).width() < winwidth) {
         populateData(idx);
     } else {
@@ -165,10 +174,10 @@ var parseOPML = function (input) {
 
     var nodesSnapshot = oDOM.evaluate(
         '/opml/body/outline', oDOM, null,
-        XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null );
+        XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null
+    );
 
     //initialise the main array;
-
     childData = [];
 
     for (var i = 0; i < nodesSnapshot.snapshotLength; i++) {
@@ -176,21 +185,26 @@ var parseOPML = function (input) {
         var outline = new Outline();
         outline.text = node.attr("text");
         outline.childs = [];
+
         node.children().each(function() {
             outline.childs.push(generateChildNode(outline, this));
         });
+
         childData.push(outline);
     }
 }
 
 var generateChildNode = function(parentNode, childNode) {
     var child = new Outline();
+
     child.parent = parentNode;
     child.text = $(childNode).attr("text");
     child.childs = [];
+
     $(childNode).children().each(function() {
         child.childs.push(generateChildNode(child, this));
     });
+
     return child;
 }
 
@@ -198,6 +212,7 @@ var generateChildNode = function(parentNode, childNode) {
 var getLevel = function(idx) {
     var level = 0;
     var checked_element = childData[idx];
+
     while (typeof checked_element !== 'undefined' &&
            typeof checked_element.parent !== 'undefined') {
         level++;
@@ -224,8 +239,7 @@ var toggleOpenState = function(idx) {
         var thisLevel = getLevel(idx);
         var deletecount = 0;
 
-        for (var t = idx + 1; t < visible &&
-             getLevel(t) > thisLevel; t++) {
+        for (var t = idx + 1; t < visible && getLevel(t) > thisLevel; t++) {
             deletecount++;
             if (childData[t].isContainerOpen) {
                 toggleOpenState(t);
@@ -271,9 +285,10 @@ var insertNode =  function(idx) {
 
 var deleteNode = function (idx) {
     var currentItem = childData[idx];
-    var toDelete = currentItem.isContainerOpen &&
-        currentItem.childs.length > 0 ?
-        currentItem.childs.length + 1: 1;
+    var toDelete =
+        currentItem.isContainerOpen && currentItem.childs.length > 0 ?
+        currentItem.childs.length + 1:
+        1;
 
     childData.splice(idx, toDelete);
     var currentParent = currentItem.parent;
@@ -311,8 +326,9 @@ var indentIn = function (idx) {
         if (! childData[siblingIdx].isContainerOpen) {
             toggleOpenState(siblingIdx);
         }
-        if (typeof childData[siblingIdx].childs === 'undefined')
+        if (typeof childData[siblingIdx].childs === 'undefined') {
             childData[siblingIdx].childs = [];
+        }
         childData[siblingIdx].childs.push(lastItem);
         populateData(idx);
     }
@@ -321,8 +337,9 @@ var indentIn = function (idx) {
 var indentOut = function(idx) {
     var currentItem = childData[idx];
     var currentParent = currentItem.parent;
-    if (typeof currentParent === 'undefined' )
+    if (typeof currentParent === 'undefined') {
         return;
+    }
 
     var length = currentParent.childs.length;
     for (var i = 0; i < length; i++) {
