@@ -349,10 +349,14 @@ var indentOut = function(idx) {
             break;
         }
     }
-    for (var i = 0; i < childData.length; i++) {
-        if (childData[i].id === currentParent.parent.id) {
-            currentItem.parent = childData[i];
-            childData[i].childs.push(currentItem);
+    if (typeof currentParent.parent === 'undefined') {
+        currentItem.parent = null;
+    } else {
+        for (var i = 0; i < childData.length; i++) {
+            if (childData[i].id === currentParent.parent.id) {
+                currentItem.parent = childData[i];
+                childData[i].childs.push(currentItem);
+            }
         }
     }
     childData.splice(idx, 1);
