@@ -15,7 +15,7 @@
     <menubar>
       <menu id="file" label="File">
         <menupopup>
-          <menuitem label="New" />
+          <menuitem label="New" oncommand="newOPMLfile()" />
           <menuitem label="Open" oncommand="loadOPMLfile()"/>
           <menuitem label="Save" oncommand="saveOPMLfile()"/>
           <menuitem label="Save As" oncommand="saveOPMLfileAs()"/>

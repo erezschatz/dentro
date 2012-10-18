@@ -1,6 +1,8 @@
 "use strict";
 
-function loadOPMLfile() {
+var newOPMLfile = function () {
+}
+var loadOPMLfile = function () {
     var nsIFilePicker = Components.interfaces.nsIFilePicker;
     var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
     fp.init(window, "Select a File", nsIFilePicker.modeOpen);
@@ -11,7 +13,7 @@ function loadOPMLfile() {
     }
 }
 
-function saveOPMLfileAs() {
+var saveOPMLfileAs = function () {
     var nsIFilePicker = Components.interfaces.nsIFilePicker;
     var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
     fp.init(window, "Select a File", nsIFilePicker.modeSave);
@@ -22,13 +24,13 @@ function saveOPMLfileAs() {
     }
 }
 
-function init() {
+var init = function () {
     document.getElementById("mainWindow").setAttribute(
         'src',
         'chrome://dentro/content/test.html'
     );
 }
 
-function saveOPMLfile() {
+var saveOPMLfile = function () {
     document.getElementById("mainWindow").contentWindow.saveFile();
 }
