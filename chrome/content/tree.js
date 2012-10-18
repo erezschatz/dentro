@@ -5,6 +5,8 @@ var file;
 var Outline = function () {
     this.id = objID++;
     this.isContainerOpen = false;
+    this.childs = [];
+    this.text = '';
     return this;
 }
 
@@ -39,6 +41,11 @@ var keypressaction = function(event, i) {
     } else {
         assignContent(i);
     }
+}
+
+var newFile = function () {
+    childData = [new Outline()];;
+    populateData(0);
 }
 
 var loadFile = function (chosenFile) {
@@ -184,7 +191,6 @@ var parseOPML = function (input) {
         var node = $(nodesSnapshot.snapshotItem(i));
         var outline = new Outline();
         outline.text = node.attr("text");
-        outline.childs = [];
 
         node.children().each(function() {
             outline.childs.push(generateChildNode(outline, this));
@@ -199,7 +205,6 @@ var generateChildNode = function(parentNode, childNode) {
 
     child.parent = parentNode;
     child.text = $(childNode).attr("text");
-    child.childs = [];
 
     $(childNode).children().each(function() {
         child.childs.push(generateChildNode(child, this));

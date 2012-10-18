@@ -1,7 +1,9 @@
 "use strict";
 
 var newOPMLfile = function () {
+    document.getElementById('mainWindow').contentWindow.newFile();
 }
+
 var loadOPMLfile = function () {
     var nsIFilePicker = Components.interfaces.nsIFilePicker;
     var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
@@ -15,8 +17,11 @@ var loadOPMLfile = function () {
 
 var saveOPMLfileAs = function () {
     var nsIFilePicker = Components.interfaces.nsIFilePicker;
-    var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
+    var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(
+        nsIFilePicker
+    );
     fp.init(window, "Select a File", nsIFilePicker.modeSave);
+
     var res = fp.show();
     if (res != nsIFilePicker.returnCancel){
         var file = fp.file;
