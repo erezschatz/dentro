@@ -325,18 +325,19 @@ var indentIn = function (idx) {
                 break;
             }
         }
+    } else {
+        return;
     }
-    if (siblingIdx > -1) {
-        lastItem.parent = childData[siblingIdx];
-        if (! childData[siblingIdx].isContainerOpen) {
-            toggleOpenState(siblingIdx);
-        }
-        if (typeof childData[siblingIdx].childs === 'undefined') {
-            childData[siblingIdx].childs = [];
-        }
-        childData[siblingIdx].childs.push(lastItem);
-        populateData(idx);
+
+    lastItem.parent = childData[siblingIdx];
+    if (! childData[siblingIdx].isContainerOpen) {
+        toggleOpenState(siblingIdx);
     }
+    if (typeof childData[siblingIdx].childs === 'undefined') {
+        childData[siblingIdx].childs = [];
+    }
+    childData[siblingIdx].childs.push(lastItem);
+    populateData(idx);
 }
 
 var indentOut = function(idx) {
