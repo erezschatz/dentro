@@ -247,10 +247,10 @@ var indentIn = function (idx) {
     var siblingIdx = -1;
     if (getLevel(idx - 1) === getLevel(idx)) {
         siblingIdx = idx - 1;
-    } else if (childData[idx - 1] !== lastItem.parent) {
+    } else if (childData[idx - 1].id !== lastItem.parent.id) {
         for (var i = idx - 1; i >= 0; i--) {
             // find element's parent
-            if (childData[i] === childData[idx - 1].parent) {
+            if (childData[i].id === childData[idx - 1].parent.id) {
                 siblingIdx = i;
                 break;
             }

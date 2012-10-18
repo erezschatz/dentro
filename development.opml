@@ -2,8 +2,8 @@
 <opml version="2.0">
   <head>
   <title>dentro.opml</title>
-    <dateCreated>Thu Oct 18 2012 14:59:45 GMT+0200 (IST)</dateCreated>
-    <dateModified>Thu Oct 18 2012 14:59:45 GMT+0200 (IST)</dateModified>
+    <dateCreated>Thu Oct 18 2012 17:52:56 GMT+0200 (IST)</dateCreated>
+    <dateModified>Thu Oct 18 2012 17:52:56 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -11,6 +11,12 @@
     <outline text="development">
         <outline text="0.2">
             <outline text="fix file indentation and close tags">
+        </outline>
+            <outline text="implement OPML comment">
+        </outline>
+            <outline text="remove jquery.autosize.js">
+                <outline text="looks like it's mostly unneeded">
+            </outline>
         </outline>
     </outline>
         <outline text="0.1">
@@ -35,8 +41,12 @@
             </outline>
                 <outline text="indent">
                     <outline text="tab indents in">
+                        <outline text="last item under immediate (previous) sibling.">
+                    </outline>
                 </outline>
                     <outline text="shift-tab indents out">
+                        <outline text="last item under immediate (previous) sibling.">
+                    </outline>
                 </outline>
             </outline>
         </outline>
@@ -65,9 +75,9 @@
                     <outline text="don't select all ">
                 </outline>
             </outline>
-                <outline text="GPL v 3">
-            </outline>
                 <outline text="normalize double quotes">
+            </outline>
+                <outline text="huge bug in indent-in">
             </outline>
         </outline>
     </outline>
@@ -78,8 +88,6 @@
         </outline>
             <outline text="mouse control">
         </outline>
-    </outline>
-        <outline text="fix file indentation and close tags">
     </outline>
 </outline>
 </body></opml>
