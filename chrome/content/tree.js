@@ -1,6 +1,6 @@
-var childData;
+"use strict";
+var childData, file;
 var objID = 0;
-var file;
 
 var Outline = function () {
     this.id = objID++;
@@ -8,80 +8,16 @@ var Outline = function () {
     this.childs = [];
     this.text = '';
     return this;
-}
-
-var keypressaction = function(event, i) {
-    assignContent(i);
-    if (event.keyCode == 13) { //enter
-        if (event.altKey) {
-            toggleOpenState(i);
-        } else if (event.ctrlKey) {
-            //insert comment
-        } else if (event.shiftKey) {
-            //insert with cut+paste from point
-        } else {
-            insertNode(i);
-        }
-    } else if (event.keyCode == 9 ) { //tab
-        if (event.shiftKey) {
-            indentOut(i);
-        }
-        else {
-            indentIn(i);
-        }
-    } else if (event.keyCode == 46) { //delete
-        if (event.ctrlKey)
-            deleteNode(i);
-    } else if (event.keyCode == 40) { //down arrow
-        var newfocus = i + 1;
-        $('textarea[id=outline' + newfocus + ']').focus().select();
-    } else if (event.keyCode == 38) { //up arrow
-        var newfocus = i - 1;
-        $('textarea[id=outline' + newfocus + ']').focus().select();
-    } else {
-        assignContent(i);
-    }
-}
-
-var newFile = function () {
-    childData = [new Outline()];;
-    populateData(0);
-}
-
-var loadFile = function (chosenFile) {
-    Components.utils.import("resource://gre/modules/NetUtil.jsm");
-    if (typeof chosenFile === 'undefined') {
-        Components.utils.import("resource://gre/modules/FileUtils.jsm");
-
-        file = new FileUtils.File(
-            "/home/erez/dev/projects/dentro/dentro.opml"
-        );
-    } else {
-        file = chosenFile;
-    }
-
-    NetUtil.asyncFetch(file, function(inputStream, status) {
-        if (!Components.isSuccessCode(status)) {
-            return;
-        }
-        var stream = NetUtil.readInputStreamToString(
-            inputStream,
-            inputStream.available());
-
-        parseOPML(stream);
-        populateData(0);
-    });
-}
+};
 
 // currently generates OPML (standard not fully implemented)
-
-var saveFile = function(toFile) {
+var saveFile = function (toFile) {
     var output =
         '<?xml version="1.0" encoding="ISO-8859-1"?>\n' +
         '<opml version="2.0">\n' +
         '  <head>\n' +
         '  <title>dentro.opml</title>\n' +
-        '    <dateCreated>' + new Date() + '</dateCreated>\n'+
+        '    <dateCreated>' + new Date() + '</dateCreated>\n' +
         '    <dateModified>' + new Date() + '</dateModified>\n' +
         '    <ownerName></ownerName>\n' +
         '    <ownerEmail></ownerEmail>\n' +
@@ -90,7 +26,7 @@ var saveFile = function(toFile) {
 
     for (var i = 0; i < childData.length; i++) {
         //just top level nodes and recourse from there
-        if (typeof childData[i].parent === 'undefined') {
+        if (childData[i].parent === undefined) {
             output += formatOPMLElement(childData[i], getLevel(i));
             output += '</outline>\n';
         }
@@ -102,18 +38,18 @@ var saveFile = function(toFile) {
             "@mozilla.org/network/file-output-stream;1"
         ].createInstance(Components.interfaces.nsIFileOutputStream);
 
-    if (typeof toFile !== 'undefined') {
+    if (toFile !== undefined) {
         file = toFile;
     }
 
-    foStream.init(file, 0x02 | 0x08 | 0x20, 0666, 0);
+    foStream.init(file, 0x02 | 0x08 | 0x20, -1, 0);
     var converter = Components.classes[
         "@mozilla.org/intl/converter-output-stream;1"
     ].createInstance(Components.interfaces.nsIConverterOutputStream);
     converter.init(foStream, "ISO-8859-1", 0, 0);
     converter.writeString(output);
     converter.close();
-}
+};
 
 var formatOPMLElement = function (node, level) {
     var space = '    ';
@@ -122,7 +58,7 @@ var formatOPMLElement = function (node, level) {
     }
 
     var output = space + '<outline text="' + node.text + '"';
-    if (typeof node.childs !== 'undefined' &&
+    if (node.childs !== undefined &&
         node.childs.length > 0) {
         output += '>\n';
         for (var c = 0; c < node.childs.length; c++) {
@@ -134,7 +70,7 @@ var formatOPMLElement = function (node, level) {
     }
 
     return output;
-}
+};
 
 /* iterates over 'childData' array, creates a bullet
    div and a textarea for each item, indented it according to level, creating
@@ -169,11 +105,11 @@ var populateData = function (idx) {
         $('textarea').autosize();
         $('textarea[id=outline' + idx + ']').focus().select();
     }
-}
+};
 
 var assignContent = function(idx) {
     childData[idx].text = $('textarea[id=outline' + idx + ']').attr('value');
-}
+};
 
 var parseOPML = function (input) {
     var oParser = new DOMParser();
@@ -198,7 +134,7 @@ var parseOPML = function (input) {
 
         childData.push(outline);
     }
-}
+};
 
 var generateChildNode = function(parentNode, childNode) {
     var child = new Outline();
@@ -211,25 +147,19 @@ var generateChildNode = function(parentNode, childNode) {
     });
 
     return child;
-}
+};
 
 // to figure level, go until the root, incrementing in each step
 var getLevel = function(idx) {
     var level = 0;
     var checked_element = childData[idx];
 
-    while (typeof checked_element !== 'undefined' &&
-           typeof checked_element.parent !== 'undefined') {
+    while (checked_element !== undefined &&
+           checked_element.parent !== undefined) {
         level++;
         checked_element = checked_element.parent;
     }
     return level;
-};
-
-// basically checks the next item in the tree
-// and sees if its the level
-var hasNextSibling =  function(idx) {
-    return getLevel(idx + 1) == getLevel(idx);
 };
 
 // tree manipulation is done on the childData array,
@@ -255,7 +185,7 @@ var toggleOpenState = function(idx) {
         }
     }
     else {
-        if (item.childs.length == 0) {
+        if (item.childs.length === 0) {
             return;
         }
         item.isContainerOpen = true;
@@ -267,26 +197,26 @@ var toggleOpenState = function(idx) {
         }
     }
     populateData(idx);
-}
+};
 
 var insertNode =  function(idx) {
     var selectedItem = childData[idx];
     var newRow = new Outline();
     newRow.text = '';
 
-    if (typeof selectedItem.parent !== 'undefined') {
+    if (selectedItem.parent !== undefined) {
         newRow.parent = selectedItem.parent;
         selectedItem.parent.childs.push(newRow);
     }
     if (selectedItem.isContainerOpen &&
-        typeof selectedItem.childs !== 'undefined' &&
+        selectedItem.childs !== undefined &&
         selectedItem.childs.length > 0) {
         idx += selectedItem.childs.length;
     }
     //move selection to new row
     childData.splice(idx + 1, 0, newRow);
     populateData(idx + 1);
-}
+};
 
 var deleteNode = function (idx) {
     var currentItem = childData[idx];
@@ -297,7 +227,7 @@ var deleteNode = function (idx) {
 
     childData.splice(idx, toDelete);
     var currentParent = currentItem.parent;
-    if (typeof currentParent !== 'undefined') {
+    if (currentParent !== undefined) {
         var length = currentParent.childs.length;
         for (var i = 0; i < length; i++) {
             if (currentParent.childs[i].id === currentItem.id) {
@@ -308,15 +238,15 @@ var deleteNode = function (idx) {
     }
 
     populateData(idx);
-}
+};
 
 // if element before selected is the same level, indent under
 // if not, indent under element's parent
 var indentIn = function (idx) {
     var lastItem = childData[idx];
     var siblingIdx = -1;
-    if (getLevel(idx - 1) == getLevel(idx)) {
-         siblingIdx = idx - 1;
+    if (getLevel(idx - 1) === getLevel(idx)) {
+        siblingIdx = idx - 1;
     } else if (childData[idx - 1] !== lastItem.parent) {
         for (var i = idx - 1; i >= 0; i--) {
             // find element's parent
@@ -333,32 +263,33 @@ var indentIn = function (idx) {
     if (! childData[siblingIdx].isContainerOpen) {
         toggleOpenState(siblingIdx);
     }
-    if (typeof childData[siblingIdx].childs === 'undefined') {
+    if (childData[siblingIdx].childs === undefined) {
         childData[siblingIdx].childs = [];
     }
     childData[siblingIdx].childs.push(lastItem);
     populateData(idx);
-}
+};
 
 var indentOut = function(idx) {
     var currentItem = childData[idx];
     var currentParent = currentItem.parent;
-    if (typeof currentParent === 'undefined') {
+    var i = 0;
+    if (currentParent === undefined) {
         return;
     }
 
     var length = currentParent.childs.length;
-    for (var i = 0; i < length; i++) {
+    for (i = 0; i < length; i++) {
         if (currentParent.childs[i].id === currentItem.id) {
             currentParent.childs.splice(i, 1);
             length -=  i + 1;
             break;
         }
     }
-    if (typeof currentParent.parent === 'undefined') {
+    if (currentParent.parent === undefined) {
         currentItem.parent = null;
     } else {
-        for (var i = 0; i < childData.length; i++) {
+        for (i = 0; i < childData.length; i++) {
             if (childData[i].id === currentParent.parent.id) {
                 currentItem.parent = childData[i];
                 childData[i].childs.push(currentItem);
@@ -369,4 +300,65 @@ var indentOut = function(idx) {
     childData.splice(idx + length, 0, currentItem);
 
     populateData(idx);
-}
+};
+
+var keypressaction = function(event, i) {
+    assignContent(i);
+    if (event.keyCode === 13) { //enter
+        if (event.altKey) {
+            toggleOpenState(i);
+        } else if (event.ctrlKey) {
+            //insert comment
+        } else if (event.shiftKey) {
+            //insert with cut+paste from point
+        } else {
+            insertNode(i);
+        }
+    } else if (event.keyCode === 9) { //tab
+        if (event.shiftKey) {
+            indentOut(i);
+        } else {
+            indentIn(i);
+        }
+    } else if (event.keyCode === 46 && event.ctrlKey) { //delete
+        deleteNode(i);
+    } else if (event.keyCode === 40) { //down arrow
+        var newfocus = i + 1;
+        $('textarea[id=outline' + newfocus + ']').focus().select();
+    } else if (event.keyCode === 38) { //up arrow
+        var newfocus = i - 1;
+        $('textarea[id=outline' + newfocus + ']').focus().select();
+    } else {
+        assignContent(i);
+    }
+};
+
+var newFile = function () {
+    childData = [new Outline()];
+    populateData(0);
+};
+
+var loadFile = function (chosenFile) {
+    Components.utils.import("resource://gre/modules/NetUtil.jsm");
+    if (chosenFile === undefined) {
+        Components.utils.import("resource://gre/modules/FileUtils.jsm");
+
+        file = new FileUtils.File(
+            "/home/erez/dev/projects/dentro/dentro.opml"
+        );
+    } else {
+        file = chosenFile;
+    }
+
+    NetUtil.asyncFetch(file, function(inputStream, status) {
+        if (!Components.isSuccessCode(status)) {
+            return;
+        }
+        var stream = NetUtil.readInputStreamToString(
+            inputStream,
+            inputStream.available());
+
+        parseOPML(stream);
+        populateData(0);
+    });
+};

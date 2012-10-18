@@ -2,8 +2,8 @@
 <opml version="2.0">
   <head>
   <title>dentro.opml</title>
-    <dateCreated>Thu Oct 18 2012 12:59:29 GMT+0200 (IST)</dateCreated>
-    <dateModified>Thu Oct 18 2012 12:59:29 GMT+0200 (IST)</dateModified>
+    <dateCreated>Thu Oct 18 2012 14:59:45 GMT+0200 (IST)</dateCreated>
+    <dateModified>Thu Oct 18 2012 14:59:45 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -78,6 +78,8 @@
         </outline>
             <outline text="mouse control">
         </outline>
+    </outline>
+        <outline text="fix file indentation and close tags">
     </outline>
 </outline>
 </body></opml>
