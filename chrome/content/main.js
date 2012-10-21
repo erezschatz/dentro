@@ -37,5 +37,6 @@ var init = function () {
 }
 
 var saveOPMLfile = function () {
-    document.getElementById("mainWindow").contentWindow.saveFile();
+    if (! document.getElementById("mainWindow").contentWindow.saveFile())
+        saveOPMLfileAs();
 }

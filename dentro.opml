@@ -2,78 +2,58 @@
 <opml version="2.0">
   <head>
   <title>dentro.opml</title>
-    <dateCreated>Tue Oct 09 2012 08:07:29 GMT+0200 (IST)</dateCreated>
-    <dateModified>Tue Oct 09 2012 08:07:29 GMT+0200 (IST)</dateModified>
+    <dateCreated>Sun Oct 21 2012 19:44:07 GMT+0200 (IST)</dateCreated>
+    <dateModified>Sun Oct 21 2012 19:44:07 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
   <body>
-    <outline text="Dentro">
-        <outline text="name">
-            <outline text="Dentro">
-                <outline text="Tree in Greek">
-            </outline>
-        </outline>
-    </outline>
-        <outline text="Why is Dentro?">
-            <outline text="OPML Editor - not in Linux">
-        </outline>
-            <outline text="Other solutions">
-                <outline text="either not as good">
-                    <outline text="or lacking features">
-                </outline>
-            </outline>
-        </outline>
-            <outline text="As always, an itch was in need to be scratched, and nothing available was there to scratch it. Everything was either too limited, not cross-platform, or non-GUI. I realised the only way to have my cake and eat it too will be to create a cake that can, by design, be had and be eaten.">
-        </outline>
-    </outline>
-        <outline text="What is an Outliner?">
-            <outline text="According to Wikipedia, an outliner is a  ">
-        </outline>
-            <outline text="computer program that allows text to be organized into discrete sections that are related in a tree structure or hierarchy. Text may be collapsed into a node, or expanded and edited. Outliners are typically used for computer programming, collecting or organizing ideas, as personal information management or for project management.">
-        </outline>
-            <outline text="I found, during the past year, that for all our attempts to bridge the gap between man and machine, the most accessible, immediate solution is the tree structure, and its implementations, mostly the outliner. It fits with the way we think, with the way we organize our thoughts, and, most importantly, with the way machines ">
-        </outline>
-    </outline>
-        <outline text="According to Wikipedia, an outliner is a  ">
-    </outline>
-        <outline text="As always, an itch was in need to be scratched, and nothing available was there to scratch it. Everything was either too limited, not cross-platform, or non-GUI. I realised the only way to have my cake and eat it too will be to create a cake that can, by design, be had and be eaten.">
-    </outline>
-        <outline text="What is Dentro?">
-            <outline text="Dentro is a cross platform single-pane outliner, written in XUL/JavaScript and based on Mozilla technology. It reads from and writes to OPML, which is a format designed from the ground up to handle outliners. One of its purposes will be to serve as a project manager/to-do list. It also has some other features in the pipeline.">
-        </outline>
-    </outline>
+    <outline text="What is Dentro?">
         <outline text="Dentro is a cross platform single-pane outliner, written in XUL/JavaScript and based on Mozilla technology. It reads from and writes to OPML, which is a format designed from the ground up to handle outliners. One of its purposes will be to serve as a project manager/to-do list. It also has some other features in the pipeline.">
     </outline>
+        <outline text="name">
+            <outline text="tree in greek">
+        </outline>
+    </outline>
 </outline>
-    <outline text="features">
-        <outline text="Cross platform">
-            <outline text="XUL based">
+    <outline text="What is an Outliner?">
+        <outline text="According to Wikipedia, an outliner is">
+            <outline text="a computer program that allows text to be organized into discrete sections that are related in a tree structure or hierarchy. Text may be collapsed into a node, or expanded and edited. Outliners are typically used for computer programming, collecting or organizing ideas, as personal information management or for project management.">
         </outline>
     </outline>
-        <outline text="Everything is an outline">
+        <outline text="I found, during the past year, that for all our attempts to bridge the gap between man and machine, the most accessible, immediate solution is the tree structure, and its implementations, mostly the outliner. It fits with the way we think, with the way we organize our thoughts, and, most importantly, with the way machines ">
     </outline>
-        <outline text="reads opml">
+</outline>
+    <outline text="Why is Dentro?">
+        <outline text="As always, an itch was in need to be scratched, and nothing available was there to scratch it. Everything was either too limited, not cross-platform, or non-GUI. I realised the only way to have my cake and eat it too will be to create a cake that can, by design, be had and be eaten.">
     </outline>
-        <outline text="writes opml">
-    </outline>
-        <outline text="auto-saves">
-            <outline text="a tmp file">
+</outline>
+    <outline text="How to run Dentro">
+        <outline text="You'll need XULrunner (not included), which you can get from
+(Mozilla's Site)[https://developer.mozilla.org/en-US/docs/XULRunnerhh], or
+from your package manager (if you
+happen to run a distro that happen to have XULRunner packaged, like (Debian)[http://debian.org]).
+Once that's installed or unzipped, download dentro (or git-clone it), then run the following from a terminal">
+            <outline text="$ [/path/to/]xulrunner /path/to/dentro/application.ini">
         </outline>
-            <outline text="overwrites original on">
-                <outline text="exit">
-            </outline>
-                <outline text="document close">
-            </outline>
-                <outline text="after crash/restart">
-            </outline>
+            <outline text="(It should work from windows as well, just replace the paths with the appropriate paths.)">
         </outline>
     </outline>
-        <outline text="extendable">
-            <outline text="uses a simple JSON data structure">
+</outline>
+    <outline text="Keyboard shortcuts">
+        <outline text="Enter creates an empty sibling node.">
+    </outline>
+        <outline text="Tab indents a node under the immediate parent,">
+            <outline text="Shift+Tab indents-out.">
         </outline>
-            <outline text="extensions only need to read/write that JSON">
+    </outline>
+        <outline text="Alt-Enter expands/collapses the node">
+    </outline>
+        <outline text="Ctrl+delete deletes the focused node">
+            <outline text="just delete works on the node's text only">
         </outline>
+    </outline>
+        <outline text="Down and up arrow moves to the next/previous node">
     </outline>
 </outline>
 </body></opml>

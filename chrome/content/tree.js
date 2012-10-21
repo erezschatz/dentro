@@ -26,6 +26,12 @@ var getLevel = function(idx) {
 
 // currently generates OPML (standard not fully implemented)
 var saveFile = function (toFile) {
+    if (toFile !== undefined) {
+        file = toFile;
+    } else if (file === undefined) {
+        return;
+    }
+
     var output =
         '<?xml version="1.0" encoding="ISO-8859-1"?>\n' +
         '<opml version="2.0">\n' +
@@ -52,10 +58,6 @@ var saveFile = function (toFile) {
             "@mozilla.org/network/file-output-stream;1"
         ].createInstance(Components.interfaces.nsIFileOutputStream);
 
-    if (toFile !== undefined) {
-        file = toFile;
-    }
-
     foStream.init(file, 0x02 | 0x08 | 0x20, -1, 0);
     var converter = Components.classes[
         "@mozilla.org/intl/converter-output-stream;1"
@@ -63,6 +65,7 @@ var saveFile = function (toFile) {
     converter.init(foStream, "ISO-8859-1", 0, 0);
     converter.writeString(output);
     converter.close();
+    return 1;
 };
 
 var formatOPMLElement = function (node, level) {
@@ -300,7 +303,7 @@ var indentOut = function(idx) {
         }
     }
     if (currentParent.parent === undefined) {
-        currentItem.parent = null;
+        currentItem.parent = undefined;
     } else {
         for (i = 0; i < childData.length; i++) {
             if (childData[i].id === currentParent.parent.id) {
