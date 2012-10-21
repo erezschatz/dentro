@@ -10,6 +10,20 @@ var Outline = function () {
     return this;
 };
 
+
+// to figure level, go until the root, incrementing in each step
+var getLevel = function(idx) {
+    var level = 0;
+    var checked_element = childData[idx];
+
+    while (checked_element !== undefined && checked_element != null &&
+           checked_element.parent !== undefined) {
+        level++;
+        checked_element = checked_element.parent;
+    }
+    return level;
+};
+
 // currently generates OPML (standard not fully implemented)
 var saveFile = function (toFile) {
     var output =
@@ -149,19 +163,6 @@ var generateChildNode = function(parentNode, childNode) {
     return child;
 };
 
-// to figure level, go until the root, incrementing in each step
-var getLevel = function(idx) {
-    var level = 0;
-    var checked_element = childData[idx];
-
-    while (checked_element !== undefined &&
-           checked_element.parent !== undefined) {
-        level++;
-        checked_element = checked_element.parent;
-    }
-    return level;
-};
-
 // tree manipulation is done on the childData array,
 // then the app regenerates the tree html
 var toggleOpenState = function(idx) {
@@ -247,6 +248,8 @@ var indentIn = function (idx) {
     var siblingIdx = -1;
     var i;
 
+    if (idx === 0) return;
+
     if (getLevel(idx - 1) === getLevel(idx)) {
         siblingIdx = idx - 1;
     } else if (childData[idx - 1].id !== lastItem.parent.id) {
@@ -260,10 +263,15 @@ var indentIn = function (idx) {
     } else {
         return;
     }
-    var siblings = lastItem.parent.childs;
-    for (i = 0; i < siblings.length; i++)
-        if (siblings[i].id === lastItem.id)
-            siblings.splice(i, 1);
+
+    if (lastItem.parent !== undefined) {
+        var siblings = lastItem.parent.childs;
+        for (i = 0; i < siblings.length; i++) {
+            if (siblings[i].id === lastItem.id) {
+                siblings.splice(i, 1);
+            }
+        }
+    }
 
     lastItem.parent = childData[siblingIdx];
     if (! childData[siblingIdx].isContainerOpen) {
