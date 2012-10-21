@@ -222,7 +222,7 @@ var deleteNode = function (idx) {
     var currentItem = childData[idx];
     var toDelete =
         currentItem.isContainerOpen && currentItem.childs.length > 0 ?
-        currentItem.childs.length + 1:
+        currentItem.childs.length + 1 :
         1;
 
     childData.splice(idx, toDelete);
@@ -245,10 +245,12 @@ var deleteNode = function (idx) {
 var indentIn = function (idx) {
     var lastItem = childData[idx];
     var siblingIdx = -1;
+    var i;
+
     if (getLevel(idx - 1) === getLevel(idx)) {
         siblingIdx = idx - 1;
     } else if (childData[idx - 1].id !== lastItem.parent.id) {
-        for (var i = idx - 1; i >= 0; i--) {
+        for (i = idx - 1; i >= 0; i--) {
             // find element's parent
             if (childData[i].id === childData[idx - 1].parent.id) {
                 siblingIdx = i;
@@ -258,6 +260,10 @@ var indentIn = function (idx) {
     } else {
         return;
     }
+    var siblings = lastItem.parent.childs;
+    for (i = 0; i < siblings.length; i++)
+        if (siblings[i].id === lastItem.id)
+            siblings.splice(i, 1);
 
     lastItem.parent = childData[siblingIdx];
     if (! childData[siblingIdx].isContainerOpen) {
@@ -273,13 +279,12 @@ var indentIn = function (idx) {
 var indentOut = function(idx) {
     var currentItem = childData[idx];
     var currentParent = currentItem.parent;
-    var i = 0;
     if (currentParent === undefined) {
         return;
     }
 
     var length = currentParent.childs.length;
-    for (i = 0; i < length; i++) {
+    for (var i = 0; i < length; i++) {
         if (currentParent.childs[i].id === currentItem.id) {
             currentParent.childs.splice(i, 1);
             length -=  i + 1;
