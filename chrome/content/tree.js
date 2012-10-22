@@ -129,7 +129,8 @@ var populateData = function (idx) {
 };
 
 var assignContent = function(idx) {
-    childData[idx].text = $('textarea[id=outline' + idx + ']').attr('value');
+    childData[idx].text = $('textarea[id=outline' + idx + ']').
+        attr('value').replace(/"/g, '&quot;');
 };
 
 var parseOPML = function (input) {
