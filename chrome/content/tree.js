@@ -237,7 +237,7 @@ var deleteNode = function (idx) {
     var currentParent = currentItem.parent;
     if (currentParent !== undefined) {
         var length = currentParent.childs.length;
-        for (var i = 0; i < length; i++) {
+        for (var i = 0; i <= length; i++) {
             if (currentParent.childs[i].id === currentItem.id) {
                 currentParent.childs.splice(i, 1);
                 break;
