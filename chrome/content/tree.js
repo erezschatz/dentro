@@ -120,7 +120,11 @@ var populateData = function (idx) {
     } else {
         //slows down the whole thing, but for now it's very convenient
         $('textarea').autosize();
-        $('textarea[id=outline' + idx + ']').focus().select();
+        var elem = $('textarea[id=outline' + idx + ']');
+        var elemLen = elem.text.length;
+        elem.selectionStart = elemLen;
+        elem.selectionEnd = elemLen;
+        elem.focus();
     }
 };
 
