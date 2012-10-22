@@ -2,8 +2,8 @@
 <opml version="2.0">
   <head>
   <title>dentro.opml</title>
-    <dateCreated>Sun Oct 21 2012 19:36:48 GMT+0200 (IST)</dateCreated>
-    <dateModified>Sun Oct 21 2012 19:36:48 GMT+0200 (IST)</dateModified>
+    <dateCreated>Mon Oct 22 2012 17:50:08 GMT+0200 (IST)</dateCreated>
+    <dateModified>Mon Oct 22 2012 17:50:08 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -96,10 +96,6 @@
                 <outline text="Artistic license 2.0">
             </outline>
                 <outline text="MPL 2.0">
-            </outline>
-        </outline>
-            <outline text="place cursor after last character">
-                <outline text="don't select all ">
             </outline>
         </outline>
             <outline text="normalize quotes">
