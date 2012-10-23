@@ -2,8 +2,8 @@
 <opml version="2.0">
   <head>
   <title>dentro.opml</title>
-    <dateCreated>Mon Oct 22 2012 17:50:08 GMT+0200 (IST)</dateCreated>
-    <dateModified>Mon Oct 22 2012 17:50:08 GMT+0200 (IST)</dateModified>
+    <dateCreated>Mon Oct 22 2012 19:08:01 GMT+0200 (IST)</dateCreated>
+    <dateModified>Mon Oct 22 2012 19:08:01 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -14,16 +14,24 @@
         <outline text="side by side">
     </outline>
         <outline text="mouse control">
+            <outline text="rearrangement of nodes">
+        </outline>
     </outline>
         <outline text="auto-saves">
             <outline text="a tmp file">
         </outline>
-            <outline text="overwrites original on">
-                <outline text="exit">
+            <outline text="overwrites original">
+                <outline text="on exit">
             </outline>
-                <outline text="document close">
+                <outline text="on document close">
             </outline>
                 <outline text="after crash/restart">
+            </outline>
+        </outline>
+            <outline text="save current position">
+                <outline text="window size">
+            </outline>
+                <outline text="which nodes open/close">
             </outline>
         </outline>
     </outline>
@@ -98,8 +106,6 @@
                 <outline text="MPL 2.0">
             </outline>
         </outline>
-            <outline text="normalize quotes">
-        </outline>
     </outline>
         <outline text="new file">
             <outline text="'save as' by default">
@@ -109,10 +115,28 @@
     <outline text="0.2">
         <outline text="fix file indentation and close tags">
     </outline>
-        <outline text="implement OPML comment">
-    </outline>
         <outline text="remove jquery.autosize.js">
             <outline text="looks like it's mostly unneeded">
+        </outline>
+            <outline text="and it sloooow everything to a halt">
+        </outline>
+    </outline>
+        <outline text="make dateCreated fixed">
+    </outline>
+        <outline text="restyle bullets">
+            <outline text="make them center of first line">
+        </outline>
+    </outline>
+        <outline text="create new node with everything after the cursor">
+            <outline text="shift+enter">
+                <outline text="anything else to enter with?">
+            </outline>
+        </outline>
+    </outline>
+        <outline text="implement OPML format">
+            <outline text="OPML comments">
+                <outline text="ctrl+enter">
+            </outline>
         </outline>
     </outline>
 </outline>
