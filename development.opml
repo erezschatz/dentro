@@ -2,8 +2,8 @@
 <opml version="2.0">
   <head>
   <title>dentro.opml</title>
-    <dateCreated>Mon Oct 22 2012 19:08:01 GMT+0200 (IST)</dateCreated>
-    <dateModified>Mon Oct 22 2012 19:08:01 GMT+0200 (IST)</dateModified>
+    <dateCreated>Tue Oct 23 2012 10:54:08 GMT+0200 (IST)</dateCreated>
+    <dateModified>Tue Oct 23 2012 10:54:08 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -43,6 +43,12 @@
     </outline>
         <outline text="extensible keyboard interface">
             <outline text="Ctrl+w deletes back word">
+        </outline>
+    </outline>
+        <outline text="export to other formats">
+            <outline text="html">
+        </outline>
+            <outline text="markup">
         </outline>
     </outline>
 </outline>
@@ -85,9 +91,11 @@
             </outline>
         </outline>
             <outline text="toggle expand node">
-                <outline text="reveals all sub-node under current">
+                <outline text="reveals all sub-nodes under current">
             </outline>
                 <outline text="keyboard shortcut Alt+Enter">
+            </outline>
+                <outline text="close also closes all sub-nodes">
             </outline>
         </outline>
     </outline>
@@ -101,10 +109,8 @@
             <outline text="license">
                 <outline text="GPL v 3">
             </outline>
-                <outline text="Artistic license 2.0">
-            </outline>
-                <outline text="MPL 2.0">
-            </outline>
+        </outline>
+            <outline text="delete not recursive into opened sub-modes">
         </outline>
     </outline>
         <outline text="new file">
