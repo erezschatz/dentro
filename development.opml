@@ -2,8 +2,8 @@
 <opml version="2.0">
   <head>
   <title>dentro.opml</title>
-    <dateCreated>Tue Oct 23 2012 10:54:08 GMT+0200 (IST)</dateCreated>
-    <dateModified>Tue Oct 23 2012 10:54:08 GMT+0200 (IST)</dateModified>
+    <dateCreated>Tue Oct 23 2012 17:49:45 GMT+0200 (IST)</dateCreated>
+    <dateModified>Tue Oct 23 2012 17:49:45 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -105,16 +105,12 @@
             <outline text="based on dentro.opml file">
         </outline>
     </outline>
-        <outline text="todo">
-            <outline text="license">
-                <outline text="GPL v 3">
-            </outline>
-        </outline>
-            <outline text="delete not recursive into opened sub-modes">
-        </outline>
-    </outline>
         <outline text="new file">
             <outline text="'save as' by default">
+        </outline>
+    </outline>
+        <outline text="license">
+            <outline text="GPL v 3">
         </outline>
     </outline>
 </outline>
@@ -144,6 +140,10 @@
                 <outline text="ctrl+enter">
             </outline>
         </outline>
+    </outline>
+        <outline text="delete not recursive into opened sub-modes">
+    </outline>
+        <outline text="structure of tree after indent-out of node with opened sub nodes only visible after collapse/expand">
     </outline>
 </outline>
 </body></opml>
