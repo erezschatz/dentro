@@ -1,0 +1,3 @@
+#!/bin/bash
+mypath=${0%%dentro/*}
+xulrunner-16.0 $mypath/dentro/application.ini
