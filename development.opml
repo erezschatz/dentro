@@ -2,8 +2,8 @@
 <opml version="2.0">
   <head>
   <title>dentro.opml</title>
-    <dateCreated>Tue Oct 23 2012 19:58:18 GMT+0200 (IST)</dateCreated>
-    <dateModified>Tue Oct 23 2012 19:58:18 GMT+0200 (IST)</dateModified>
+    <dateCreated>Wed Oct 24 2012 11:08:15 GMT+0200 (IST)</dateCreated>
+    <dateModified>Wed Oct 24 2012 11:08:15 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -56,7 +56,7 @@
         </outline>
     </outline>
         <outline text="bug submission">
-            <outline text="clicking on &quot;submit bug&quot; will download bugs.opml">
+            <outline text="clicking on "submit bug" will download bugs.opml">
                 <outline text="user can add a bug">
             </outline>
                 <outline text="then send it">
@@ -185,6 +185,12 @@
     </outline>
         <outline text="expand all">
             <outline text="collapse all">
+        </outline>
+    </outline>
+        <outline text="distinguish node with childs and without">
+            <outline text="with has black triangle">
+        </outline>
+            <outline text="without has a gray triangle">
         </outline>
     </outline>
 </outline>
