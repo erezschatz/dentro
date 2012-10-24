@@ -2,8 +2,8 @@
 <opml version="2.0">
   <head>
   <title>dentro.opml</title>
-    <dateCreated>Tue Oct 23 2012 17:49:45 GMT+0200 (IST)</dateCreated>
-    <dateModified>Tue Oct 23 2012 17:49:45 GMT+0200 (IST)</dateModified>
+    <dateCreated>Tue Oct 23 2012 19:58:18 GMT+0200 (IST)</dateCreated>
+    <dateModified>Tue Oct 23 2012 19:58:18 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -44,12 +44,42 @@
         <outline text="extensible keyboard interface">
             <outline text="Ctrl+w deletes back word">
         </outline>
+            <outline text="Ctrl+s saves file">
+                <outline text="Ctrl+Shift+s 'save as' file">
+            </outline>
+        </outline>
     </outline>
         <outline text="export to other formats">
             <outline text="html">
         </outline>
             <outline text="markup">
         </outline>
+    </outline>
+        <outline text="bug submission">
+            <outline text="clicking on &quot;submit bug&quot; will download bugs.opml">
+                <outline text="user can add a bug">
+            </outline>
+                <outline text="then send it">
+            </outline>
+                <outline text="if bug is accepted, it will be merged with the main file">
+            </outline>
+                <outline text="same for features">
+            </outline>
+        </outline>
+    </outline>
+        <outline text="todo list">
+            <outline text="add date to element">
+        </outline>
+            <outline text="alert on date">
+        </outline>
+            <outline text="strikethrough on complete">
+        </outline>
+    </outline>
+        <outline text="help opens dentro.opml in a new tab">
+    </outline>
+        <outline text="undo/redo">
+    </outline>
+        <outline text="warn before closing unsaved node">
     </outline>
 </outline>
     <outline text="0.1">
@@ -116,6 +146,8 @@
 </outline>
     <outline text="0.2">
         <outline text="fix file indentation and close tags">
+            <outline text="in opml file">
+        </outline>
     </outline>
         <outline text="remove jquery.autosize.js">
             <outline text="looks like it's mostly unneeded">
@@ -144,6 +176,16 @@
         <outline text="delete not recursive into opened sub-modes">
     </outline>
         <outline text="structure of tree after indent-out of node with opened sub nodes only visible after collapse/expand">
+    </outline>
+        <outline text="Ctrl+s saves">
+    </outline>
+        <outline text="URL click-able">
+            <outline text="can be opened in browser">
+        </outline>
+    </outline>
+        <outline text="expand all">
+            <outline text="collapse all">
+        </outline>
     </outline>
 </outline>
 </body></opml>
