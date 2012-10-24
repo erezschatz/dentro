@@ -1,197 +1,197 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <opml version="2.0">
   <head>
-  <title>dentro.opml</title>
+    <title>dentro.opml</title>
     <dateCreated>Wed Oct 24 2012 11:08:15 GMT+0200 (IST)</dateCreated>
     <dateModified>Wed Oct 24 2012 11:08:15 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
   <body>
-    <outline text="future versions">
-        <outline text="tabbed interface">
-    </outline>
-        <outline text="side by side">
-    </outline>
-        <outline text="mouse control">
-            <outline text="rearrangement of nodes">
-        </outline>
-    </outline>
-        <outline text="auto-saves">
-            <outline text="a tmp file">
-        </outline>
-            <outline text="overwrites original">
-                <outline text="on exit">
-            </outline>
-                <outline text="on document close">
-            </outline>
-                <outline text="after crash/restart">
-            </outline>
-        </outline>
-            <outline text="save current position">
-                <outline text="window size">
-            </outline>
-                <outline text="which nodes open/close">
-            </outline>
-        </outline>
-    </outline>
-        <outline text="extendable">
-            <outline text="uses a simple JSON data structure">
-        </outline>
-            <outline text="extensions only need to read/write that JSON">
-        </outline>
-    </outline>
-        <outline text="extensible keyboard interface">
-            <outline text="Ctrl+w deletes back word">
-        </outline>
-            <outline text="Ctrl+s saves file">
-                <outline text="Ctrl+Shift+s 'save as' file">
-            </outline>
-        </outline>
-    </outline>
-        <outline text="export to other formats">
-            <outline text="html">
-        </outline>
-            <outline text="markup">
-        </outline>
-    </outline>
-        <outline text="bug submission">
-            <outline text="clicking on "submit bug" will download bugs.opml">
-                <outline text="user can add a bug">
-            </outline>
-                <outline text="then send it">
-            </outline>
-                <outline text="if bug is accepted, it will be merged with the main file">
-            </outline>
-                <outline text="same for features">
-            </outline>
-        </outline>
-    </outline>
-        <outline text="todo list">
-            <outline text="add date to element">
-        </outline>
-            <outline text="alert on date">
-        </outline>
-            <outline text="strikethrough on complete">
-        </outline>
-    </outline>
-        <outline text="help opens dentro.opml in a new tab">
-    </outline>
-        <outline text="undo/redo">
-    </outline>
-        <outline text="warn before closing unsaved node">
-    </outline>
-</outline>
     <outline text="0.1">
-        <outline text="read file">
-            <outline text="basic OPML">
+      <outline text="read file">
+        <outline text="basic OPML">
         </outline>
-            <outline text="not fully implemented">
+        <outline text="not fully implemented">
         </outline>
+      </outline>
+      <outline text="write file">
+        <outline text="both save and 'save as'">
+        </outline>
+      </outline>
+      <outline text="tree manipulation">
+        <outline text="insert new item">
+          <outline text="create new, empty item under selected item">
+            <outline text="focus on new item">
+            </outline>
+            <outline text="keyboard shortcut Enter">
+            </outline>
+          </outline>
+        </outline>
+        <outline text="delete current item">
+          <outline text="also all children">
+          </outline>
+          <outline text="keyboard shortcut Ctrl+delete">
+            <outline text="simple delete only functions on node text">
+            </outline>
+          </outline>
+        </outline>
+        <outline text="indent">
+          <outline text="tab indents in">
+            <outline text="last item under immediate (previous) sibling.">
+            </outline>
+          </outline>
+          <outline text="shift-tab indents out">
+            <outline text="last item under immediate (previous) sibling.">
+            </outline>
+          </outline>
+        </outline>
+        <outline text="toggle expand node">
+          <outline text="reveals all sub-nodes under current">
+          </outline>
+          <outline text="keyboard shortcut Alt+Enter">
+          </outline>
+          <outline text="close also closes all sub-nodes">
+          </outline>
+        </outline>
+      </outline>
+      <outline text="documentation">
+        <outline text="currently only basic instuctions">
+        </outline>
+        <outline text="based on dentro.opml file">
+        </outline>
+      </outline>
+      <outline text="new file">
+        <outline text="'save as' by default">
+        </outline>
+      </outline>
+      <outline text="license">
+        <outline text="GPL v 3">
+        </outline>
+      </outline>
     </outline>
-        <outline text="write file">
-            <outline text="both save and 'save as'">
-        </outline>
-    </outline>
-        <outline text="tree manipulation">
-            <outline text="insert new item">
-                <outline text="create new, empty item under selected item">
-                    <outline text="focus on new item">
-                </outline>
-                    <outline text="keyboard shortcut Enter">
-                </outline>
-            </outline>
-        </outline>
-            <outline text="delete current item">
-                <outline text="also all children">
-            </outline>
-                <outline text="keyboard shortcut Ctrl+delete">
-                    <outline text="simple delete only functions on node text">
-                </outline>
-            </outline>
-        </outline>
-            <outline text="indent">
-                <outline text="tab indents in">
-                    <outline text="last item under immediate (previous) sibling.">
-                </outline>
-            </outline>
-                <outline text="shift-tab indents out">
-                    <outline text="last item under immediate (previous) sibling.">
-                </outline>
-            </outline>
-        </outline>
-            <outline text="toggle expand node">
-                <outline text="reveals all sub-nodes under current">
-            </outline>
-                <outline text="keyboard shortcut Alt+Enter">
-            </outline>
-                <outline text="close also closes all sub-nodes">
-            </outline>
-        </outline>
-    </outline>
-        <outline text="documentation">
-            <outline text="currently only basic instuctions">
-        </outline>
-            <outline text="based on dentro.opml file">
-        </outline>
-    </outline>
-        <outline text="new file">
-            <outline text="'save as' by default">
-        </outline>
-    </outline>
-        <outline text="license">
-            <outline text="GPL v 3">
-        </outline>
-    </outline>
-</outline>
     <outline text="0.2">
-        <outline text="fix file indentation and close tags">
-            <outline text="in opml file">
+      <outline text="fix file indentation and close tags">
+        <outline text="in opml file">
         </outline>
-    </outline>
-        <outline text="remove jquery.autosize.js">
-            <outline text="looks like it's mostly unneeded">
+      </outline>
+      <outline text="remove jquery.autosize.js">
+        <outline text="looks like it's mostly unneeded">
         </outline>
-            <outline text="and it sloooow everything to a halt">
+        <outline text="and it sloooow everything to a halt">
         </outline>
-    </outline>
-        <outline text="make dateCreated fixed">
-    </outline>
-        <outline text="restyle bullets">
-            <outline text="make them center of first line">
+      </outline>
+      <outline text="make dateCreated fixed">
+      </outline>
+      <outline text="restyle bullets">
+        <outline text="make them center of first line">
         </outline>
-    </outline>
-        <outline text="create new node with everything after the cursor">
-            <outline text="shift+enter">
-                <outline text="anything else to enter with?">
-            </outline>
+      </outline>
+      <outline text="create new node with everything after the cursor">
+        <outline text="shift+enter">
+          <outline text="anything else to enter with?">
+          </outline>
         </outline>
-    </outline>
-        <outline text="implement OPML format">
-            <outline text="OPML comments">
-                <outline text="ctrl+enter">
-            </outline>
+      </outline>
+      <outline text="implement OPML format">
+        <outline text="OPML comments">
+          <outline text="ctrl+enter">
+          </outline>
         </outline>
-    </outline>
-        <outline text="delete not recursive into opened sub-modes">
-    </outline>
-        <outline text="structure of tree after indent-out of node with opened sub nodes only visible after collapse/expand">
-    </outline>
-        <outline text="Ctrl+s saves">
-    </outline>
-        <outline text="URL click-able">
-            <outline text="can be opened in browser">
+      </outline>
+      <outline text="delete not recursive into opened sub-modes">
+      </outline>
+      <outline text="structure of tree after indent-out of node with opened sub nodes only visible after collapse/expand">
+      </outline>
+      <outline text="Ctrl+s saves">
+      </outline>
+      <outline text="URL click-able">
+        <outline text="can be opened in browser">
         </outline>
-    </outline>
-        <outline text="expand all">
-            <outline text="collapse all">
+      </outline>
+      <outline text="expand all">
+        <outline text="collapse all">
         </outline>
-    </outline>
-        <outline text="distinguish node with childs and without">
-            <outline text="with has black triangle">
+      </outline>
+      <outline text="distinguish node with childs and without">
+        <outline text="with has black triangle">
         </outline>
-            <outline text="without has a gray triangle">
+        <outline text="without has a gray triangle">
         </outline>
+      </outline>
     </outline>
-</outline>
-</body></opml>
+    <outline text="future versions">
+      <outline text="tabbed interface">
+      </outline>
+      <outline text="side by side">
+      </outline>
+      <outline text="mouse control">
+        <outline text="rearrangement of nodes">
+        </outline>
+      </outline>
+      <outline text="auto-saves">
+        <outline text="a tmp file">
+        </outline>
+        <outline text="overwrites original">
+          <outline text="on exit">
+          </outline>
+          <outline text="on document close">
+          </outline>
+          <outline text="after crash/restart">
+          </outline>
+        </outline>
+        <outline text="save current position">
+          <outline text="window size">
+          </outline>
+          <outline text="which nodes open/close">
+          </outline>
+        </outline>
+      </outline>
+      <outline text="extendable">
+        <outline text="uses a simple JSON data structure">
+        </outline>
+        <outline text="extensions only need to read/write that JSON">
+        </outline>
+      </outline>
+      <outline text="extensible keyboard interface">
+        <outline text="Ctrl+w deletes back word">
+        </outline>
+        <outline text="Ctrl+s saves file">
+          <outline text="Ctrl+Shift+s 'save as' file">
+          </outline>
+        </outline>
+      </outline>
+      <outline text="export to other formats">
+        <outline text="html">
+        </outline>
+        <outline text="markup">
+        </outline>
+      </outline>
+      <outline text="bug submission">
+        <outline text="clicking on &quot;submit bug&quot; will download bugs.opml">
+          <outline text="user can add a bug">
+          </outline>
+          <outline text="then send it">
+          </outline>
+          <outline text="if bug is accepted, it will be merged with the main file">
+          </outline>
+          <outline text="same for features">
+          </outline>
+        </outline>
+      </outline>
+      <outline text="todo list">
+        <outline text="add date to element">
+        </outline>
+        <outline text="alert on date">
+        </outline>
+        <outline text="strikethrough on complete">
+        </outline>
+      </outline>
+      <outline text="help opens dentro.opml in a new tab">
+      </outline>
+      <outline text="undo/redo">
+      </outline>
+      <outline text="warn before closing unsaved node">
+      </outline>
+    </outline>
+  </body></opml>
