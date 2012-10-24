@@ -2,8 +2,8 @@
 ## An Outliner with an agenda
 
 ### What is an Outliner
-Accouding to (Wikipedia)[http://wikipedia.org],
-an [[http://en.wikipedia.org/wiki/Outliner][outliner]] is a computer
+Accouding to [Wikipedia](http://wikipedia.org),
+an [outliner](http://en.wikipedia.org/wiki/Outliner) is a computer
 program that allows text to be organized into discrete sections
 that are related in a tree structure or hierarchy.
 Text may be collapsed into a node, or expanded and edited.
@@ -18,7 +18,7 @@ with the way machines "think" and with the way computers organize their data.
 
 ### What is Dentro
 Dentro is a cross platform single-pane outliner, written in XUL/Javascript and based on Mozilla technology.
-It reads from and writes to (OPML)[http://dev.opml.org/],
+It reads from and writes to [OPML](http://dev.opml.org/),
 which is a format designed from the ground up to handle
 outliners. One of its purposes will be to serve as a project manager/to-do
 list.
@@ -33,10 +33,11 @@ it too will be to design a cake that can be both had and eaten.
 
 ### How to run Dentro
 You'll need XULrunner (not included), which you can get from
-(Mozilla's Site)[https://developer.mozilla.org/en-US/docs/XULRunnerhh], or
+[Mozilla's Site](https://developer.mozilla.org/en-US/docs/XULRunner), or
 from your package manager (if you
-happen to run a distro that happen to have XULRunner packaged, like (Debian)[http://debian.org]).
-Once that's installed or unzipped, download dentro (or git-clone it), then run the following from a terminal:
+happen to run a distro that happen to have XULRunner packaged, like [Debian](http://debian.org).
+Once that's installed or unzipped, [download Dentro](https://github.com/erezschatz/dentro/zipball/master), 
+then run the following command from a terminal:
 
 	$ [/path/to/]xulrunner /path/to/dentro/application.ini
 
@@ -45,7 +46,7 @@ It should work from windows as well, just replace the paths with the appropriate
 ### Keyboard Shortcuts:
 
 Enter creates an empty sibling node.
-Tab indents it under the immediate parent, Shift+Tab indents-out.
-Alt-Enter expands/collapses the node, you can also Alt-Enter.
-Ctrl+delete deletes the focused node.
+Tab indents a node under the immediate parent, Shift+Tab indents-out.
+Alt-Enter expands/collapses the node.
+Ctrl+Delete deletes the focused node.
 Down and up arrow moves to the next/previous node
