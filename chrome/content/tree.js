@@ -150,8 +150,10 @@ var populateData = function (idx) {
 };
 
 var assignContent = function(idx) {
-    childData[idx].text = $('textarea[id=outline' + idx + ']').
-        attr('value').replace(/"/g, '&quot;');
+    childData[idx].text = $('textarea[id=outline' + idx + ']').attr('value').
+        replace(/"/g, '&quot;').
+        replace(/</g, '&lt;').
+        replace(/>/g, '&gt;');
 };
 
 var parseOPML = function (input) {
