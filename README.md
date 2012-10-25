@@ -3,13 +3,12 @@
 
 ### What is an Outliner
 Accouding to [Wikipedia](http://wikipedia.org),
-an [outliner](http://en.wikipedia.org/wiki/Outliner) is a computer
-program that allows text to be organized into discrete sections
-that are related in a tree structure or hierarchy.
-Text may be collapsed into a node, or expanded and edited.
-Outliners are typically used for computer programming, collecting or
-organizing ideas,
-as personal information management or for project management.
+an [outliner](http://en.wikipedia.org/wiki/Outliner) is 
+>a computer program that allows text to be organized into discrete sections
+>that are related in a tree structure or hierarchy.
+>Text may be collapsed into a node, or expanded and edited.
+>Outliners are typically used for computer programming, collecting or
+>organizing ideas, as personal information management or for project management.
 
 I found, during the past year, that for all our attempts to bridge the gap between man and machine,
 the most accessible, immediate solution is the tree structure, and its impementations, mostly the outliner.
