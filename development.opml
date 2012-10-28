@@ -182,6 +182,13 @@
                 <outline text="ctrl+enter">
             </outline>
         </outline>
+      </outline>
+      <outline text="help opens dentro.opml in a new tab">
+      </outline>
+      <outline text="undo/redo">
+      </outline>
+      <outline text="warn before closing unsaved node">
+      </outline>
     </outline>
         <outline text="delete not recursive into opened sub-modes">
     </outline>
