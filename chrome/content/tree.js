@@ -117,6 +117,12 @@ var formatOPMLElement = function (node, level) {
 
     return output;
 };
+// checks whether the text has overflowed under the textarea size
+var getNodeHeight = function (elem) {
+    while (elem.clientHeight < elem.scrollHeight) {
+        $(elem).height($(elem).height() + 18);
+    }
+}
 
 /* iterates over 'childData' array, creates a bullet
    div and a textarea for each item, indented it according to level, creating
@@ -128,7 +134,7 @@ var populateData = function (idx) {
     for (var i = 0; i < childData.length; i++) {
         var maxwidth =  winwidth - (30 + (getLevel(i) * 15));
         var cssClass = childData[i].isContainerOpen ?
-            'open' : 'closed';
+           'open' : 'closed';
         var level = getLevel(i) * 15;
 
         output += '<div style="margin-left:' + level + 'px">' +
@@ -165,10 +171,11 @@ var parseOPML = function (input) {
 
     var datesnapshot = oDOM.evaluate(
         '/opml/head/dateCreated', oDOM, null,
-        XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null
+        XPathResult.FIRST_ORDERED_NODE_TYPE, null
         );
 
-    dateCreated = $(datesnapshot.snapshotItem(i)).attr('value');
+    dateCreated = datesnapshot.singleNodeValue.textContent;
+    alert(dateCreated);
 
     var nodesSnapshot = oDOM.evaluate(
         '/opml/body/outline', oDOM, null,

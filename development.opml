@@ -2,8 +2,8 @@
 <opml version="2.0">
   <head>
   <title>dentro.opml</title>
-    <dateCreated>Sun Oct 28 2012 18:40:59 GMT+0200 (IST)</dateCreated>
-    <dateModified>Sun Oct 28 2012 18:40:59 GMT+0200 (IST)</dateModified>
+    <dateCreated>Sun Oct 28 2012 19:03:29 GMT+0200 (IST)</dateCreated>
+    <dateModified>Sun Oct 28 2012 23:11:11 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -167,7 +167,9 @@
                 </outline>
             </outline>
         </outline>
-        <outline text="make dateCreated fixed">
+        <outline text="dateCreated is saved from the document">
+            <outline text="if not exists, it's generated when the document is first saved">
+            </outline>
         </outline>
         <outline text="restyle bullets">
             <outline text="make them center of first line">
