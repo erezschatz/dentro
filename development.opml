@@ -2,8 +2,8 @@
 <opml version="2.0">
   <head>
   <title>dentro.opml</title>
-    <dateCreated>Tue Oct 23 2012 19:58:18 GMT+0200 (IST)</dateCreated>
-    <dateModified>Tue Oct 23 2012 19:58:18 GMT+0200 (IST)</dateModified>
+    <dateCreated>Thu Oct 25 2012 17:56:25 GMT+0200 (IST)</dateCreated>
+    <dateModified>Thu Oct 25 2012 17:56:25 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -75,14 +75,18 @@
             <outline text="strikethrough on complete">
         </outline>
     </outline>
-        <outline text="help opens dentro.opml in a new tab">
+        <outline text="help opens dentro.opml in a new tab ">
     </outline>
         <outline text="undo/redo">
     </outline>
         <outline text="warn before closing unsaved node">
     </outline>
+        <outline text="open last opened file">
+            <outline text="also save a &quot;recent files&quot; list">
+        </outline>
+    </outline>
 </outline>
-    <outline text="0.1">
+    <outline text="0.1 - released">
         <outline text="read file">
             <outline text="basic OPML">
         </outline>
@@ -144,7 +148,7 @@
         </outline>
     </outline>
 </outline>
-    <outline text="0.2">
+    <outline text="0.2 - in development">
         <outline text="fix file indentation and close tags">
             <outline text="in opml file">
         </outline>
@@ -153,6 +157,12 @@
             <outline text="looks like it's mostly unneeded">
         </outline>
             <outline text="and it sloooow everything to a halt">
+        </outline>
+            <outline text="start with one line, increment until text isn't hidden anymore.">
+                <outline text="is there a way to do it without jquery?">
+            </outline>
+                <outline text="needs to be fast">
+            </outline>
         </outline>
     </outline>
         <outline text="make dateCreated fixed">
@@ -187,5 +197,7 @@
             <outline text="collapse all">
         </outline>
     </outline>
+</outline>
+    <outline text="0.3">
 </outline>
 </body></opml>

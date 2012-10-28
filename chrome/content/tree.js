@@ -95,7 +95,7 @@ var formatOPMLElement = function (node, level) {
         space += '    ';
     }
 
-    var output = space + '<outline text="' + node.text + '"';
+    var output = space + '<outline text="' + node.text.replace(/"/g, '&quot;') + '"';
     if (node.childs !== undefined &&
         node.childs.length > 0) {
         output += '>\n';
@@ -106,9 +106,15 @@ var formatOPMLElement = function (node, level) {
     } else {
         output += '>\n';
     }
-
     return output;
 };
+
+// checks whether the text has overflowed under the textarea size
+var getNodeHeight = function (elem) {
+    while (elem.clientHeight < elem.scrollHeight) {
+        $(elem).height($(elem).height() + 18);
+    }
+}
 
 /* iterates over 'childData' array, creates a bullet
    div and a textarea for each item, indented it according to level, creating
@@ -119,6 +125,7 @@ var populateData = function (idx) {
     var winwidth = $(window).width();
     for (var i = 0; i < childData.length; i++) {
         var maxwidth =  winwidth - (30 + (getLevel(i) * 15));
+        var height = getNodeHeight(i, maxwidth);
         var cssClass = childData[i].isContainerOpen ?
             'open' : 'closed';
         var level = getLevel(i) * 15;
@@ -130,17 +137,21 @@ var populateData = function (idx) {
             '" style="display:inline-block"><textarea id="outline' + i +
             '" onkeypress="keypressaction(event, ' + i +
             ');" onkeyup="assignContent(' + i +
-            ');" style="width: ' + maxwidth + '">' +
+            ');" style="width: ' + maxwidth + 'px; height: 18px">' +
             childData[i].text + '</textarea></div></div>';
     }
 
     document.getElementById("mainTree").innerHTML = output;
 
+    // if the new data now causes window to have scrollbars
+    // repopulate
+    // maybe eliminate scrollbars?
     if ($(window).width() < winwidth) {
         populateData(idx);
     } else {
-        //slows down the whole thing, but for now it's very convenient
-        $('textarea').autosize();
+        $('textarea').each(function() {
+            getNodeHeight(this);
+        });
         var elem = $('textarea[id=outline' + idx + ']');
         var elemLen = elem.text.length;
         elem.selectionStart = elemLen;
@@ -150,8 +161,7 @@ var populateData = function (idx) {
 };
 
 var assignContent = function(idx) {
-    childData[idx].text = $('textarea[id=outline' + idx + ']').
-        attr('value').replace(/"/g, '&quot;');
+    childData[idx].text = $('textarea[id=outline' + idx + ']').value();
 };
 
 var parseOPML = function (input) {
