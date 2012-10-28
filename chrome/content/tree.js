@@ -406,4 +406,5 @@ var loadFile = function (chosenFile) {
         parseOPML(stream);
         populateData(0);
     });
+    file = chosenFile;
 };
