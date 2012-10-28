@@ -22,6 +22,7 @@ along with Dentro.  If not, see <http://www.gnu.org/licenses/>.
 "use strict";
 var childData, file;
 var objID = 0;
+var dateCreated;
 
 var Outline = function () {
     this.id = objID++;
@@ -30,7 +31,6 @@ var Outline = function () {
     this.text = '';
     return this;
 };
-
 
 // to figure level, go until the root, incrementing in each step
 var getLevel = function(idx) {
@@ -53,12 +53,17 @@ var saveFile = function (toFile) {
         return;
     }
 
+    if (dateCreated === undefined ||
+        dateCreated === null ||
+        dateCreated === '') {
+        dateCreated = new Date();
+    }
     var output =
         '<?xml version="1.0" encoding="ISO-8859-1"?>\n' +
         '<opml version="2.0">\n' +
         '  <head>\n' +
         '  <title>dentro.opml</title>\n' +
-        '    <dateCreated>' + new Date() + '</dateCreated>\n' +
+        '    <dateCreated>' + dateCreated + '</dateCreated>\n' +
         '    <dateModified>' + new Date() + '</dateModified>\n' +
         '    <ownerName></ownerName>\n' +
         '    <ownerEmail></ownerEmail>\n' +
@@ -95,13 +100,16 @@ var formatOPMLElement = function (node, level) {
         space += '    ';
     }
 
-    var output = space + '<outline text="' + node.text.replace(/"/g, '&quot;') + '"';
+    var output = space + '<outline text="' + node.text.
+        replace(/"/g, '&quot;').
+        replace(/</g, '&lt;').
+        replace(/>/g, '&gt;') + '"';
     if (node.childs !== undefined &&
         node.childs.length > 0) {
         output += '>\n';
         for (var c = 0; c < node.childs.length; c++) {
             output += formatOPMLElement(node.childs[c], level + 1);
-            output += space + '</outline>\n';
+            output += '    ' + space + '</outline>\n';
         }
     } else {
         output += '>\n';
@@ -139,8 +147,6 @@ var populateData = function (idx) {
     if ($(window).width() < winwidth) {
         populateData(idx);
     } else {
-        //slows down the whole thing, but for now it's very convenient
-        $('textarea').autosize();
         var elem = $('textarea[id=outline' + idx + ']');
         var elemLen = elem.text.length;
         elem.selectionStart = elemLen;
@@ -150,15 +156,19 @@ var populateData = function (idx) {
 };
 
 var assignContent = function(idx) {
-    childData[idx].text = $('textarea[id=outline' + idx + ']').attr('value').
-        replace(/"/g, '&quot;').
-        replace(/</g, '&lt;').
-        replace(/>/g, '&gt;');
+    childData[idx].text = $('textarea[id=outline' + idx + ']').attr('value');
 };
 
 var parseOPML = function (input) {
     var oParser = new DOMParser();
     var oDOM = oParser.parseFromString(input, "text/xml");
+
+    var datesnapshot = oDOM.evaluate(
+        '/opml/head/dateCreated', oDOM, null,
+        XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null
+        );
+
+    dateCreated = $(datesnapshot.snapshotItem(i)).attr('value');
 
     var nodesSnapshot = oDOM.evaluate(
         '/opml/body/outline', oDOM, null,
@@ -384,17 +394,8 @@ var newFile = function () {
 
 var loadFile = function (chosenFile) {
     Components.utils.import("resource://gre/modules/NetUtil.jsm");
-    if (chosenFile === undefined) {
-        Components.utils.import("resource://gre/modules/FileUtils.jsm");
 
-        file = new FileUtils.File(
-            "/home/erez/dev/projects/dentro/dentro.opml"
-        );
-    } else {
-        file = chosenFile;
-    }
-
-    NetUtil.asyncFetch(file, function(inputStream, status) {
+    NetUtil.asyncFetch(chosenFile, function(inputStream, status) {
         if (!Components.isSuccessCode(status)) {
             return;
         }
