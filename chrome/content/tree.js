@@ -118,9 +118,9 @@ var formatOPMLElement = function (node, level) {
     return output;
 };
 // checks whether the text has overflowed under the textarea size
-var getNodeHeight = function (elem) {
+var setNodeHeight = function (elem) {
     while (elem.clientHeight < elem.scrollHeight) {
-        $(elem).height($(elem).height() + 18);
+        $(elem).height($(elem).height() + 1);
     }
 }
 
@@ -150,6 +150,10 @@ var populateData = function (idx) {
 
     document.getElementById("mainTree").innerHTML = output;
 
+    for (var i = 0; i < childData.length; i++) {
+        var elem = document.getElementById('outline' + i);
+        setNodeHeight(elem);
+    }
     if ($(window).width() < winwidth) {
         populateData(idx);
     } else {
@@ -175,7 +179,6 @@ var parseOPML = function (input) {
         );
 
     dateCreated = datesnapshot.singleNodeValue.textContent;
-    alert(dateCreated);
 
     var nodesSnapshot = oDOM.evaluate(
         '/opml/body/outline', oDOM, null,
