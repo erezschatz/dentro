@@ -4,7 +4,7 @@
   <title><![CDATA[Dentro]]></title>
   <link href="http://erezschatz.github.com/dentro/atom.xml" rel="self"/>
   <link href="http://erezschatz.github.com/dentro/"/>
-  <updated>2012-10-28T17:03:23+02:00</updated>
+  <updated>2012-10-30T15:14:58+02:00</updated>
   <id>http://erezschatz.github.com/dentro/</id>
   <author>
     <name><![CDATA[Erez Schatz]]></name>
@@ -18,7 +18,25 @@
     <link href="http://erezschatz.github.com/dentro/blog/2012/10/28/v0-dot-1-released/"/>
     <updated>2012-10-28T16:28:00+02:00</updated>
     <id>http://erezschatz.github.com/dentro/blog/2012/10/28/v0-dot-1-released</id>
-    <content type="html"><![CDATA[<p>Dentro 0.1 was released</p>
+    <content type="html"><![CDATA[<p>Dentro 0.1 was released.</p>
+
+<p>Release notes:</p>
+
+<ul>
+<li>File I/O
+<strong> Reads (basic) OPML files (standard not fully implemented)
+</strong> Writes to OPML</li>
+<li>Tree manipulation
+<strong> Enter creates new, empty item under selected item, and focus on it
+</strong> Ctrl+delete deletes current item and all its children nodes
+<em><strong> Just delete only functions on node text
+</strong> Tab indents in current node immediate (previous) sibling
+<strong> Shift+Tab indents out current node
+</strong> Alt+Enter or click on the node&#8217;s bullet toggles expand/collapse node
+</em><strong> reveals all sub-nodes under current node
+</strong>* close also closes all sub-nodes</li>
+</ul>
+
 ]]></content>
   </entry>
   
