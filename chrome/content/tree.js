@@ -118,9 +118,9 @@ var formatOPMLElement = function (node, level) {
     return output;
 };
 // checks whether the text has overflowed under the textarea size
-var getNodeHeight = function (elem) {
+var adjustNodeHeight = function (elem) {
     while (elem.clientHeight < elem.scrollHeight) {
-        $(elem).height($(elem).height() + 18);
+        $(elem).height($(elem).height() + 1);
     }
 }
 
@@ -150,6 +150,10 @@ var populateData = function (idx) {
 
     document.getElementById("mainTree").innerHTML = output;
 
+    for (var i = 0; i < childData.length; i++) {
+        var elem = document.getElementById('outline' + i);
+        adjustNodeHeight(elem);
+    }
     if ($(window).width() < winwidth) {
         populateData(idx);
     } else {
@@ -162,7 +166,9 @@ var populateData = function (idx) {
 };
 
 var assignContent = function(idx) {
-    childData[idx].text = $('textarea[id=outline' + idx + ']').attr('value');
+    var elem = document.getElementById('outline' + idx);
+    childData[idx].text = $(elem).attr('value');
+    adjustNodeHeight(elem);
 };
 
 var parseOPML = function (input) {
