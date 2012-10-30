@@ -2,7 +2,7 @@
 ## An Outliner with an agenda
 
 ### What is an Outliner
-Accouding to [Wikipedia](http://wikipedia.org),
+According to [Wikipedia](http://wikipedia.org),
 an [outliner](http://en.wikipedia.org/wiki/Outliner) is 
 >a computer program that allows text to be organized into discrete sections
 >that are related in a tree structure or hierarchy.
@@ -44,8 +44,8 @@ It should work from windows as well, just replace the paths with the appropriate
 
 ### Keyboard Shortcuts:
 
-Enter creates an empty sibling node.
-Tab indents a node under the immediate parent, Shift+Tab indents-out.
-Alt-Enter expands/collapses the node.
-Ctrl+Delete deletes the focused node.
-Down and up arrow moves to the next/previous node
++ Enter creates an empty sibling node.
++ Tab indents a node under the immediate parent, Shift+Tab indents-out.
++ Alt-Enter expands/collapses the node.
++ Ctrl+Delete deletes the focused node.
++ Down and up arrow moves to the next/previous node
