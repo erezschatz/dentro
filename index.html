@@ -9,8 +9,8 @@
   <meta name="author" content="Erez Schatz">
 
   
-  <meta name="description" content="Dentro 0.1 was released. Release notes: File I/O Reads (basic) OPML files (standard not fully implemented)
-Writes to OPML Tree manipulation Enter &hellip;">
+  <meta name="description" content="The next version of Dentro is, as expected, 0.2, here&#8217;s what&#8217;s in store for it Bugs: Fix OPML indentation on save
+Delete not recursive &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,112 @@ Writes to OPML Tree manipulation Enter &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/dentro/blog/2012/10/30/v0-dot-2-roadmap/">v0.2 Roadmap</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-30T15:31:00+02:00" pubdate data-updated="true">Oct 30<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The next version of Dentro is, as expected, 0.2, here&#8217;s what&#8217;s in store for it</p>
+
+<p>Bugs:</p>
+
+<ul>
+<li>Fix OPML indentation on save</li>
+<li>Delete not recursive into opened sub-modes</li>
+<li>No warning before closing unsaved content</li>
+<li>Structure of tree after indent-out of node with opened sub nodes only visible after collapse/expand</li>
+<li>usage of autosize.js for dynamic textareas causes outliner to slowdown</li>
+</ul>
+
+
+<p>Features:</p>
+
+<ul>
+<li>fully implement the <a href="http://dev.opml.org/spec2.html">OPML format</a></li>
+<li>implement correct details
+
+<ul>
+<li>dateCreated</li>
+<li>ownerName</li>
+<li>ownerEmail</li>
+</ul>
+</li>
+<li>restyle bullets: center of first line</li>
+</ul>
+
+
+<p>Interface:</p>
+
+<ul>
+<li>Keyboard shortcuts
+
+<ul>
+<li>Ctrl+s to save and Ctrl+Shift+s to save as</li>
+<li>Ctrl+Enter to create comment</li>
+<li>Ctrl+Shift takes everything after the cursor and creates a new node with it</li>
+</ul>
+</li>
+<li>Menubar
+
+<ul>
+<li>Help menu
+
+<ul>
+<li>About - opens about dialog</li>
+<li>Debug - opens <a href="https://developer.mozilla.org/en-US/docs/Venkman">Venkman</a> debugger</li>
+<li>Dentro - opens dentro.opml (the documentation outliner) in a new instance</li>
+</ul>
+</li>
+<li>Outline menu
+
+<ul>
+<li>Collapse All Nodes</li>
+<li>Expand All Nodes</li>
+</ul>
+</li>
+<li>Edit menu
+
+<ul>
+<li>Undo</li>
+<li>Redo</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p>As always, the most updated list + notes can be found at Dentro&#8217;s repository itself, as <a href="https://github.com/erezschatz/dentro/blob/master/development.opml">development.opml</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -148,6 +254,10 @@ Writes to OPML Tree manipulation Enter &hellip;">
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/dentro/blog/2012/10/30/v0-dot-2-roadmap/">v0.2 roadmap</a>
+      </li>
     
       <li class="post">
         <a href="/dentro/blog/2012/10/28/v0-dot-1-released/">v0.1 released</a>
