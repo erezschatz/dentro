@@ -3,7 +3,7 @@
   <head>
   <title>dentro.opml</title>
     <dateCreated>Sun Oct 28 2012 19:03:29 GMT+0200 (IST)</dateCreated>
-    <dateModified>Tue Oct 30 2012 09:29:51 GMT+0200 (IST)</dateModified>
+    <dateModified>Tue Oct 30 2012 09:35:24 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -189,25 +189,25 @@
         </outline>
         <outline text="todo: help opens dentro.opml in a new tab">
         </outline>
-        <outline text="undo/redo">
+        <outline text="todo: undo/redo">
         </outline>
-        <outline text="warn before closing unsaved file">
+        <outline text="todo: warn before closing unsaved file">
         </outline>
-        <outline text="delete not recursive into opened sub-modes">
+        <outline text="todo: delete not recursive into opened sub-modes">
         </outline>
-        <outline text="structure of tree after indent-out of node with opened sub nodes only visible after collapse/expand">
+        <outline text="todo: structure of tree after indent-out of node with opened sub nodes only visible after collapse/expand">
         </outline>
-        <outline text="Ctrl+s saves">
+        <outline text="todo:Ctrl+s saves">
         </outline>
-        <outline text="URL click-able">
+        <outline text="todo: URL click-able">
             <outline text="can be opened in browser">
             </outline>
         </outline>
-        <outline text="expand all">
+        <outline text="todo: expand all">
             <outline text="collapse all">
             </outline>
         </outline>
-        <outline text="open last saved file">
+        <outline text="todo: open last saved file">
         </outline>
         <outline text="change window title according to file's name">
         </outline>
