@@ -3,7 +3,7 @@
   <head>
   <title>dentro.opml</title>
     <dateCreated>Sun Oct 28 2012 19:03:29 GMT+0200 (IST)</dateCreated>
-    <dateModified>Sun Oct 28 2012 23:11:11 GMT+0200 (IST)</dateModified>
+    <dateModified>Tue Oct 30 2012 09:21:59 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -155,7 +155,7 @@
             <outline text="fixed indentation">
             </outline>
         </outline>
-        <outline text="remove jquery.autosize.js">
+        <outline text="removed jquery.autosize.js">
             <outline text="looks like it's mostly unneeded">
             </outline>
             <outline text="and it sloooow everything to a halt">
@@ -205,6 +205,10 @@
         </outline>
         <outline text="expand all">
             <outline text="collapse all">
+            </outline>
+        </outline>
+        <outline text="open last saved file">
+            <outline text="change window title according to file's name">
             </outline>
         </outline>
 </outline>
