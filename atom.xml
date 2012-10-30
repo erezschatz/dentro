@@ -4,7 +4,7 @@
   <title><![CDATA[Dentro]]></title>
   <link href="http://erezschatz.github.com/dentro/atom.xml" rel="self"/>
   <link href="http://erezschatz.github.com/dentro/"/>
-  <updated>2012-10-30T15:16:52+02:00</updated>
+  <updated>2012-10-30T15:19:59+02:00</updated>
   <id>http://erezschatz.github.com/dentro/</id>
   <author>
     <name><![CDATA[Erez Schatz]]></name>
@@ -24,17 +24,33 @@
 
 <ul>
 <li>File I/O
-++ Reads (basic) OPML files (standard not fully implemented)
-++ Writes to OPML</li>
+
+<ul>
+<li>Reads (basic) OPML files (standard not fully implemented)</li>
+<li>Writes to OPML</li>
+</ul>
+</li>
 <li>Tree manipulation
-++ Enter creates new, empty item under selected item, and focus on it
-++ Ctrl+delete deletes current item and all its children nodes
-+++ Just delete only functions on node text
-++ Tab indents in current node immediate (previous) sibling
-++ Shift+Tab indents out current node
-++ Alt+Enter or click on the node&#8217;s bullet toggles expand/collapse node
-+++ reveals all sub-nodes under current node
-+++ close also closes all sub-nodes</li>
+
+<ul>
+<li>Enter creates new, empty item under selected item, and focus on it</li>
+<li>Ctrl+delete deletes current item and all its children nodes
+
+<ul>
+<li>Just delete only functions on node text</li>
+</ul>
+</li>
+<li>Tab indents in current node immediate (previous) sibling</li>
+<li>Shift+Tab indents out current node</li>
+<li>Alt+Enter or click on the node&#8217;s bullet toggles expand/collapse node
+
+<ul>
+<li>reveals all sub-nodes under current node</li>
+<li>close also closes all sub-nodes</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
 ]]></content>
