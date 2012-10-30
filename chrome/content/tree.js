@@ -175,7 +175,6 @@ var parseOPML = function (input) {
         );
 
     dateCreated = datesnapshot.singleNodeValue.textContent;
-    alert(dateCreated);
 
     var nodesSnapshot = oDOM.evaluate(
         '/opml/body/outline', oDOM, null,
@@ -279,7 +278,8 @@ var deleteNode = function (idx) {
     if (currentParent !== undefined) {
         var length = currentParent.childs.length;
         for (var i = 0; i <= length; i++) {
-            if (currentParent.childs[i].id === currentItem.id) {
+            if (currentParent.childs[i] !== undefined &&
+                currentParent.childs[i].id === currentItem.id) {
                 currentParent.childs.splice(i, 1);
                 break;
             }
@@ -300,7 +300,8 @@ var indentIn = function (idx) {
 
     if (getLevel(idx - 1) === getLevel(idx)) {
         siblingIdx = idx - 1;
-    } else if (childData[idx - 1].id !== lastItem.parent.id) {
+    } else if (lastItem.parent === undefined ||
+               childData[idx - 1].id !== lastItem.parent.id) {
         for (i = idx - 1; i >= 0; i--) {
             // find element's parent
             if (childData[i].id === childData[idx - 1].parent.id) {
