@@ -3,7 +3,7 @@
   <head>
   <title>dentro.opml</title>
     <dateCreated>Sun Oct 28 2012 19:03:29 GMT+0200 (IST)</dateCreated>
-    <dateModified>Tue Oct 30 2012 10:47:28 GMT+0200 (IST)</dateModified>
+    <dateModified>Tue Oct 30 2012 11:27:22 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -153,71 +153,89 @@
         </outline>
 </outline>
     <outline text="0.2 - in development">
-        <outline text="fix indentation and close tags">
+        <outline text="fixed indentation">
             <outline text="in opml file">
             </outline>
-            <outline text="fixed indentation">
-            </outline>
         </outline>
-        <outline text="remove jquery.autosize.js">
-            <outline text="looks like it's mostly unneeded">
-            </outline>
-            <outline text="and it sloooow everything to a halt">
-            </outline>
+        <outline text="removed jquery.autosize.js">
             <outline text="start with one line, increment until text isn't hidden anymore.">
                 <outline text="is there a way to do it without jquery?">
                 </outline>
                 <outline text="needs to be fast">
                 </outline>
             </outline>
+            <outline text="it's still slowing everything down">
+            </outline>
         </outline>
         <outline text="dateCreated is saved from the document">
             <outline text="if not exists, it's generated when the document is first saved">
             </outline>
         </outline>
-        <outline text="restyle bullets">
+        <outline text="todo: restyle bullets">
             <outline text="make them center of first line">
             </outline>
         </outline>
-        <outline text="create new node with everything after the cursor">
+        <outline text="todo: create new node with everything after the cursor">
             <outline text="shift+enter">
                 <outline text="anything else to enter with?">
                 </outline>
             </outline>
         </outline>
-        <outline text="implement OPML format">
+        <outline text="todo: implement OPML format">
             <outline text="OPML comments">
                 <outline text="ctrl+enter">
                 </outline>
             </outline>
         </outline>
-        <outline text="help opens dentro.opml in a new tab">
+        <outline text="todo: Edit menu">
+            <outline text="undo">
+            </outline>
+            <outline text="redo">
+            </outline>
         </outline>
-        <outline text="undo/redo">
+        <outline text="todo: warn before closing unsaved file">
         </outline>
-        <outline text="warn before closing unsaved file">
+        <outline text="todo: delete not recursive into opened sub-modes">
         </outline>
-        <outline text="delete not recursive into opened sub-modes">
+        <outline text="todo: structure of tree after indent-out of node with opened sub nodes only visible after collapse/expand">
         </outline>
-        <outline text="structure of tree after indent-out of node with opened sub nodes only visible after collapse/expand">
+        <outline text="todo: Ctrl+s saves">
         </outline>
-        <outline text="Ctrl+s saves">
-        </outline>
-        <outline text="URL click-able">
+        <outline text="todo: URL click-able">
             <outline text="can be opened in browser">
             </outline>
         </outline>
-        <outline text="expand all">
-            <outline text="collapse all">
+        <outline text="todo: Outline menu">
+            <outline text="Collapse All Nodes">
+            </outline>
+            <outline text="Expand All Nodes">
             </outline>
         </outline>
-        <outline text="add help">
+        <outline text="todo: Help menu">
             <outline text="about">
+                <outline text="opens about dialog">
+                </outline>
             </outline>
             <outline text="debug">
+                <outline text="opens Venkman debugger">
+                </outline>
+            </outline>
+            <outline text="Dentro">
+                <outline text="opens dentro.opml in a new tab">
+                </outline>
             </outline>
         </outline>
 </outline>
-    <outline text="0.3">
+    <outline text="0.3: features">
+        <outline text="different indications for node with childs and without childs">
+            <outline text="maybe light gray for no childs">
+            </outline>
+        </outline>
+        <outline text="improve speed">
+            <outline text="autoresize of textarea">
+            </outline>
+        </outline>
+        <outline text="right-click menu">
+        </outline>
 </outline>
 </body></opml>
