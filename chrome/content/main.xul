@@ -41,6 +41,18 @@ along with Dentro.  If not, see <http://www.gnu.org/licenses/>.
           <menuitem label="Quit" oncommand="window.close()" />
         </menupopup>
       </menu>
+      <menu id="edit" label="Edit">
+        <menupopup>
+          <menuitem label="Undo" oncommand="" />
+          <menuitem label="Redo" oncommand="" />
+        </menupopup>
+      </menu>
+      <menu id="outline" label="Outline">
+        <menupopup>
+          <menuitem label="Expand All Nodes" oncommand="" />
+          <menuitem label="Collapse All Nodes" oncommand="" />
+        </menupopup>
+      </menu>
       <menu id="help" label="Help">
         <menupopup>
           <menuitem label="About" oncommand="" />

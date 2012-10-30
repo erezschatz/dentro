@@ -34,6 +34,7 @@ var loadOPMLfile = function () {
         var file = fp.file;
         document.getElementById("mainWindow").contentWindow.loadFile(file);
     }
+    window.title = file;
 }
 
 var saveOPMLfileAs = function () {
@@ -47,6 +48,7 @@ var saveOPMLfileAs = function () {
     if (res != nsIFilePicker.returnCancel){
         var file = fp.file;
         document.getElementById("mainWindow").contentWindow.saveFile(file);
+        window.title = file;
     }
 }
 
