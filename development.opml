@@ -3,7 +3,7 @@
   <head>
   <title>dentro.opml</title>
     <dateCreated>Sun Oct 28 2012 19:03:29 GMT+0200 (IST)</dateCreated>
-    <dateModified>Tue Oct 30 2012 11:27:22 GMT+0200 (IST)</dateModified>
+    <dateModified>Wed Oct 31 2012 10:58:18 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -234,8 +234,14 @@
         <outline text="improve speed">
             <outline text="autoresize of textarea">
             </outline>
+            <outline text="regenerate only the part that was altered, not all the tree all the time">
+            </outline>
         </outline>
         <outline text="right-click menu">
+        </outline>
+        <outline text="move nodes around the tree">
+            <outline text="with mouse">
+            </outline>
         </outline>
 </outline>
 </body></opml>
