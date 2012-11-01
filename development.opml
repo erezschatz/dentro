@@ -3,7 +3,7 @@
   <head>
   <title>dentro.opml</title>
     <dateCreated>Sun Oct 28 2012 19:03:29 GMT+0200 (IST)</dateCreated>
-    <dateModified>Thu Nov 01 2012 19:35:04 GMT+0200 (IST)</dateModified>
+    <dateModified>Thu Nov 01 2012 19:50:14 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -167,10 +167,6 @@
             <outline text="doesn't slow things anymore">
             </outline>
         </outline>
-        <outline text="dateCreated is saved from the document">
-            <outline text="if not exists, it's generated when the document is first saved">
-            </outline>
-        </outline>
         <outline text="todo: restyle bullets">
             <outline text="make them center of first line">
             </outline>
@@ -225,17 +221,21 @@
                 </outline>
             </outline>
         </outline>
+        <outline text="dateCreated is first populated when the document is created">
+            <outline text="any future references is read from the document">
+            </outline>
+        </outline>
 </outline>
     <outline text="0.3 - wishlist">
         <outline text="different indications for node with childs and without childs">
             <outline text="maybe light gray for no childs">
             </outline>
         </outline>
-        <outline text="improve speed">
-            <outline text="autoresize of textarea">
-            </outline>
-        </outline>
         <outline text="right-click menu">
+        </outline>
+        <outline text="have the application repopulate only the parts that were changed">
+            <outline text="reduct the number of calls to populateData">
+            </outline>
         </outline>
 </outline>
 </body></opml>

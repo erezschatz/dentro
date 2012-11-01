@@ -64,8 +64,16 @@ var saveOPMLfile = function () {
         saveOPMLfileAs();
 }
 
-function toOpenWindowByType(inType, uri) {
+var toOpenWindowByType = function (inType, uri) {
     var winopts =
         "chrome,extrachrome,menubar,resizable,scrollbars,status,toolbar";
     window.open(uri, "_blank", winopts);
+}
+
+var collapseAll = function() {
+    document.getElementById('mainWindow').contentWindow.collapseAll();
+}
+
+var expandAll = function() {
+    document.getElementById('mainWindow').contentWindow.expandAll();
 }

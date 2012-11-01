@@ -167,8 +167,8 @@ var populateData = function (idx) {
 
 var assignContent = function(idx) {
     var elem = document.getElementById('outline' + idx);
-    childData[idx].text = $(elem).attr('value');
     adjustNodeHeight(elem);
+    childData[idx].text = $(elem).attr('value');
 };
 
 var parseOPML = function (input) {
@@ -369,6 +369,17 @@ var indentOut = function(idx) {
 
     populateData(idx);
 };
+
+var expandAll = function() {
+}
+
+var collapseAll = function() {
+    for (var i = 0; i < childData.length; i++) {
+        if (childData[i].isContainerOpen) {
+            toggleOpenState(i);
+        }
+    }
+}
 
 var keypressaction = function(event, i) {
     assignContent(i);

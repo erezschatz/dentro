@@ -49,8 +49,8 @@ along with Dentro.  If not, see <http://www.gnu.org/licenses/>.
       </menu>
       <menu id="outline" label="Outline">
         <menupopup>
-          <menuitem label="Expand All Nodes" oncommand="" />
-          <menuitem label="Collapse All Nodes" oncommand="" />
+          <menuitem label="Expand All Nodes" oncommand="expandAll()" />
+          <menuitem label="Collapse All Nodes" oncommand="collapseAll()" />
         </menupopup>
       </menu>
       <menu id="help" label="Help">
