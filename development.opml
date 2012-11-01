@@ -3,7 +3,7 @@
   <head>
   <title>dentro.opml</title>
     <dateCreated>Sun Oct 28 2012 19:03:29 GMT+0200 (IST)</dateCreated>
-    <dateModified>Tue Oct 30 2012 11:27:22 GMT+0200 (IST)</dateModified>
+    <dateModified>Thu Nov 01 2012 19:35:04 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -158,13 +158,13 @@
             </outline>
         </outline>
         <outline text="removed jquery.autosize.js">
-            <outline text="start with one line, increment until text isn't hidden anymore.">
+            <outline text="comparing element.clientHeight to element.scrollHeight and matching them if necessary">
                 <outline text="is there a way to do it without jquery?">
                 </outline>
                 <outline text="needs to be fast">
                 </outline>
             </outline>
-            <outline text="it's still slowing everything down">
+            <outline text="doesn't slow things anymore">
             </outline>
         </outline>
         <outline text="dateCreated is saved from the document">
@@ -226,7 +226,7 @@
             </outline>
         </outline>
 </outline>
-    <outline text="0.3: features">
+    <outline text="0.3 - wishlist">
         <outline text="different indications for node with childs and without childs">
             <outline text="maybe light gray for no childs">
             </outline>

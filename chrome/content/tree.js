@@ -119,8 +119,8 @@ var formatOPMLElement = function (node, level) {
 };
 // checks whether the text has overflowed under the textarea size
 var adjustNodeHeight = function (elem) {
-    while (elem.clientHeight < elem.scrollHeight) {
-        $(elem).height($(elem).height() + 1);
+    if (elem.clientHeight < elem.scrollHeight) {
+        $(elem).height(elem.scrollHeight + 1);
     }
 }
 
@@ -137,7 +137,7 @@ var populateData = function (idx) {
            'open' : 'closed';
         var level = getLevel(i) * 15;
 
-        output += '<div style="margin-left:' + level + 'px">' +
+        output += '<div style="margin-left:' + level + 'px;">' +
             '<div class="' + cssClass +
             '" onclick="toggleOpenState(' + i + ');">&nbsp;</div>' +
             '<div id="container' + i +
