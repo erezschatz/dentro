@@ -25,6 +25,7 @@ along with Dentro.  If not, see <http://www.gnu.org/licenses/>.
     width="300"
     height="300"
     onload="init();"
+    onclose="closeDentro();"
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
@@ -38,7 +39,7 @@ along with Dentro.  If not, see <http://www.gnu.org/licenses/>.
           <menuitem label="Open" oncommand="loadOPMLfile()"/>
           <menuitem label="Save" oncommand="saveOPMLfile()"/>
           <menuitem label="Save As" oncommand="saveOPMLfileAs()"/>
-          <menuitem label="Quit" oncommand="window.close()" />
+          <menuitem label="Quit" oncommand="closeDentro()" />
         </menupopup>
       </menu>
       <menu id="edit" label="Edit">

@@ -77,3 +77,10 @@ var collapseAll = function() {
 var expandAll = function() {
     document.getElementById('mainWindow').contentWindow.expandAll();
 }
+
+var closeDentro = function() {
+    if (document.getElementById('mainWindow').contentWindow.isEdited) {
+        alert("Document has unsaved changes, save document?");
+    }
+    window.close();
+}

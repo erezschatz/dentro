@@ -23,6 +23,7 @@ along with Dentro.  If not, see <http://www.gnu.org/licenses/>.
 var childData, file;
 var objID = 0;
 var dateCreated;
+var isEdited = false;
 
 var Outline = function () {
     this.id = objID++;
@@ -91,6 +92,7 @@ var saveFile = function (toFile) {
     converter.init(foStream, "ISO-8859-1", 0, 0);
     converter.writeString(output);
     converter.close();
+    isEdited = false;
     return 1;
 };
 
@@ -169,6 +171,7 @@ var assignContent = function(idx) {
     var elem = document.getElementById('outline' + idx);
     adjustNodeHeight(elem);
     childData[idx].text = $(elem).attr('value');
+    isEdited = true;
 };
 
 var parseOPML = function (input) {
@@ -415,6 +418,7 @@ var keypressaction = function(event, i) {
 var newFile = function () {
     childData = [new Outline()];
     populateData(0);
+    isEdited = false;
 };
 
 var loadFile = function (chosenFile) {
@@ -432,4 +436,5 @@ var loadFile = function (chosenFile) {
         populateData(0);
     });
     file = chosenFile;
+    isEdited = false;
 };
