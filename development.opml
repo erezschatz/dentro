@@ -158,13 +158,17 @@
             </outline>
         </outline>
         <outline text="removed jquery.autosize.js">
-            <outline text="comparing element.clientHeight to element.scrollHeight and matching them if necessary">
+            <outline text="start with one line, increment until text isn't hidden anymore.">
                 <outline text="is there a way to do it without jquery?">
                 </outline>
                 <outline text="needs to be fast">
                 </outline>
             </outline>
-            <outline text="doesn't slow things anymore">
+            <outline text="it's still slowing everything down">
+            </outline>
+        </outline>
+        <outline text="dateCreated is saved from the document">
+            <outline text="if not exists, it's generated when the document is first saved">
             </outline>
         </outline>
         <outline text="todo: restyle bullets">
@@ -221,21 +225,17 @@
                 </outline>
             </outline>
         </outline>
-        <outline text="dateCreated is first populated when the document is created">
-            <outline text="any future references is read from the document">
-            </outline>
-        </outline>
 </outline>
-    <outline text="0.3 - wishlist">
+    <outline text="0.3: features">
         <outline text="different indications for node with childs and without childs">
             <outline text="maybe light gray for no childs">
             </outline>
         </outline>
-        <outline text="right-click menu">
-        </outline>
-        <outline text="have the application repopulate only the parts that were changed">
-            <outline text="reduct the number of calls to populateData">
+        <outline text="improve speed">
+            <outline text="autoresize of textarea">
             </outline>
+        </outline>
+        <outline text="right-click menu">
         </outline>
 </outline>
 </body></opml>
