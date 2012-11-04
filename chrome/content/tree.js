@@ -257,9 +257,10 @@ var toggleOpenState = function(idx) {
 };
 
 var insertWithContent = function (idx) {
-    var nodeText = childNode[idx].text;
-    var newText = nodeText.substr(point, nodeText.length);
-    childNode[idx].text = nodeText.substr(0, point)
+    var point = document.getElementById('outline' + idx).selectionStart;
+    var nodeText = childData[idx].text;
+    var newText = nodeText.substring(point, nodeText.length);
+    childData[idx].text = nodeText.substring(0, point - 1)
     insertNode(idx, newText);
 }
 
