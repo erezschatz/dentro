@@ -256,10 +256,17 @@ var toggleOpenState = function(idx) {
     populateData(idx);
 };
 
-var insertNode =  function(idx) {
+var insertWithContent = function (idx) {
+    var nodeText = childNode[idx].text;
+    var newText = nodeText.substr(point, nodeText.length);
+    childNode[idx].text = nodeText.substr(0, point)
+    insertNode(idx, newText);
+}
+
+var insertNode = function(idx, nodeText) {
     var selectedItem = childData[idx];
     var newRow = new Outline();
-    newRow.text = '';
+    newRow.text = nodeText === undefined ? '' : nodeText;
 
     if (selectedItem.parent !== undefined) {
         newRow.parent = selectedItem.parent;
@@ -386,13 +393,14 @@ var collapseAll = function() {
 
 var keypressaction = function(event, i) {
     assignContent(i);
+    alert(event.keyCode);
     if (event.keyCode === 13) { //enter
         if (event.altKey) {
             toggleOpenState(i);
         } else if (event.ctrlKey) {
             //insert comment
         } else if (event.shiftKey) {
-            //insert with cut+paste from point
+            insertWithContent(i);
         } else {
             insertNode(i);
         }

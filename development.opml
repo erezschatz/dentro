@@ -3,7 +3,7 @@
   <head>
   <title>dentro.opml</title>
     <dateCreated>Sun Oct 28 2012 19:03:29 GMT+0200 (IST)</dateCreated>
-    <dateModified>Thu Nov 01 2012 19:50:14 GMT+0200 (IST)</dateModified>
+    <dateModified>Sun Nov 04 2012 19:39:37 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -194,6 +194,20 @@
             </outline>
         </outline>
         <outline text="todo: warn before closing unsaved file">
+            <outline text="in progress">
+            </outline>
+            <outline text="captured onClose event">
+                <outline text="Window manager">
+                </outline>
+                <outline text="File&gt; Quit">
+                </outline>
+            </outline>
+            <outline text="currently throws alert">
+                <outline text="needs to launch dialog">
+                </outline>
+            </outline>
+            <outline text="doesn't differentiate between edit and expand/collaps">
+            </outline>
         </outline>
         <outline text="todo: delete not recursive into opened sub-modes">
         </outline>
@@ -221,12 +235,12 @@
                 </outline>
             </outline>
             <outline text="Dentro">
-                <outline text="opens dentro.opml in a new tab">
+                <outline text="opens dentro.opml in a new window/dialog window">
                 </outline>
             </outline>
         </outline>
 </outline>
-    <outline text="0.3: features">
+    <outline text="0.3 - features">
         <outline text="different indications for node with childs and without childs">
             <outline text="maybe light gray for no childs">
             </outline>
