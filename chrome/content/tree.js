@@ -391,35 +391,40 @@ var collapseAll = function() {
     }
 }
 
-var keypressaction = function(event, i) {
-    assignContent(i);
-    alert(event.keyCode);
+var keypressaction = function(event, idx) {
+    assignContent(idx);
     if (event.keyCode === 13) { //enter
         if (event.altKey) {
-            toggleOpenState(i);
+            toggleOpenState(idx);
         } else if (event.ctrlKey) {
             //insert comment
         } else if (event.shiftKey) {
-            insertWithContent(i);
+            insertWithContent(idx);
         } else {
-            insertNode(i);
+            insertNode(idx);
         }
     } else if (event.keyCode === 9) { //tab
         if (event.shiftKey) {
-            indentOut(i);
+            indentOut(idx);
         } else {
-            indentIn(i);
+            indentIn(idx);
         }
     } else if (event.keyCode === 46 && event.ctrlKey) { //delete
-        deleteNode(i);
+        deleteNode(idx);
     } else if (event.keyCode === 40) { //down arrow
-        var newfocus = i + 1;
+        var newfocus = idx + 1;
         $('textarea[id=outline' + newfocus + ']').focus().select();
     } else if (event.keyCode === 38) { //up arrow
-        var newfocus = i - 1;
+        var newfocus = idx - 1;
         $('textarea[id=outline' + newfocus + ']').focus().select();
+    } else if (event.keyCode === 's' && event.ctrlKey) {
+        if (event.shiftKey) {
+            //saveFileAs
+        } else {
+            saveFile();
+        }
     } else {
-        assignContent(i);
+        assignContent(idx);
     }
 };
 
