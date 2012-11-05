@@ -3,7 +3,7 @@
   <head>
   <title>dentro.opml</title>
     <dateCreated>Sun Oct 28 2012 19:03:29 GMT+0200 (IST)</dateCreated>
-    <dateModified>Sun Nov 04 2012 19:39:37 GMT+0200 (IST)</dateModified>
+    <dateModified>Mon Nov 05 2012 17:53:21 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -238,6 +238,8 @@
                 <outline text="opens dentro.opml in a new window/dialog window">
                 </outline>
             </outline>
+        </outline>
+        <outline text="added keyboard interface to all menus">
         </outline>
 </outline>
     <outline text="0.3 - features">

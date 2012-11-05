@@ -4,6 +4,7 @@
     display:inline-block;
     cursor: default;
     background-position:top;
+    float:left;
 }
 
 .open {
@@ -12,6 +13,7 @@
     display: inline-block;
     cursor: default;
     background-position:top;
+    float:left;y
 }
 
 textarea {

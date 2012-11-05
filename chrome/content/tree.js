@@ -146,7 +146,7 @@ var populateData = function (idx) {
             '" style="display:inline-block"><textarea id="outline' + i +
             '" onkeypress="keypressaction(event, ' + i +
             ');" onkeyup="assignContent(' + i +
-            ');" style="width: ' + maxwidth + '">' +
+            ');" style="width: ' + maxwidth + 'px;">' +
             childData[i].text + '</textarea></div></div>';
     }
 
@@ -169,9 +169,11 @@ var populateData = function (idx) {
 
 var assignContent = function(idx) {
     var elem = document.getElementById('outline' + idx);
-    adjustNodeHeight(elem);
-    childData[idx].text = $(elem).attr('value');
-    isEdited = true;
+    if (childData[idx].text !== $(elem).attr('value')) {
+        adjustNodeHeight(elem);
+        childData[idx].text = $(elem).attr('value');
+        isEdited = true;
+    }
 };
 
 var parseOPML = function (input) {
@@ -393,7 +395,6 @@ var collapseAll = function() {
 }
 
 var keypressaction = function(event, idx) {
-    assignContent(idx);
     if (event.keyCode === 13) { //enter
         if (event.altKey) {
             toggleOpenState(idx);
@@ -418,7 +419,8 @@ var keypressaction = function(event, idx) {
     } else if (event.keyCode === 38) { //up arrow
         var newfocus = idx - 1;
         $('textarea[id=outline' + newfocus + ']').focus().select();
-    } else if (event.keyCode === 's' && event.ctrlKey) {
+    } else if (event.keyCode === 83 && event.ctrlKey) { //ctrl+s
+        alert('foo');
         if (event.shiftKey) {
             //saveFileAs
         } else {
