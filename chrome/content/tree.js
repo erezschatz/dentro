@@ -343,12 +343,13 @@ var indentIn = function (idx) {
 
     lastItem.parent = childData[siblingIdx];
     if (! childData[siblingIdx].isContainerOpen) {
-        toggleOpenState(siblingIdx);
+        childData[siblingIdx].isContainerOpen = true;
     }
     if (childData[siblingIdx].childs === undefined) {
         childData[siblingIdx].childs = [];
     }
     childData[siblingIdx].childs.push(lastItem);
+    isEdited = true;
     populateData(idx);
 };
 
@@ -363,7 +364,7 @@ var indentOut = function(idx) {
     for (var i = 0; i < length; i++) {
         if (currentParent.childs[i].id === currentItem.id) {
             currentParent.childs.splice(i, 1);
-            length -=  i + 1;
+            length -= i + 1;
             break;
         }
     }
@@ -379,7 +380,7 @@ var indentOut = function(idx) {
     }
     childData.splice(idx, 1);
     childData.splice(idx + length, 0, currentItem);
-
+    isEdited = true;
     populateData(idx);
 };
 
