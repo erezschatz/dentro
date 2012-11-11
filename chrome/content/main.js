@@ -15,7 +15,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with Dentro.  If not, see <http://www.gnu.org/licenses/>.
+along with Dentro  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
@@ -23,11 +23,13 @@ along with Dentro.  If not, see <http://www.gnu.org/licenses/>.
 
 var newOPMLfile = function () {
     document.getElementById('mainWindow').contentWindow.newFile();
-}
+};
 
 var loadOPMLfile = function () {
     var nsIFilePicker = Components.interfaces.nsIFilePicker;
-    var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
+    var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(
+        nsIFilePicker
+    );
     fp.init(window, "Select a File", nsIFilePicker.modeOpen);
     var res = fp.show();
     if (res != nsIFilePicker.returnCancel){
@@ -35,7 +37,7 @@ var loadOPMLfile = function () {
         document.getElementById("mainWindow").contentWindow.loadFile(file);
     }
     document.title = file.leafName;
-}
+};
 
 var saveOPMLfileAs = function () {
     var nsIFilePicker = Components.interfaces.nsIFilePicker;
@@ -57,30 +59,31 @@ var init = function () {
         'src',
         'chrome://dentro/content/test.html'
     );
-}
+};
 
 var saveOPMLfile = function () {
-    if (! document.getElementById("mainWindow").contentWindow.saveFile())
+    if (! document.getElementById("mainWindow").contentWindow.saveFile()) {
         saveOPMLfileAs();
-}
+    }
+};
 
 var toOpenWindowByType = function (inType, uri) {
     var winopts =
         "chrome,extrachrome,menubar,resizable,scrollbars,status,toolbar";
     window.open(uri, "_blank", winopts);
-}
+};
 
 var collapseAll = function() {
     document.getElementById('mainWindow').contentWindow.collapseAll();
-}
+};
 
 var expandAll = function() {
     document.getElementById('mainWindow').contentWindow.expandAll();
-}
+};
 
 var closeDentro = function() {
     if (document.getElementById('mainWindow').contentWindow.isEdited) {
         alert("Document has unsaved changes, save document?");
     }
     window.close();
-}
+};

@@ -119,12 +119,13 @@ var formatOPMLElement = function (node, level) {
 
     return output;
 };
+
 // checks whether the text has overflowed under the textarea size
 var adjustNodeHeight = function (elem) {
     if (elem.clientHeight < elem.scrollHeight) {
         $(elem).height(elem.scrollHeight + 1);
     }
-}
+};
 
 /* iterates over 'childData' array, creates a bullet
    div and a textarea for each item, indented it according to level, creating
@@ -264,7 +265,7 @@ var insertWithContent = function (idx) {
     var newText = nodeText.substring(point, nodeText.length);
     childData[idx].text = nodeText.substring(0, point - 1)
     insertNode(idx, newText);
-}
+};
 
 var insertNode = function(idx, nodeText) {
     var selectedItem = childData[idx];
@@ -368,6 +369,7 @@ var indentOut = function(idx) {
             break;
         }
     }
+
     if (currentParent.parent === undefined) {
         currentItem.parent = undefined;
     } else {
@@ -378,14 +380,36 @@ var indentOut = function(idx) {
             }
         }
     }
+
     childData.splice(idx, 1);
     childData.splice(idx + length, 0, currentItem);
     isEdited = true;
     populateData(idx);
 };
 
+// What I need is to add all the nodes and subnodes, in order to an array, and replace childData with that array.
 var expandAll = function() {
-}
+    var tempArray = aggregateAllNodes(childData);
+    childData = tempArray;
+    populateData(0)
+};
+
+var aggregateAllNodes = function(array) {
+    var tempArray = [];
+    for (var i = 0; i < array.length; i++) {
+        array[i].isContainerOpen = true;
+        tempArray.push(array[i]);
+
+        if (array[i].childs !== undefined && array[i].childs !== null &&
+            array[i].childs.length !== 0) {
+
+            var childNodes = aggregateAllNodes(array[i].childs);
+            for (var j = 0; j < childNodes.length; j++)
+                tempArray.push(childNodesy[j]);
+        }
+    }
+    return tempArray;
+};
 
 var collapseAll = function() {
     for (var i = 0; i < childData.length; i++) {
@@ -393,7 +417,7 @@ var collapseAll = function() {
             toggleOpenState(i);
         }
     }
-}
+};
 
 var keypressaction = function(event, idx) {
     if (event.keyCode === 13) { //enter
