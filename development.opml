@@ -3,7 +3,7 @@
   <head>
   <title>dentro.opml</title>
     <dateCreated>Sun Oct 28 2012 19:03:29 GMT+0200 (IST)</dateCreated>
-    <dateModified>Sun Nov 11 2012 09:39:28 GMT+0200 (IST)</dateModified>
+    <dateModified>Thu Nov 22 2012 15:40:41 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -80,6 +80,10 @@
         <outline text="undo/redo">
         </outline>
         <outline text="warn before closing unsaved node">
+        </outline>
+        <outline text="open last opened file">
+            <outline text="also save a &quot;recent files&quot; list">
+            </outline>
         </outline>
         <outline text="statusnet client">
             <outline text="http://status.net/wiki/JavaScript_API">
