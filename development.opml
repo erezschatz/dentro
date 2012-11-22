@@ -3,7 +3,7 @@
   <head>
   <title>dentro.opml</title>
     <dateCreated>Sun Oct 28 2012 19:03:29 GMT+0200 (IST)</dateCreated>
-    <dateModified>Thu Nov 22 2012 11:29:00 GMT+0200 (IST)</dateModified>
+    <dateModified>Thu Nov 22 2012 15:40:41 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -179,10 +179,8 @@
         </outline>
         <outline text="Shift+Enter creates new node with everything after the cursor">
         </outline>
-        <outline text="todo: implement OPML format">
-            <outline text="OPML comments">
-                <outline text="ctrl+enter">
-                </outline>
+        <outline text="todo: implement OPML comments">
+            <outline text="ctrl+enter">
             </outline>
         </outline>
         <outline text="todo: warn before closing unsaved file">
@@ -200,15 +198,25 @@
             </outline>
         </outline>
         <outline text="todo: delete not recursive into opened sub-modes childs">
+            <outline text="when node is open">
+                <outline text="indent out childs">
+                </outline>
+                <outline text="then delete node">
+                </outline>
+            </outline>
+            <outline text="when node closed">
+                <outline text="delete with childs">
+                </outline>
+            </outline>
         </outline>
         <outline text="todo: structure of tree after indent-out of node with opened sub nodes only visible after collapse/expand">
         </outline>
         <outline text="todo: Ctrl+s saves">
         </outline>
-        <outline text="Outline menu">
+        <outline text="todo: Outline menu">
             <outline text="Collapse All Nodes">
             </outline>
-            <outline text="Expand All Nodes">
+            <outline text="todo: Expand All Nodes">
             </outline>
         </outline>
         <outline text="todo: Help menu">
