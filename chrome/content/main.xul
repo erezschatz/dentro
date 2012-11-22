@@ -42,12 +42,12 @@ along with Dentro.  If not, see <http://www.gnu.org/licenses/>.
           <menuitem label="Quit" accesskey="Q" oncommand="closeDentro()" />
         </menupopup>
       </menu>
-      <menu id="edit" label="Edit" accesskey="E">
+     <!-- <menu id="edit" label="Edit" accesskey="E">
         <menupopup>
           <menuitem label="Undo" accesskey="U" oncommand="" />
           <menuitem label="Redo" accesskey="R" oncommand="" />
         </menupopup>
-      </menu>
+      </menu> -->
       <menu id="outline" label="Outline" accesskey="o">
         <menupopup>
           <menuitem label="Expand All Nodes" accesskey="x" oncommand="expandAll()" />

@@ -3,7 +3,7 @@
   <head>
   <title>dentro.opml</title>
     <dateCreated>Sun Oct 28 2012 19:03:29 GMT+0200 (IST)</dateCreated>
-    <dateModified>Wed Nov 07 2012 14:50:20 GMT+0200 (IST)</dateModified>
+    <dateModified>Thu Nov 22 2012 11:29:00 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -171,10 +171,10 @@
             <outline text="if not exists, it's generated when the document is first saved">
             </outline>
         </outline>
-        <outline text="todo: restyle bullets">
+        <outline text="restyled bullets">
             <outline text="moved them to first line of node">
             </outline>
-            <outline text="need to readjust location">
+            <outline text="manipulated image">
             </outline>
         </outline>
         <outline text="Shift+Enter creates new node with everything after the cursor">
@@ -185,41 +185,27 @@
                 </outline>
             </outline>
         </outline>
-        <outline text="todo: Edit menu">
-            <outline text="undo">
-            </outline>
-            <outline text="redo">
-            </outline>
-        </outline>
         <outline text="todo: warn before closing unsaved file">
-            <outline text="in progress">
-            </outline>
             <outline text="captured onClose event">
                 <outline text="Window manager">
                 </outline>
                 <outline text="File&gt; Quit">
                 </outline>
             </outline>
-            <outline text="currently throws alert">
+            <outline text="currently throws alert - need to create dialog">
                 <outline text="needs to launch dialog">
                 </outline>
             </outline>
-            <outline text="doesn't differentiate between edit and expand/collaps">
+            <outline text="differentiate between edit and expand/collaps">
             </outline>
         </outline>
-        <outline text="todo: delete not recursive into opened sub-modes">
+        <outline text="todo: delete not recursive into opened sub-modes childs">
         </outline>
         <outline text="todo: structure of tree after indent-out of node with opened sub nodes only visible after collapse/expand">
         </outline>
         <outline text="todo: Ctrl+s saves">
         </outline>
-        <outline text="todo: URL click-able">
-            <outline text="can be opened in browser">
-            </outline>
-            <outline text="e.g. http://google.com">
-            </outline>
-        </outline>
-        <outline text="todo: Outline menu">
+        <outline text="Outline menu">
             <outline text="Collapse All Nodes">
             </outline>
             <outline text="Expand All Nodes">
@@ -247,11 +233,35 @@
             <outline text="maybe light gray for no childs">
             </outline>
         </outline>
-        <outline text="improve speed">
-            <outline text="autoresize of textarea">
+        <outline text="mouse interface">
+            <outline text="right-click menu">
             </outline>
         </outline>
-        <outline text="right-click menu">
+        <outline text="clickable URLS">
+            <outline text="can be opened in browser">
+            </outline>
+            <outline text="e.g. http://google.com">
+            </outline>
+        </outline>
+        <outline text="Edit menu">
+            <outline text="undo">
+            </outline>
+            <outline text="redo">
+            </outline>
+            <outline text="copy">
+            </outline>
+            <outline text="paste">
+            </outline>
+        </outline>
+        <outline text="outline menu">
+            <outline text="add new node">
+            </outline>
+            <outline text="delete node">
+            </outline>
+            <outline text="indent in">
+            </outline>
+            <outline text="indent out">
+            </outline>
         </outline>
 </outline>
 </body></opml>
