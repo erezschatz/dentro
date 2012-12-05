@@ -3,7 +3,7 @@
   <head>
   <title>dentro.opml</title>
     <dateCreated>Sun Oct 28 2012 19:03:29 GMT+0200 (IST)</dateCreated>
-    <dateModified>Thu Nov 22 2012 15:40:41 GMT+0200 (IST)</dateModified>
+    <dateModified>Wed Dec 05 2012 08:31:22 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -207,7 +207,7 @@
             <outline text="doesn't differentiate between edit and expand/collaps">
             </outline>
         </outline>
-        <outline text="todo: delete not recursive into opened sub-modes">
+        <outline text="delete an open node reassign child nodes under parent">
         </outline>
         <outline text="todo: structure of tree after indent-out of node with opened sub nodes only visible after collapse/expand">
         </outline>
@@ -222,7 +222,7 @@
         <outline text="Outline menu">
             <outline text="Collapse All Nodes">
             </outline>
-            <outline text="Expand All Nodes">
+            <outline text="todo: Expand All Nodes">
             </outline>
         </outline>
         <outline text="todo: Help menu">

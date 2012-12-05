@@ -288,12 +288,14 @@ var insertNode = function(idx, nodeText) {
 
 var deleteNode = function (idx) {
     var currentItem = childData[idx];
-    var toDelete =
-        currentItem.isContainerOpen && currentItem.childs.length > 0 ?
-        currentItem.childs.length + 1 :
-        1;
+    var currentLevel = getLevel(idx);
+    for (var i = idx; i < childData.length; i++) {
+        if (getLevel(i) - currentLevel ==  1) { //child
+            indentOut(i);
+        }
+    }
 
-    childData.splice(idx, toDelete);
+    childData.splice(idx, 1);
     var currentParent = currentItem.parent;
     if (currentParent !== undefined) {
         var length = currentParent.childs.length;
