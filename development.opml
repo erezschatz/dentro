@@ -3,7 +3,7 @@
   <head>
   <title>dentro.opml</title>
     <dateCreated>Sun Oct 28 2012 19:03:29 GMT+0200 (IST)</dateCreated>
-    <dateModified>Wed Dec 05 2012 08:31:22 GMT+0200 (IST)</dateModified>
+    <dateModified>Tue Dec 18 2012 18:03:46 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -240,6 +240,8 @@
             </outline>
         </outline>
         <outline text="added keyboard interface to all menus">
+        </outline>
+        <outline text="when deleting last node, create empty one">
         </outline>
 </outline>
     <outline text="0.3 - features">

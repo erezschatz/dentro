@@ -287,6 +287,11 @@ var insertNode = function(idx, nodeText) {
 };
 
 var deleteNode = function (idx) {
+    if (childData.length == 1) {
+        newFile(true);
+        return
+    }
+
     var currentItem = childData[idx];
     var currentLevel = getLevel(idx);
     for (var i = idx; i < childData.length; i++) {
@@ -389,7 +394,8 @@ var indentOut = function(idx) {
     populateData(idx);
 };
 
-// What I need is to add all the nodes and subnodes, in order to an array, and replace childData with that array.
+// What I need is to add all the nodes and subnodes,
+// in order to an array, and replace childData with that array.
 var expandAll = function() {
     var tempArray = aggregateAllNodes(childData);
     childData = tempArray;
@@ -458,10 +464,10 @@ var keypressaction = function(event, idx) {
     }
 };
 
-var newFile = function () {
+var newFile = function (edit_status) {
     childData = [new Outline()];
     populateData(0);
-    isEdited = false;
+    isEdited = edit_status;
 };
 
 var loadFile = function (chosenFile) {
