@@ -1,12 +1,10 @@
-var ctx = document.getElementById('canvas').getContext('2d');
-// Clear the canvas
-ctx.clearRect(0, 0, 300, 350);
+//Based on code from
+//http://www.coderholic.com/recursively-drawing-trees-with-javascript-and-canvas/
+//license unknown
 
-// Move to the bottom middle of the canvas, which is where we're going to start
-ctx.translate(150, 350);
 var degrees = 30;
 
-function draw(childData) {
+function draw(ctx, childData) {
     var branches = childData.length;
 
     for (var i = 0; i < branches; i++) {
@@ -18,9 +16,9 @@ function draw(childData) {
 	ctx.rotate(-degreesBetween / 2 * (Math.PI / 180));
 
 	// Go from a thick 'branch' to thin 'leaves'
-	ctx.lineWidth = maxRecursion - recursion;
+	ctx.lineWidth = 10 - branches;
 	// Go from brown to green
-	ctx.strokeStyle = 'rgb(' + (125 - recursion * 25) + ', 80, 25)';
+	ctx.strokeStyle = 'rgb(' + (125 - branches * 25) + ', 80, 25)';
 
 	// Draw our line
 	ctx.beginPath();
@@ -31,6 +29,9 @@ function draw(childData) {
 	// Translate, scale, and then call ourselves recursively
 	ctx.translate(0, -96);
 	ctx.scale(0.75, 0.75);
+        for (var b = 0; b < childData.length; b++) {
+            draw(ctx, childData[b].childs);
+        }
 	ctx.restore();
 	ctx.rotate(degrees * (Math.PI / 180));
     }

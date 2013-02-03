@@ -207,7 +207,17 @@ var parseOPML = function (input) {
 
         childData.push(outline);
     }
-    draw(childData);
+
+/*
+    var ctx = document.getElementById('canvas').getContext('2d');
+
+    // Clear the canvas
+    ctx.clearRect(0, 0, 300, 350);
+
+    // Move to the bottom middle of the canvas
+    ctx.translate(150, 350);
+    draw(ctx, childData);
+*/
 };
 
 var generateChildNode = function(parentNode, childNode) {
