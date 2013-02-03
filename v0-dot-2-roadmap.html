@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" xml:lang="en"/>
-    <title>Dentro /   Index</title>
+    <title>Dentro /   v0.2 Roadmap</title>
     
     <link rel="stylesheet" type="text/css" media="screen" href="css/screen.css" />
   </head>
@@ -41,22 +41,80 @@
 
       <!-- main -->
       <div id="main" class="grid_12">
-<h2>Index</h2>
+<h2>v0.2 Roadmap</h2>
 
+<p>The next version of Dentro is, as expected, 0.2, here's what's in store for it</p>
 
-
-
-
+<p>Bugs:</p>
 
 <ul>
-
-  <li><a href="about.html">About Dentro</a></li>
-
-  <li><a href="v0-dot-2-roadmap.html">v0.2 Roadmap</a></li>
-
-  <li><a href="v0-dot-1-released.html">v0.1 released</a></li>
-
+<li>Fix OPML indentation on save</li>
+<li>Delete not recursive into opened sub-modes</li>
+<li>No warning before closing unsaved content</li>
+<li>Structure of tree after indent-out of node with opened sub nodes only visible after collapse/expand</li>
+<li>usage of autosize.js for dynamic textareas causes outliner to slowdown</li>
 </ul>
+
+<p>Features:</p>
+
+<ul>
+<li>fully implement the <a href="http://dev.opml.org/spec2.html">OPML format</a></li>
+<li>implement correct details
+
+<ul>
+<li>dateCreated</li>
+<li>ownerName</li>
+<li>ownerEmail</li>
+</ul>
+</li>
+<li>restyle bullets: center of first line</li>
+</ul>
+
+<p>Interface:</p>
+
+<ul>
+<li>Keyboard shortcuts
+
+<ul>
+<li>Ctrl+s to save and Ctrl+Shift+s to save as</li>
+<li>Ctrl+Enter to create comment</li>
+<li>Ctrl+Shift takes everything after the cursor and creates a new node with it</li>
+</ul>
+</li>
+<li>Menubar
+
+<ul>
+<li>Help menu
+
+<ul>
+<li>About - opens about dialog</li>
+<li>Debug - opens <a href="https://developer.mozilla.org/en-US/docs/Venkman">Venkman</a> debugger</li>
+<li>Dentro - opens dentro.opml (the documentation outliner) in a new instance</li>
+</ul>
+</li>
+<li>Outline menu
+
+<ul>
+<li>Collapse All Nodes</li>
+<li>Expand All Nodes</li>
+</ul>
+</li>
+<li>Edit menu
+
+<ul>
+<li>Undo</li>
+<li>Redo</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>As always, the most updated list + notes can be found at Dentro's repository itself, as <a href="https://github.com/erezschatz/dentro/blob/master/development.opml">development.opml</a></p>
+</div>
+
+
+
 
 
 

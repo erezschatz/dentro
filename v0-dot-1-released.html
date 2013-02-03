@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" xml:lang="en"/>
-    <title>Dentro /   Index</title>
+    <title>Dentro /   v0.1 released</title>
     
     <link rel="stylesheet" type="text/css" media="screen" href="css/screen.css" />
   </head>
@@ -41,22 +41,41 @@
 
       <!-- main -->
       <div id="main" class="grid_12">
-<h2>Index</h2>
+<h2>v0.1 released</h2>
 
+Dentro 0.1 was released.
 
-
-
-
+Release notes:
 
 <ul>
-
-  <li><a href="about.html">About Dentro</a></li>
-
-  <li><a href="v0-dot-2-roadmap.html">v0.2 Roadmap</a></li>
-
-  <li><a href="v0-dot-1-released.html">v0.1 released</a></li>
-
+    <li> File I/O
+        <ul>
+            <li> Reads (basic) OPML files (standard not fully implemented) </li>
+            <li> Writes to OPML </li>
+        </ul>
+    </li>
+    <li> Tree manipulation
+        <ul>
+            <li> Enter creates new, empty item under selected item, and focus on it </li>
+            <li> Ctrl+delete deletes current item and all its children nodes
+                <ul>
+                    <li> Just delete only functions on node text </li>
+                </ul> 
+            </li>
+            <li>Tab indents in current node immediate (previous) sibling</li>
+            <li>Shift+Tab indents out current node</li>
+            <li>Alt+Enter or click on the node's bullet toggles expand/collapse node
+                <ul>
+                    <li>reveals all sub-nodes under current node</li>
+                    <li>close also closes all sub-nodes</li>
+                </ul>
+            </li>        
+        </ul>
+    </li>
 </ul>
+
+
+
 
 
 
