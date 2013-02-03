@@ -3,7 +3,7 @@
   <head>
   <title>dentro.opml</title>
     <dateCreated>Sun Oct 28 2012 19:03:29 GMT+0200 (IST)</dateCreated>
-    <dateModified>Sat Feb 02 2013 07:33:54 GMT+0200 (IST)</dateModified>
+    <dateModified>Sun Feb 03 2013 17:19:52 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -177,7 +177,7 @@
         </outline>
         <outline text="Shift+Enter creates new node with everything after the cursor">
         </outline>
-        <outline text="todo: warn before closing unsaved file">
+        <outline text="autosave">
             <outline text="in progress">
             </outline>
             <outline text="captured onClose event">
@@ -185,19 +185,19 @@
                 </outline>
                 <outline text="File&gt; Quit">
                 </outline>
+                <outline text="should capture new and open too">
+                </outline>
             </outline>
             <outline text="currently throws alert">
                 <outline text="needs to launch dialog">
                 </outline>
-            </outline>
-            <outline text="doesn't differentiate between edit and expand/collaps">
             </outline>
         </outline>
         <outline text="delete an open node reassign child nodes under parent">
         </outline>
         <outline text="todo: structure of tree after indent-out of node with opened sub nodes only visible after collapse/expand">
         </outline>
-        <outline text="todo: Ctrl+s saves">
+        <outline text="Ctrl+s saves">
         </outline>
         <outline text="Help menu">
             <outline text="debug">
@@ -212,6 +212,8 @@
             </outline>
         </outline>
         <outline text="added keyboard interface to all menus">
+        </outline>
+        <outline text="moved site to Blio from octopress">
         </outline>
 </outline>
     <outline text="0.3 - features">
@@ -264,8 +266,6 @@
         <outline text="tags">
         </outline>
         <outline text="forest">
-        </outline>
-        <outline text="redesign site using Blio">
         </outline>
 </outline>
 </body></opml>

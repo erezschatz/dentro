@@ -35,10 +35,10 @@ along with Dentro.  If not, see <http://www.gnu.org/licenses/>.
     <menubar>
       <menu id="file" label="File" accesskey="F">
         <menupopup>
-          <menuitem label="New" accesskey="N" oncommand="newOPMLfile()" />
-          <menuitem label="Open" accesskey="O" oncommand="loadOPMLfile()"/>
-          <menuitem label="Save" accesskey="S" oncommand="saveOPMLfile()"/>
-          <menuitem label="Save As" accesskey="A" oncommand="saveOPMLfileAs()"/>
+          <menuitem label="New" accesskey="N" oncommand="newOPMLFile()" />
+          <menuitem label="Open" accesskey="O" oncommand="loadOPMLFile()"/>
+          <menuitem label="Save" accesskey="S" oncommand="saveOPMLFile()"/>
+          <menuitem label="Save As" accesskey="A" oncommand="saveOPMLFileAs()"/>
           <menuitem label="Quit" accesskey="Q" oncommand="closeDentro()" />
         </menupopup>
       </menu>

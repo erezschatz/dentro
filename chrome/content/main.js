@@ -21,11 +21,11 @@ along with Dentro  If not, see <http://www.gnu.org/licenses/>.
 
 "use strict";
 
-var newOPMLfile = function () {
+var newOPMLFile = function () {
     document.getElementById('mainWindow').contentWindow.newFile();
 };
 
-var loadOPMLfile = function () {
+var loadOPMLFile = function () {
     var nsIFilePicker = Components.interfaces.nsIFilePicker;
     var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(
         nsIFilePicker
@@ -39,7 +39,7 @@ var loadOPMLfile = function () {
     document.title = file.leafName;
 };
 
-var saveOPMLfileAs = function () {
+var saveOPMLFileAs = function () {
     var nsIFilePicker = Components.interfaces.nsIFilePicker;
     var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(
         nsIFilePicker
@@ -61,9 +61,9 @@ var init = function () {
     );
 };
 
-var saveOPMLfile = function () {
+var saveOPMLFile = function () {
     if (! document.getElementById("mainWindow").contentWindow.saveFile()) {
-        saveOPMLfileAs();
+        saveOPMLFileAs();
     }
 };
 
@@ -79,11 +79,4 @@ var collapseAll = function() {
 
 var expandAll = function() {
     document.getElementById('mainWindow').contentWindow.expandAll();
-};
-
-var closeDentro = function() {
-    if (document.getElementById('mainWindow').contentWindow.isEdited) {
-        alert("Document has unsaved changes, save document?");
-    }
-    window.close();
 };

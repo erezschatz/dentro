@@ -92,7 +92,7 @@ var saveFile = function (toFile) {
     converter.init(foStream, "ISO-8859-1", 0, 0);
     converter.writeString(output);
     converter.close();
-    isEdited = false;
+    saveContent();
     return 1;
 };
 
@@ -463,10 +463,10 @@ var keypressaction = function(event, idx) {
     } else if (event.keyCode === 38) { //up arrow
         var newfocus = idx - 1;
         $('textarea[id=outline' + newfocus + ']').focus().select();
-    } else if (event.keyCode === 83 && event.ctrlKey) { //ctrl+s
-        alert('foo');
+    } else if (event.charCode === 115 && event.ctrlKey) { //ctrl+s
         if (event.shiftKey) {
-            //saveFileAs
+	    //currently doesn't work
+            document.getElementById("mainTree").saveOPMLFileAs();
         } else {
             saveFile();
         }
