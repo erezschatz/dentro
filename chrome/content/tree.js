@@ -207,6 +207,7 @@ var parseOPML = function (input) {
 
         childData.push(outline);
     }
+    draw(childData);
 };
 
 var generateChildNode = function(parentNode, childNode) {

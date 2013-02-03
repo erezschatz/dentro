@@ -3,7 +3,7 @@
   <head>
   <title>dentro.opml</title>
     <dateCreated>Sun Oct 28 2012 19:03:29 GMT+0200 (IST)</dateCreated>
-    <dateModified>Wed Dec 05 2012 08:31:22 GMT+0200 (IST)</dateModified>
+    <dateModified>Sat Feb 02 2013 07:33:54 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -171,25 +171,11 @@
             <outline text="if not exists, it's generated when the document is first saved">
             </outline>
         </outline>
-        <outline text="todo: restyle bullets">
+        <outline text="restyled bullets">
             <outline text="moved them to first line of node">
-            </outline>
-            <outline text="need to readjust location">
             </outline>
         </outline>
         <outline text="Shift+Enter creates new node with everything after the cursor">
-        </outline>
-        <outline text="todo: implement OPML format">
-            <outline text="OPML comments">
-                <outline text="ctrl+enter">
-                </outline>
-            </outline>
-        </outline>
-        <outline text="todo: Edit menu">
-            <outline text="undo">
-            </outline>
-            <outline text="redo">
-            </outline>
         </outline>
         <outline text="todo: warn before closing unsaved file">
             <outline text="in progress">
@@ -213,16 +199,52 @@
         </outline>
         <outline text="todo: Ctrl+s saves">
         </outline>
+        <outline text="Help menu">
+            <outline text="debug">
+                <outline text="opens Venkman debugger">
+                </outline>
+            </outline>
+        </outline>
+        <outline text="Outline menu">
+            <outline text="Collapse All Nodes">
+            </outline>
+            <outline text="Expand All Nodes">
+            </outline>
+        </outline>
+        <outline text="added keyboard interface to all menus">
+        </outline>
+</outline>
+    <outline text="0.3 - features">
+        <outline text="todo: implement OPML format">
+            <outline text="OPML comments">
+                <outline text="ctrl+enter">
+                </outline>
+            </outline>
+        </outline>
         <outline text="todo: URL click-able">
             <outline text="can be opened in browser">
             </outline>
             <outline text="e.g. http://google.com">
             </outline>
         </outline>
-        <outline text="Outline menu">
-            <outline text="Collapse All Nodes">
+        <outline text="different indications for node with childs and without childs">
+            <outline text="maybe light gray for no childs">
             </outline>
-            <outline text="todo: Expand All Nodes">
+        </outline>
+        <outline text="todo: Edit menu">
+            <outline text="undo">
+            </outline>
+            <outline text="redo">
+            </outline>
+        </outline>
+        <outline text="improve speed">
+            <outline text="autoresize of textarea">
+            </outline>
+        </outline>
+        <outline text="right-click menu">
+        </outline>
+        <outline text="open last opened file">
+            <outline text="also save a &quot;recent files&quot; list">
             </outline>
         </outline>
         <outline text="todo: Help menu">
@@ -239,23 +261,11 @@
                 </outline>
             </outline>
         </outline>
-        <outline text="added keyboard interface to all menus">
+        <outline text="tags">
         </outline>
-</outline>
-    <outline text="0.3 - features">
-        <outline text="different indications for node with childs and without childs">
-            <outline text="maybe light gray for no childs">
-            </outline>
+        <outline text="forest">
         </outline>
-        <outline text="improve speed">
-            <outline text="autoresize of textarea">
-            </outline>
-        </outline>
-        <outline text="right-click menu">
-        </outline>
-        <outline text="open last opened file">
-            <outline text="also save a &quot;recent files&quot; list">
-            </outline>
+        <outline text="redesign site using Blio">
         </outline>
 </outline>
 </body></opml>
