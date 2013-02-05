@@ -46,11 +46,14 @@ var getLevel = function(idx) {
     return level;
 };
 
-// calculate the total number of nodes in a structure
+// use this for creating trees and graphics that need to know
+// the total amount of items in the structure
+
 var totalNodes = function(array) {
-    var total = array.length;
-    for (var i in array) {
-        total += totalNodes(array[i]);
+    var iterator = array.childs ? array.childs : array;
+    var total = iterator.length;
+    for (var i = 0; i < iterator.length; i++) {
+        total += totalNodes(iterator[i]);
     }
     return total;
 }
@@ -175,6 +178,7 @@ var populateData = function (idx) {
         elem.selectionEnd = elemLen;
         elem.focus();
     }
+    alert (totalNodes(childData));
 };
 
 var assignContent = function(idx) {
