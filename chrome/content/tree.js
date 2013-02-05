@@ -178,7 +178,7 @@ var populateData = function (idx) {
         elem.selectionEnd = elemLen;
         elem.focus();
     }
-    alert (totalNodes(childData));
+    Console.log(totalNodes(childData));
 };
 
 var assignContent = function(idx) {
