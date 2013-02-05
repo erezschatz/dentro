@@ -80,3 +80,7 @@ var collapseAll = function() {
 var expandAll = function() {
     document.getElementById('mainWindow').contentWindow.expandAll();
 };
+
+var closeDentro = function() {
+    window.close();
+};

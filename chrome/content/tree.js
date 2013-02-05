@@ -46,6 +46,15 @@ var getLevel = function(idx) {
     return level;
 };
 
+// calculate the total number of nodes in a structure
+var totalNodes = function(array) {
+    var total = array.length;
+    for (var i in array) {
+        total += totalNodes(array[i]);
+    }
+    return total;
+}
+
 // currently generates OPML (standard not fully implemented)
 var saveFile = function (toFile) {
     if (toFile !== undefined) {
@@ -372,9 +381,12 @@ var indentIn = function (idx) {
     populateData(idx);
 };
 
+// shift+tab.
 var indentOut = function(idx) {
     var currentItem = childData[idx];
     var currentParent = currentItem.parent;
+
+    // current item is a root item
     if (currentParent === undefined) {
         return;
     }
