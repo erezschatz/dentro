@@ -178,7 +178,6 @@ var populateData = function (idx) {
         elem.selectionEnd = elemLen;
         elem.focus();
     }
-    Console.log(totalNodes(childData));
 };
 
 var assignContent = function(idx) {
