@@ -388,34 +388,52 @@ var indentIn = function (idx) {
 var indentOut = function(idx) {
     var currentItem = childData[idx];
     var currentParent = currentItem.parent;
+    var i = 0;
+    var length = 0;
 
-    // current item is a root item
-    if (currentParent === undefined) {
-        return;
+    childData.splice(idx, 1);
+    if (currentItem.isContainerOpen && currentItem.childs) {
+        length = currentItem.childs.length;
+        for (i = 0; i < length; i++) {
+            childData.splice(idx, 1);
+        }
+        // idx is now currentItem sibling!
     }
 
-    var length = currentParent.childs.length;
-    for (var i = 0; i < length; i++) {
+    if (currentParent === undefined) {
+        // current item is a root item
+        return;
+    } else {
+        // set item parent as parent's parent and add to its childs
+        currentItem.parent = currentParent.parent;
+        currentParent.parent.childs.splice(
+            currentParent.childs.length - 1, 0, currentItem
+        )
+    }
+
+    length = currentParent.childs.length;
+    for (i = 0; i < length; i++) {
         if (currentParent.childs[i].id === currentItem.id) {
             currentParent.childs.splice(i, 1);
-            length -= i + 1;
             break;
         }
     }
 
-    if (currentParent.parent === undefined) {
-        currentItem.parent = undefined;
-    } else {
-        for (i = 0; i < childData.length; i++) {
-            if (childData[i].id === currentParent.parent.id) {
-                currentItem.parent = childData[i];
-                childData[i].childs.push(currentItem);
-            }
+    // set idx to old parent + childs
+    for (i = 0; i < childData.length; i++) {
+        if (childData[i].id === currentParent.id) {
+            idx = i + currentParent.childs.length;
         }
     }
 
-    childData.splice(idx, 1);
-    childData.splice(idx + length, 0, currentItem);
+    childData.splice(idx, 0, currentItem);
+    if (currentItem.isContainerOpen && currentItem.childs) {
+        length = currentItem.childs.length
+        for (i = 0; i < length; i++) {
+            childData.splice(idx + i + 1, 0, currentItem.childs[i]);
+        }
+    }
+
     isEdited = true;
     populateData(idx);
 };
