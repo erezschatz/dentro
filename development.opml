@@ -3,7 +3,7 @@
   <head>
   <title>dentro.opml</title>
     <dateCreated>Sun Oct 28 2012 19:03:29 GMT+0200 (IST)</dateCreated>
-    <dateModified>Sun Feb 03 2013 17:19:52 GMT+0200 (IST)</dateModified>
+    <dateModified>Mon Feb 11 2013 08:19:26 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -195,7 +195,9 @@
         </outline>
         <outline text="delete an open node reassign child nodes under parent">
         </outline>
-        <outline text="todo: structure of tree after indent-out of node with opened sub nodes only visible after collapse/expand">
+        <outline text="fixed indent-out bug">
+            <outline text="structure of tree after indent-out of node with opened sub nodes was only visible after collapse/expand">
+            </outline>
         </outline>
         <outline text="Ctrl+s saves">
         </outline>
