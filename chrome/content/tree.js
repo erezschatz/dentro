@@ -403,12 +403,14 @@ var indentOut = function(idx) {
     if (currentParent === undefined) {
         // current item is a root item
         return;
-    } else {
+    } else if (currentParent.parent !== undefined) {
         // set item parent as parent's parent and add to its childs
         currentItem.parent = currentParent.parent;
         currentParent.parent.childs.splice(
             currentParent.childs.length - 1, 0, currentItem
-        )
+        );
+    } else { // current parent is root item
+        currentItem.parent = undefined;
     }
 
     length = currentParent.childs.length;
@@ -422,7 +424,7 @@ var indentOut = function(idx) {
     // set idx to old parent + childs
     for (i = 0; i < childData.length; i++) {
         if (childData[i].id === currentParent.id) {
-            idx = i + currentParent.childs.length;
+            idx = i + currentParent.childs.length + 1;
         }
     }
 
