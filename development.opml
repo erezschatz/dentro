@@ -3,7 +3,7 @@
   <head>
   <title>dentro.opml</title>
     <dateCreated>Sun Oct 28 2012 19:03:29 GMT+0200 (IST)</dateCreated>
-    <dateModified>Sun Feb 03 2013 17:19:52 GMT+0200 (IST)</dateModified>
+    <dateModified>Wed Feb 06 2013 11:20:54 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -217,7 +217,7 @@
         </outline>
 </outline>
     <outline text="0.3 - features">
-        <outline text="todo: implement OPML format">
+        <outline text="TODO: implement OPML format">
             <outline text="OPML comments">
                 <outline text="ctrl+enter">
                 </outline>
@@ -264,8 +264,40 @@
             </outline>
         </outline>
         <outline text="tags">
+            <outline text="per node, any node.">
+            </outline>
+            <outline text="parent node can see immediate childs">
+                <outline text="But beyond that will require recursion">
+                </outline>
+            </outline>
         </outline>
         <outline text="forest">
+            <outline text="create visual tree from tree">
+            </outline>
+            <outline text="module that connects to &quot;parser&quot;">
+                <outline text="render as outline">
+                </outline>
+                <outline text="render as tree">
+                </outline>
+                <outline text="render as...">
+                    <outline text="blog">
+                    </outline>
+                    <outline text="note">
+                    </outline>
+                    <outline text="task">
+                    </outline>
+                </outline>
+            </outline>
+        </outline>
+        <outline text="TODO: rtl and hebrew full support">
+        </outline>
+        <outline text="todo: uppercase">
+        </outline>
+        <outline text="todo: solve that text field scroll bar thingie when wrapping">
+        </outline>
+        <outline text="todo: title don't chance on open file">
+        </outline>
+        <outline text="todo: open tag above current one.">
         </outline>
 </outline>
 </body></opml>

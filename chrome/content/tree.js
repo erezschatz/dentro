@@ -394,28 +394,33 @@ var indentOut = function(idx) {
         return;
     }
 
-    var length = currentParent.childs.length;
-    for (var i = 0; i < length; i++) {
-        if (currentParent.childs[i].id === currentItem.id) {
-            currentParent.childs.splice(i, 1);
-            length -= i + 1;
-            break;
+    var length = 0;
+    if (childData[idx].isContainerOpen) {
+        length = currentParent.childs.length;
+        for (var i = 0; i < length; i++) {
+            if (currentParent.childs[i].id === currentItem.id) {
+                currentParent.childs.splice(i, 1);
+                length = length - i + 1;
+                break;
+            }
         }
-    }
 
-    if (currentParent.parent === undefined) {
-        currentItem.parent = undefined;
-    } else {
-        for (i = 0; i < childData.length; i++) {
-            if (childData[i].id === currentParent.parent.id) {
-                currentItem.parent = childData[i];
-                childData[i].childs.push(currentItem);
+        if (currentParent.parent === undefined) {
+            currentItem.parent = undefined;
+        } else {
+            for (i = 0; i < childData.length; i++) {
+                if (childData[i].id === currentParent.parent.id) {
+                    currentItem.parent = childData[i];
+                    childData[i].childs.push(currentItem);
+                }
             }
         }
     }
 
     childData.splice(idx, 1);
-    childData.splice(idx + length, 0, currentItem);
+    if (length) {
+        childData.splice(idx + length, 0, currentItem);
+    }
     isEdited = true;
     populateData(idx);
 };
