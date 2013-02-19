@@ -3,7 +3,7 @@
   <head>
   <title>dentro.opml</title>
     <dateCreated>Sun Oct 28 2012 19:03:29 GMT+0200 (IST)</dateCreated>
-    <dateModified>Tue Feb 19 2013 08:49:21 GMT+0200 (IST)</dateModified>
+    <dateModified>Tue Feb 19 2013 09:01:39 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -13,27 +13,7 @@
         </outline>
         <outline text="side by side">
         </outline>
-        <outline text="mouse control">
-            <outline text="rearrangement of nodes">
-            </outline>
-        </outline>
-        <outline text="auto-saves">
-            <outline text="a tmp file">
-            </outline>
-            <outline text="overwrites original">
-                <outline text="on exit">
-                </outline>
-                <outline text="on document close">
-                </outline>
-                <outline text="after crash/restart">
-                </outline>
-            </outline>
-            <outline text="save current position">
-                <outline text="window size">
-                </outline>
-                <outline text="which nodes open/close">
-                </outline>
-            </outline>
+        <outline text="blog">
         </outline>
         <outline text="extendable">
             <outline text="uses a simple JSON data structure">
@@ -49,10 +29,8 @@
                 </outline>
             </outline>
         </outline>
-        <outline text="export to other formats">
+        <outline text="export to">
             <outline text="html">
-            </outline>
-            <outline text="markup">
             </outline>
         </outline>
         <outline text="bug submission">
@@ -75,18 +53,14 @@
             <outline text="strikethrough on complete">
             </outline>
         </outline>
-        <outline text="help opens dentro.opml in a new tab ">
-        </outline>
-        <outline text="undo/redo">
-        </outline>
         <outline text="warn before closing unsaved node">
         </outline>
-        <outline text="open last opened file">
-            <outline text="also save a &quot;recent files&quot; list">
+        <outline text="client">
+            <outline text="twitter">
             </outline>
-        </outline>
-        <outline text="statusnet client">
-            <outline text="http://status.net/wiki/JavaScript_API">
+            <outline text="email">
+            </outline>
+            <outline text="facebook">
             </outline>
         </outline>
 </outline>
@@ -219,69 +193,83 @@
         </outline>
 </outline>
     <outline text="0.3">
-        <outline text="todo: implement OPML format">
-            <outline text="OPML comments">
-                <outline text="ctrl+enter">
-                </outline>
-            </outline>
-        </outline>
-        <outline text="Full Mouse Support">
-            <outline text="Drag and drop">
-                <outline text="dammit!">
-                </outline>
-            </outline>
-        </outline>
-        <outline text="todo: URL click-able">
-            <outline text="can be opened in browser">
-            </outline>
-            <outline text="e.g. http://google.com">
-            </outline>
-        </outline>
-        <outline text="different indications for node with childs and without childs">
-            <outline text="maybe light gray for no childs">
-            </outline>
-        </outline>
-        <outline text="todo: Edit menu">
-            <outline text="undo">
-            </outline>
-            <outline text="redo">
-            </outline>
-        </outline>
-        <outline text="right-click menu">
-        </outline>
-        <outline text="open last opened file">
-            <outline text="also save a &quot;recent files&quot; list">
-            </outline>
-        </outline>
-        <outline text="todo: Help menu">
-            <outline text="about">
-                <outline text="opens about dialog">
-                </outline>
-            </outline>
-            <outline text="debug">
-                <outline text="opens Venkman debugger">
-                </outline>
-            </outline>
-            <outline text="Dentro">
-                <outline text="opens dentro.opml in a new window/dialog window">
-                </outline>
-            </outline>
-        </outline>
-        <outline text="tags">
-        </outline>
-        <outline text="forest">
-        </outline>
-        <outline text="open new tabs">
-            <outline text="open new window(optional, alek)">
-            </outline>
-        </outline>
-        <outline text="Cut and Paste">
-        </outline>
-        <outline text="autosave">
-        </outline>
         <outline text="features">
+            <outline text="in development">
+                <outline text="tags">
+                </outline>
+                <outline text="forest">
+                </outline>
+                <outline text="open new tabs">
+                    <outline text="open new window(optional, alek)">
+                    </outline>
+                </outline>
+                <outline text="Cut and Paste">
+                </outline>
+                <outline text="autosave">
+                </outline>
+                <outline text="todo: implement OPML format">
+                    <outline text="OPML comments">
+                        <outline text="ctrl+enter">
+                        </outline>
+                    </outline>
+                </outline>
+                <outline text="Full Mouse Support">
+                    <outline text="Drag and drop">
+                        <outline text="dammit!">
+                        </outline>
+                    </outline>
+                    <outline text="right-click menu">
+                    </outline>
+                </outline>
+                <outline text="todo: URL click-able">
+                    <outline text="can be opened in browser">
+                    </outline>
+                    <outline text="e.g. http://google.com">
+                    </outline>
+                </outline>
+                <outline text="different indications for node with childs and without childs">
+                    <outline text="maybe light gray for no childs">
+                    </outline>
+                </outline>
+                <outline text="todo: Edit menu">
+                    <outline text="undo">
+                    </outline>
+                    <outline text="redo">
+                    </outline>
+                </outline>
+                <outline text="open last opened file">
+                    <outline text="also save a &quot;recent files&quot; list">
+                    </outline>
+                </outline>
+                <outline text="todo: Help menu">
+                    <outline text="about">
+                        <outline text="opens about dialog">
+                        </outline>
+                    </outline>
+                    <outline text="debug">
+                        <outline text="opens Venkman debugger">
+                        </outline>
+                    </outline>
+                    <outline text="Dentro">
+                        <outline text="opens dentro.opml in a new window/dialog window">
+                        </outline>
+                    </outline>
+                </outline>
+                <outline text="add 'written in dentro' to opml file">
+                    <outline text="register twitter API">
+                    </outline>
+                    <outline text="Any other registrations?">
+                    </outline>
+                </outline>
+            </outline>
+            <outline text="done">
+            </outline>
         </outline>
         <outline text="bugs">
+            <outline text="in development">
+            </outline>
+            <outline text="done">
+            </outline>
         </outline>
 </outline>
     <outline text="0.4 wishlist">
