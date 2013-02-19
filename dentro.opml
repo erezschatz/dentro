@@ -3,73 +3,103 @@
   <head>
   <title>dentro.opml</title>
     <dateCreated>Tue Oct 23 2012 19:59:34 GMT+0200 (IST)</dateCreated>
-    <dateModified>Tue Oct 23 2012 19:59:34 GMT+0200 (IST)</dateModified>
+    <dateModified>Tue Feb 19 2013 08:57:03 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
   <body>
     <outline text="What is Dentro?">
         <outline text="a cross platform single-pane outliner">
-            <outline text="written in XUL/JavaScript">
-        </outline>
-            <outline text="based on Mozilla technology">
-        </outline>
-    </outline>
-        <outline text="One of its purposes will be to serve as a project manager/to-do list.">
-    </outline>
-        <outline text=" It also has some other features in the pipeline.">
-    </outline>
-        <outline text=" It reads from and writes to OPML">
-            <outline text="which is a format designed from the ground up to handle outliners">
-        </outline>
-    </outline>
-</outline>
-    <outline text="What is an Outliner?">
-        <outline text="for all our attempts to bridge the gap between man and machine, the most accessible, immediate solution is the tree structure, and its implementations, mostly the outliner. It fits with the way we think, with the way we organize our thoughts, and, most importantly, also applies to the way machines &quot;think&quot; ">
-    </outline>
-        <outline text="a computer program that allows text to be organized into discrete sections that are related in a tree structure or hierarchy. Text may be collapsed into a node, or expanded and edited. Outliners are typically used for computer programming, collecting or organizing ideas, as personal information management or for project management.">
-            <outline text="According to Wikipedia">
-        </outline>
-    </outline>
-</outline>
-    <outline text="Why is Dentro?">
-        <outline text="As always, an itch was in need to be scratched, and nothing available was there to scratch it. Everything was either too limited, not cross-platform, or non-GUI. I realised the only way to have my cake and eat it too will be to create a cake that can, by design, be had and be eaten.">
-    </outline>
-</outline>
-    <outline text="How to run Dentro">
-        <outline text="You'll need XULrunner (not included)">
-            <outline text="XULRunner can be downloaded from Mozilla's Site">
-                <outline text="https://developer.mozilla.org/en-US/docs/XULRunner">
-            </outline>
-        </outline>
-            <outline text="or from your package manager, if you happen to run a GNU/Linux distro that happen to have XULRunner packaged">
-                <outline text="like Debian">
-                    <outline text="http://debian.org">
+            <outline text="What is an Outliner?">
+                <outline text="for all our attempts to bridge the gap between man and machine, the most accessible, immediate solution is the tree structure, and its implementations, mostly the outliner. It fits with the way we think, with the way we organize our thoughts, and, most importantly, also applies to the way machines &quot;think&quot; ">
+                </outline>
+                <outline text="a computer program that allows text to be organized into discrete sections that are related in a tree structure or hierarchy. Text may be collapsed into a node, or expanded and edited. Outliners are typically used for computer programming, collecting or organizing ideas, as personal information management or for project management.">
+                    <outline text="According to Wikipedia">
+                    </outline>
                 </outline>
             </outline>
         </outline>
-            <outline text="Once that's installed or unzipped, download dentro (or git-clone it), then run the following from a terminal">
-                <outline text="$ [/path/to/]xulrunner /path/to/dentro/application.ini">
+        <outline text="based on Mozilla technology">
+            <outline text="include &lt;why I write in Mozilla as link&gt;">
+            </outline>
+            <outline text="written in XUL/JavaScript">
             </outline>
         </outline>
-            <outline text="It should work from windows as well, just replace the paths with the appropriate paths">
+        <outline text="GPL licenced">
+            <outline text="why I use the GPL?">
+            </outline>
         </outline>
-    </outline>
+        <outline text="One of its purposes will be to serve as a project manager/to-do list.">
+        </outline>
+        <outline text=" It also has some other features in the pipeline.">
+        </outline>
+        <outline text=" It reads from and writes to OPML">
+            <outline text="which is a format designed from the ground up to handle outliners">
+            </outline>
+        </outline>
 </outline>
-    <outline text="Keyboard shortcuts">
-        <outline text="Enter creates an empty sibling node.">
-    </outline>
-        <outline text="Tab indents a node under the immediate parent,">
-            <outline text="Shift+Tab indents-out.">
+    <outline text="Why is Dentro?">
+        <outline text="As always, an itch was in need to be scratched, and nothing available was there to scratch it. Everything was either too limited, not cross-platform, or non-GUI. I realised the only way to have my cake and eat it too will be to create a cake that can, by design, be had and be eaten.">
         </outline>
-    </outline>
-        <outline text="Alt-Enter expands/collapses the node">
-    </outline>
-        <outline text="Ctrl+delete deletes the focused node">
-            <outline text="just delete works on the node's text only">
+</outline>
+    <outline text="Where is Dentro?">
+        <outline text="How to run Dentro?">
+            <outline text="You'll need XULrunner (not included)">
+                <outline text="XULRunner can be downloaded from Mozilla's Site">
+                    <outline text="https://developer.mozilla.org/en-US/docs/XULRunner">
+                    </outline>
+                </outline>
+                <outline text="or from your package manager, if you happen to run a GNU/Linux distro that happen to have XULRunner packaged">
+                    <outline text="like Debian">
+                        <outline text="http://debian.org">
+                        </outline>
+                    </outline>
+                </outline>
+                <outline text="Once that's installed or unzipped, download dentro (or git-clone it), then run the following from a terminal">
+                    <outline text="$ [/path/to/]xulrunner /path/to/dentro/application.ini">
+                    </outline>
+                </outline>
+                <outline text="It should work from windows as well, just replace the paths with the appropriate paths">
+                </outline>
+            </outline>
         </outline>
-    </outline>
-        <outline text="Down and up arrow moves to the next/previous node">
-    </outline>
+</outline>
+    <outline text="How is Dentro?">
+        <outline text="Keyboard shortcuts">
+            <outline text="Enter creates an empty sibling node.">
+            </outline>
+            <outline text="Tab indents a node under the immediate parent,">
+                <outline text="Shift+Tab indents-out.">
+                </outline>
+            </outline>
+            <outline text="Alt-Enter expands/collapses the node">
+            </outline>
+            <outline text="Ctrl+delete deletes the focused node">
+                <outline text="just delete works on the node's text only">
+                </outline>
+            </outline>
+            <outline text="Down and up arrow moves to the next/previous node">
+            </outline>
+        </outline>
+</outline>
+    <outline text="When is Dentro?">
+        <outline text="see our developmenet.opml for more">
+            <outline text="in the future, it'll be written in dentro">
+            </outline>
+            <outline text="read about integrating static blogs engine">
+                <outline text="node.js?">
+                </outline>
+                <outline text="Write own in Mozilla?">
+                    <outline text="is whatevermonkey strong enough?">
+                        <outline text="read about whatevermonkey">
+                        </outline>
+                        <outline text="if not strong enough, go to ">
+                            <outline text="node.js">
+                            </outline>
+                        </outline>
+                    </outline>
+                </outline>
+            </outline>
+        </outline>
 </outline>
 </body></opml>

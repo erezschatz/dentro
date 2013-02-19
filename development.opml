@@ -217,10 +217,6 @@
         </outline>
         <outline text="moved site to Blio from octopress">
         </outline>
-        <outline text="todo: Shift+enter crops last character">
-        </outline>
-        <outline text="todo: bug with indent-out on last item">
-        </outline>
 </outline>
     <outline text="0.3 - features">
         <outline text="todo: implement OPML format">
