@@ -3,7 +3,7 @@
   <head>
   <title>dentro.opml</title>
     <dateCreated>Sun Oct 28 2012 19:03:29 GMT+0200 (IST)</dateCreated>
-    <dateModified>Mon Feb 11 2013 08:19:26 GMT+0200 (IST)</dateModified>
+    <dateModified>Sun Feb 17 2013 17:58:52 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -216,6 +216,10 @@
         <outline text="added keyboard interface to all menus">
         </outline>
         <outline text="moved site to Blio from octopress">
+        </outline>
+        <outline text="todo: Shift+enter crops last character">
+        </outline>
+        <outline text="todo: bug with indent-out on last item">
         </outline>
 </outline>
     <outline text="0.3 - features">
