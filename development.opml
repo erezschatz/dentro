@@ -3,7 +3,7 @@
   <head>
   <title>dentro.opml</title>
     <dateCreated>Sun Oct 28 2012 19:03:29 GMT+0200 (IST)</dateCreated>
-    <dateModified>Mon Feb 11 2013 08:19:26 GMT+0200 (IST)</dateModified>
+    <dateModified>Tue Feb 19 2013 08:49:21 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -218,10 +218,16 @@
         <outline text="moved site to Blio from octopress">
         </outline>
 </outline>
-    <outline text="0.3 - features">
+    <outline text="0.3">
         <outline text="todo: implement OPML format">
             <outline text="OPML comments">
                 <outline text="ctrl+enter">
+                </outline>
+            </outline>
+        </outline>
+        <outline text="Full Mouse Support">
+            <outline text="Drag and drop">
+                <outline text="dammit!">
                 </outline>
             </outline>
         </outline>
@@ -239,10 +245,6 @@
             <outline text="undo">
             </outline>
             <outline text="redo">
-            </outline>
-        </outline>
-        <outline text="improve speed">
-            <outline text="autoresize of textarea">
             </outline>
         </outline>
         <outline text="right-click menu">
@@ -268,6 +270,26 @@
         <outline text="tags">
         </outline>
         <outline text="forest">
+        </outline>
+        <outline text="open new tabs">
+            <outline text="open new window(optional, alek)">
+            </outline>
+        </outline>
+        <outline text="Cut and Paste">
+        </outline>
+        <outline text="autosave">
+        </outline>
+        <outline text="features">
+        </outline>
+        <outline text="bugs">
+        </outline>
+</outline>
+    <outline text="0.4 wishlist">
+        <outline text="export to markdown">
+        </outline>
+        <outline text="">
+        </outline>
+        <outline text="improve speed">
         </outline>
 </outline>
 </body></opml>
