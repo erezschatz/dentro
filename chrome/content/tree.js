@@ -462,7 +462,7 @@ var aggregateAllNodes = function(array) {
 
             var childNodes = aggregateAllNodes(array[i].childs);
             for (var j = 0; j < childNodes.length; j++)
-                tempArray.push(childNodesy[j]);
+                tempArray.push(childNodes[j]);
         }
     }
     return tempArray;
