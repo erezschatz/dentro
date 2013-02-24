@@ -56,14 +56,14 @@ var totalNodes = function(array) {
         total += totalNodes(iterator[i]);
     }
     return total;
-}
+};
 
 // currently generates OPML (standard not fully implemented)
 var saveFile = function (toFile) {
     if (toFile !== undefined) {
         file = toFile;
     } else if (file === undefined) {
-        return;
+        return false;
     }
 
     if (dateCreated === undefined ||
@@ -104,8 +104,8 @@ var saveFile = function (toFile) {
     converter.init(foStream, "ISO-8859-1", 0, 0);
     converter.writeString(output);
     converter.close();
-    saveContent();
-    return 1;
+    //saveContent();
+    return true;
 };
 
 var formatOPMLElement = function (node, level) {
@@ -146,7 +146,9 @@ var adjustNodeHeight = function (elem) {
 var populateData = function (idx) {
     var output = '';
     var winwidth = $(window).width();
-    for (var i = 0; i < childData.length; i++) {
+        var i = 0;
+        var elem;
+    for (i = 0; i < childData.length; i++) {
         var maxwidth =  winwidth - (30 + (getLevel(i) * 15));
         var cssClass = childData[i].isContainerOpen ?
            'open' : 'closed';
@@ -165,14 +167,14 @@ var populateData = function (idx) {
 
     document.getElementById("mainTree").innerHTML = output;
 
-    for (var i = 0; i < childData.length; i++) {
-        var elem = document.getElementById('outline' + i);
+    for (i = 0; i < childData.length; i++) {
+        elem = document.getElementById('outline' + i);
         adjustNodeHeight(elem);
     }
     if ($(window).width() < winwidth) {
         populateData(idx);
     } else {
-        var elem = $('textarea[id=outline' + idx + ']');
+        elem = $('textarea[id=outline' + idx + ']');
         var elemLen = elem.text.length;
         elem.selectionStart = elemLen;
         elem.selectionEnd = elemLen;
@@ -181,10 +183,10 @@ var populateData = function (idx) {
 };
 
 var assignContent = function(idx) {
-    var elem = document.getElementById('outline' + idx);
-    if (childData[idx].text !== $(elem).attr('value')) {
+    var elem = ('textarea[id=outline' + idx + ']');
+    if (childData[idx].text !== $(elem).val()) {
         adjustNodeHeight(elem);
-        childData[idx].text = $(elem).attr('value');
+        childData[idx].text = $(elem).val();
         isEdited = true;
     }
 };
@@ -286,7 +288,7 @@ var insertWithContent = function (idx) {
     var point = document.getElementById('outline' + idx).selectionStart;
     var nodeText = childData[idx].text;
     var newText = nodeText.substring(point, nodeText.length);
-    childData[idx].text = nodeText.substring(0, point - 1)
+    childData[idx].text = nodeText.substring(0, point - 1);
     insertNode(idx, newText);
 };
 
@@ -312,12 +314,13 @@ var insertNode = function(idx, nodeText) {
 var deleteNode = function (idx) {
     if (childData.length == 1) {
         newFile(true);
-        return
+        return;
     }
 
     var currentItem = childData[idx];
     var currentLevel = getLevel(idx);
-    for (var i = idx; i < childData.length; i++) {
+        var i;
+    for (i = idx; i < childData.length; i++) {
         if (getLevel(i) - currentLevel ==  1) { //child
             indentOut(i);
         }
@@ -327,7 +330,7 @@ var deleteNode = function (idx) {
     var currentParent = currentItem.parent;
     if (currentParent !== undefined) {
         var length = currentParent.childs.length;
-        for (var i = 0; i <= length; i++) {
+        for (i = 0; i <= length; i++) {
             if (currentParent.childs[i] !== undefined &&
                 currentParent.childs[i].id === currentItem.id) {
                 currentParent.childs.splice(i, 1);
@@ -430,7 +433,7 @@ var indentOut = function(idx) {
 
     childData.splice(idx, 0, currentItem);
     if (currentItem.isContainerOpen && currentItem.childs) {
-        length = currentItem.childs.length
+        length = currentItem.childs.length;
         for (i = 0; i < length; i++) {
             childData.splice(idx + i + 1, 0, currentItem.childs[i]);
         }
@@ -445,7 +448,7 @@ var indentOut = function(idx) {
 var expandAll = function() {
     var tempArray = aggregateAllNodes(childData);
     childData = tempArray;
-    populateData(0)
+    populateData(0);
 };
 
 var aggregateAllNodes = function(array) {
@@ -474,6 +477,7 @@ var collapseAll = function() {
 };
 
 var keypressaction = function(event, idx) {
+        var newfocus;
     if (event.keyCode === 13) { //enter
         if (event.altKey) {
             toggleOpenState(idx);
@@ -493,10 +497,10 @@ var keypressaction = function(event, idx) {
     } else if (event.keyCode === 46 && event.ctrlKey) { //delete
         deleteNode(idx);
     } else if (event.keyCode === 40) { //down arrow
-        var newfocus = idx + 1;
+        newfocus = idx + 1;
         $('textarea[id=outline' + newfocus + ']').focus().select();
     } else if (event.keyCode === 38) { //up arrow
-        var newfocus = idx - 1;
+        newfocus = idx - 1;
         $('textarea[id=outline' + newfocus + ']').focus().select();
     } else if (event.charCode === 115 && event.ctrlKey) { //ctrl+s
         if (event.shiftKey) {

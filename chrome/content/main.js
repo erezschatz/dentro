@@ -50,7 +50,7 @@ var saveOPMLFileAs = function () {
     if (res != nsIFilePicker.returnCancel){
         var file = fp.file;
         document.getElementById("mainWindow").contentWindow.saveFile(file);
-        document.title = file.leafName
+        document.title = file.leafName;
     }
 }
 
