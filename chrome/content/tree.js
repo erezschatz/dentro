@@ -20,10 +20,11 @@ along with Dentro.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 "use strict";
-var childData, file;
-var objID = 0;
-var dateCreated;
-var isEdited = false;
+var childData,
+file,
+objID = 0,
+dateCreated,
+isEdited = false;
 
 var Outline = function () {
     this.id = objID++;
@@ -35,8 +36,8 @@ var Outline = function () {
 
 // to figure level, go until the root, incrementing in each step
 var getLevel = function(idx) {
-    var level = 0;
-    var checked_element = childData[idx];
+    var level = 0,
+    checked_element = childData[idx];
 
     while (checked_element !== undefined && checked_element != null &&
            checked_element.parent !== undefined) {
@@ -52,6 +53,7 @@ var getLevel = function(idx) {
 var totalNodes = function(array) {
     var iterator = array.childs ? array.childs : array;
     var total = iterator.length;
+
     for (var i = 0; i < iterator.length; i++) {
         total += totalNodes(iterator[i]);
     }
@@ -144,10 +146,11 @@ var adjustNodeHeight = function (elem) {
    the illusion of nested lists */
 
 var populateData = function (idx) {
-    var output = '';
-    var winwidth = $(window).width();
-        var i = 0;
-        var elem;
+    var output = '',
+    winwidth = $(window).width(),
+    i = 0,
+    elem;
+
     for (i = 0; i < childData.length; i++) {
         var maxwidth =  winwidth - (30 + (getLevel(i) * 15));
         var cssClass = childData[i].isContainerOpen ?
@@ -192,10 +195,10 @@ var assignContent = function(idx) {
 };
 
 var parseOPML = function (input) {
-    var oParser = new DOMParser();
-    var oDOM = oParser.parseFromString(input, "text/xml");
+    var oParser = new DOMParser(),
+    oDOM = oParser.parseFromString(input, "text/xml");
 
-    var datesnapshot = oDOM.evaluate(
+    var snapshot = oDOM.evaluate(
         '/opml/head/dateCreated', oDOM, null,
         XPathResult.FIRST_ORDERED_NODE_TYPE, null
         );
@@ -251,13 +254,15 @@ var generateChildNode = function(parentNode, childNode) {
 // then the app regenerates the tree html
 var toggleOpenState = function(idx) {
     assignContent(idx);
-    var item = childData[idx];
-    var visible = childData.length;
+
+    var item = childData[idx],
+    visible = childData.length;
+
     if (item.isContainerOpen) {
         item.isContainerOpen = false;
 
-        var thisLevel = getLevel(idx);
-        var deletecount = 0;
+        var thisLevel = getLevel(idx),
+        deletecount = 0;
 
         for (var t = idx + 1; t < visible && getLevel(t) > thisLevel; t++) {
             deletecount++;
@@ -277,6 +282,7 @@ var toggleOpenState = function(idx) {
 
         var toinsert = item.childs;
         var length = toinsert ? toinsert.length : 0;
+
         for (var i = 0; i < length; i++) {
             childData.splice(idx + i + 1, 0, toinsert[i]);
         }
@@ -285,16 +291,18 @@ var toggleOpenState = function(idx) {
 };
 
 var insertWithContent = function (idx) {
-    var point = document.getElementById('outline' + idx).selectionStart;
-    var nodeText = childData[idx].text;
-    var newText = nodeText.substring(point, nodeText.length);
+    var point = document.getElementById('outline' + idx).selectionStart,
+    nodeText = childData[idx].text,
+    newText = nodeText.substring(point, nodeText.length);
+
     childData[idx].text = nodeText.substring(0, point - 1);
     insertNode(idx, newText);
 };
 
 var insertNode = function(idx, nodeText) {
-    var selectedItem = childData[idx];
-    var newRow = new Outline();
+    var selectedItem = childData[idx],
+    newRow = new Outline();
+
     newRow.text = nodeText === undefined ? '' : nodeText;
 
     if (selectedItem.parent !== undefined) {
@@ -345,9 +353,9 @@ var deleteNode = function (idx) {
 // if element before selected is the same level, indent under
 // if not, indent under element's parent
 var indentIn = function (idx) {
-    var lastItem = childData[idx];
-    var siblingIdx = -1;
-    var i;
+    var lastItem = childData[idx],
+    siblingIdx = -1,
+    i;
 
     if (idx === 0) return;
 
@@ -389,10 +397,10 @@ var indentIn = function (idx) {
 
 // shift+tab.
 var indentOut = function(idx) {
-    var currentItem = childData[idx];
-    var currentParent = currentItem.parent;
-    var i = 0;
-    var length = 0;
+    var currentItem = childData[idx],
+    currentParent = currentItem.parent,
+    i = 0,
+    length = 0;
 
     childData.splice(idx, 1);
     if (currentItem.isContainerOpen && currentItem.childs) {
@@ -477,7 +485,7 @@ var collapseAll = function() {
 };
 
 var keypressaction = function(event, idx) {
-        var newfocus;
+    var newfocus;
     if (event.keyCode === 13) { //enter
         if (event.altKey) {
             toggleOpenState(idx);
