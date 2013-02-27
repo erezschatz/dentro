@@ -1,6 +1,6 @@
 /*
 
-Copyright 2012 Erez Schatz.
+Copyright 2012-2013 Erez Schatz.
 
 This file is part of Dentro.
 
@@ -15,11 +15,12 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with Dentro.  If not, see <http://www.gnu.org/licenses/>.
+along with Dentro. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
 "use strict";
+
 var childData,
 file,
 objID = 0,
@@ -112,7 +113,8 @@ var saveFile = function (toFile) {
 
 var formatOPMLElement = function (node, level) {
     var space = '    ';
-    for (var i = 0; i < level; i++) {
+    var i = 0;
+    for (i = 0; i < level; i++) {
         space += '    ';
     }
 
@@ -123,8 +125,8 @@ var formatOPMLElement = function (node, level) {
     if (node.childs !== undefined &&
         node.childs.length > 0) {
         output += '>\n';
-        for (var c = 0; c < node.childs.length; c++) {
-            output += formatOPMLElement(node.childs[c], level + 1);
+        for (i = 0; i < node.childs.length; i++) {
+            output += formatOPMLElement(node.childs[i], level + 1);
             output += '    ' + space + '</outline>\n';
         }
     } else {
@@ -195,15 +197,16 @@ var assignContent = function(idx) {
 };
 
 var parseOPML = function (input) {
-    var oParser = new DOMParser(),
-    oDOM = oParser.parseFromString(input, "text/xml");
+    var oParser = new DOMParser();
+    var oDOM = oParser.parseFromString(input, "text/xml");
+    alert("foo");
 
     var snapshot = oDOM.evaluate(
         '/opml/head/dateCreated', oDOM, null,
         XPathResult.FIRST_ORDERED_NODE_TYPE, null
-        );
+    );
 
-    dateCreated = datesnapshot.singleNodeValue.textContent;
+    dateCreated = snapshot.singleNodeValue.textContent;
 
     var nodesSnapshot = oDOM.evaluate(
         '/opml/body/outline', oDOM, null,
@@ -530,14 +533,15 @@ var newFile = function (edit_status) {
 
 var loadFile = function (chosenFile) {
     Components.utils.import("resource://gre/modules/NetUtil.jsm");
-
     NetUtil.asyncFetch(chosenFile, function(inputStream, status) {
         if (!Components.isSuccessCode(status)) {
             return;
         }
+
         var stream = NetUtil.readInputStreamToString(
             inputStream,
-            inputStream.available());
+            inputStream.available()
+        );
 
         parseOPML(stream);
         populateData(0);
