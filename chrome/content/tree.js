@@ -204,7 +204,7 @@ var parseOPML = function (input) {
     var snapshot = oDOM.evaluate(
         '/opml/head/dateCreated', oDOM, null,
         XPathResult.FIRST_ORDERED_NODE_TYPE, null
-        );
+    );
 
     dateCreated = snapshot.singleNodeValue.textContent;
 
