@@ -199,7 +199,6 @@ var assignContent = function(idx) {
 var parseOPML = function (input) {
     var oParser = new DOMParser();
     var oDOM = oParser.parseFromString(input, "text/xml");
-    alert("foo");
 
     var snapshot = oDOM.evaluate(
         '/opml/head/dateCreated', oDOM, null,
