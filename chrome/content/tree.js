@@ -438,7 +438,8 @@ var indentOut = function(idx) {
     // set idx to old parent + childs
     for (i = 0; i < childData.length; i++) {
         if (childData[i].id === currentParent.id) {
-            idx = i + currentParent.childs.length + 1;
+            length = currentParent.childs ? currentParent.childs.length : 0;
+            idx = i + length + 1;
         }
     }
 
