@@ -3,7 +3,7 @@
   <head>
   <title>dentro.opml</title>
     <dateCreated>Sun Oct 28 2012 19:03:29 GMT+0200 (IST)</dateCreated>
-    <dateModified>Sun Feb 17 2013 17:58:52 GMT+0200 (IST)</dateModified>
+    <dateModified>Sat Mar 09 2013 17:26:05 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -152,7 +152,7 @@
             </outline>
         </outline>
 </outline>
-    <outline text="0.2 - in development">
+    <outline text="0.2 - released">
         <outline text="fixed indentation">
             <outline text="in opml file">
             </outline>
@@ -218,7 +218,7 @@
         <outline text="moved site to Blio from octopress">
         </outline>
 </outline>
-    <outline text="0.3 - features">
+    <outline text="0.3 - in development">
         <outline text="todo: implement OPML format">
             <outline text="OPML comments">
                 <outline text="ctrl+enter">
@@ -269,5 +269,7 @@
         </outline>
         <outline text="forest">
         </outline>
+</outline>
+    <outline text="0.4 - features">
 </outline>
 </body></opml>
