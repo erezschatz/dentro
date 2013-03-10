@@ -19,13 +19,14 @@ along with Dentro. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-"use strict";
+(function (window) {
+ "use strict";
 
-var childData,
-file,
-objID = 0,
-dateCreated,
-isEdited = false;
+ var childData = [];
+ var file = '';
+ var objID = 0;
+ var dateCreated = new Date();
+ var isEdited = false;
 
 var Outline = function () {
     this.id = objID++;
@@ -36,11 +37,11 @@ var Outline = function () {
 };
 
 // to figure level, go until the root, incrementing in each step
-var getLevel = function(idx) {
+Outline.getLevel = function(idx) {
     var level = 0,
     checked_element = childData[idx];
 
-    while (checked_element !== undefined && checked_element != null &&
+    while (checked_element !== undefined && checked_element !== null &&
            checked_element.parent !== undefined) {
         level++;
         checked_element = checked_element.parent;
@@ -51,18 +52,18 @@ var getLevel = function(idx) {
 // use this for creating trees and graphics that need to know
 // the total amount of items in the structure
 
-var totalNodes = function(array) {
+Outline.totalNodes = function(array) {
     var iterator = array.childs ? array.childs : array;
     var total = iterator.length;
 
     for (var i = 0; i < iterator.length; i++) {
-        total += totalNodes(iterator[i]);
+        total += Outline.totalNodes(iterator[i]);
     }
     return total;
 };
 
 // currently generates OPML (standard not fully implemented)
-var saveFile = function (toFile) {
+Outline.saveFile = function (toFile) {
     if (toFile !== undefined) {
         file = toFile;
     } else if (file === undefined) {
@@ -89,7 +90,7 @@ var saveFile = function (toFile) {
     for (var i = 0; i < childData.length; i++) {
         //just top level nodes and recourse from there
         if (childData[i].parent === undefined) {
-            output += formatOPMLElement(childData[i], getLevel(i));
+            output += Outline.formatOPMLElement(childData[i], Outline.getLevel(i));
             output += '</outline>\n';
         }
     }
@@ -111,7 +112,7 @@ var saveFile = function (toFile) {
     return true;
 };
 
-var formatOPMLElement = function (node, level) {
+Outline.formatOPMLElement = function (node, level) {
     var space = '    ';
     var i = 0;
     for (i = 0; i < level; i++) {
@@ -126,7 +127,7 @@ var formatOPMLElement = function (node, level) {
         node.childs.length > 0) {
         output += '>\n';
         for (i = 0; i < node.childs.length; i++) {
-            output += formatOPMLElement(node.childs[i], level + 1);
+            output += Outline.formatOPMLElement(node.childs[i], level + 1);
             output += '    ' + space + '</outline>\n';
         }
     } else {
@@ -137,7 +138,7 @@ var formatOPMLElement = function (node, level) {
 };
 
 // checks whether the text has overflowed under the textarea size
-var adjustNodeHeight = function (elem) {
+Outline.adjustNodeHeight = function (elem) {
     if (elem.clientHeight < elem.scrollHeight) {
         $(elem).height(elem.scrollHeight + 1);
     }
@@ -147,17 +148,17 @@ var adjustNodeHeight = function (elem) {
    div and a textarea for each item, indented it according to level, creating
    the illusion of nested lists */
 
-var populateData = function (idx) {
+Outline.populateData = function (idx) {
     var output = '',
     winwidth = $(window).width(),
     i = 0,
     elem;
 
     for (i = 0; i < childData.length; i++) {
-        var maxwidth =  winwidth - (30 + (getLevel(i) * 15));
+        var maxwidth =  winwidth - (30 + (Outline.getLevel(i) * 15));
         var cssClass = childData[i].isContainerOpen ?
            'open' : 'closed';
-        var level = getLevel(i) * 15;
+        var level = Outline.getLevel(i) * 15;
 
         output += '<div style="margin-left:' + level + 'px;">' +
             '<div class="' + cssClass +
@@ -174,10 +175,10 @@ var populateData = function (idx) {
 
     for (i = 0; i < childData.length; i++) {
         elem = document.getElementById('outline' + i);
-        adjustNodeHeight(elem);
+        Outline.adjustNodeHeight(elem);
     }
     if ($(window).width() < winwidth) {
-        populateData(idx);
+        Outline.populateData(idx);
     } else {
         elem = $('textarea[id=outline' + idx + ']');
         var elemLen = elem.text.length;
@@ -187,16 +188,16 @@ var populateData = function (idx) {
     }
 };
 
-var assignContent = function(idx) {
+Outline.assignContent = function(idx) {
     var elem = ('textarea[id=outline' + idx + ']');
     if (childData[idx].text !== $(elem).val()) {
-        adjustNodeHeight(elem);
+        Outline.adjustNodeHeight(elem);
         childData[idx].text = $(elem).val();
         isEdited = true;
     }
 };
 
-var parseOPML = function (input) {
+Outline.parseOPML = function (input) {
     var oParser = new DOMParser();
     var oDOM = oParser.parseFromString(input, "text/xml");
 
@@ -221,7 +222,7 @@ var parseOPML = function (input) {
         outline.text = node.attr("text");
 
         node.children().each(function() {
-            outline.childs.push(generateChildNode(outline, this));
+            outline.childs.push(Outline.generateChildNode(outline, this));
         });
 
         childData.push(outline);
@@ -239,14 +240,14 @@ var parseOPML = function (input) {
 */
 };
 
-var generateChildNode = function(parentNode, childNode) {
+Outline.generateChildNode = function(parentNode, childNode) {
     var child = new Outline();
 
     child.parent = parentNode;
     child.text = $(childNode).attr("text");
 
     $(childNode).children().each(function() {
-        child.childs.push(generateChildNode(child, this));
+        child.childs.push(Outline.generateChildNode(child, this));
     });
 
     return child;
@@ -254,8 +255,8 @@ var generateChildNode = function(parentNode, childNode) {
 
 // tree manipulation is done on the childData array,
 // then the app regenerates the tree html
-var toggleOpenState = function(idx) {
-    assignContent(idx);
+Outline.toggleOpenState = function(idx) {
+    Outline.assignContent(idx);
 
     var item = childData[idx],
     visible = childData.length;
@@ -263,13 +264,13 @@ var toggleOpenState = function(idx) {
     if (item.isContainerOpen) {
         item.isContainerOpen = false;
 
-        var thisLevel = getLevel(idx),
+        var thisLevel = Outline.getLevel(idx),
         deletecount = 0;
 
-        for (var t = idx + 1; t < visible && getLevel(t) > thisLevel; t++) {
+        for (var t = idx + 1; t < visible && Outline.getLevel(t) > thisLevel; t++) {
             deletecount++;
             if (childData[t].isContainerOpen) {
-                toggleOpenState(t);
+                Outline.toggleOpenState(t);
             }
         }
         if (deletecount) {
@@ -289,19 +290,19 @@ var toggleOpenState = function(idx) {
             childData.splice(idx + i + 1, 0, toinsert[i]);
         }
     }
-    populateData(idx);
+    Outline.populateData(idx);
 };
 
-var insertWithContent = function (idx) {
+Outline.insertWithContent = function (idx) {
     var point = document.getElementById('outline' + idx).selectionStart,
     nodeText = childData[idx].text,
     newText = nodeText.substring(point, nodeText.length);
 
     childData[idx].text = nodeText.substring(0, point - 1);
-    insertNode(idx, newText);
+    Outline.insertNode(idx, newText);
 };
 
-var insertNode = function(idx, nodeText) {
+Outline.insertNode = function(idx, nodeText) {
     var selectedItem = childData[idx],
     newRow = new Outline();
 
@@ -318,21 +319,21 @@ var insertNode = function(idx, nodeText) {
     }
     //move selection to new row
     childData.splice(idx + 1, 0, newRow);
-    populateData(idx + 1);
+    Outline.populateData(idx + 1);
 };
 
-var deleteNode = function (idx) {
+Outline.deleteNode = function (idx) {
     if (childData.length == 1) {
-        newFile(true);
+        Outline.newFile(true);
         return;
     }
 
     var currentItem = childData[idx];
-    var currentLevel = getLevel(idx);
+    var currentLevel = Outline.getLevel(idx);
         var i;
     for (i = idx; i < childData.length; i++) {
-        if (getLevel(i) - currentLevel ==  1) { //child
-            indentOut(i);
+        if (Outline.getLevel(i) - currentLevel ==  1) { //child
+            Outline.indentOut(i);
         }
     }
 
@@ -349,19 +350,19 @@ var deleteNode = function (idx) {
         }
     }
 
-    populateData(idx);
+    Outline.populateData(idx);
 };
 
 // if element before selected is the same level, indent under
 // if not, indent under element's parent
-var indentIn = function (idx) {
+Outline.indentIn = function (idx) {
     var lastItem = childData[idx],
     siblingIdx = -1,
     i;
 
     if (idx === 0) return;
 
-    if (getLevel(idx - 1) === getLevel(idx)) {
+    if (Outline.getLevel(idx - 1) === Outline.getLevel(idx)) {
         siblingIdx = idx - 1;
     } else if (lastItem.parent === undefined ||
                childData[idx - 1].id !== lastItem.parent.id) {
@@ -394,11 +395,11 @@ var indentIn = function (idx) {
     }
     childData[siblingIdx].childs.push(lastItem);
     isEdited = true;
-    populateData(idx);
+    Outline.populateData(idx);
 };
 
 // shift+tab.
-var indentOut = function(idx) {
+Outline.indentOut = function(idx) {
     var currentItem = childData[idx],
     currentParent = currentItem.parent,
     i = 0,
@@ -451,18 +452,18 @@ var indentOut = function(idx) {
     }
 
     isEdited = true;
-    populateData(idx);
+    Outline.populateData(idx);
 };
 
 // What I need is to add all the nodes and subnodes,
 // in order to an array, and replace childData with that array.
-var expandAll = function() {
-    var tempArray = aggregateAllNodes(childData);
+Outline.expandAll = function() {
+    var tempArray = Outline.aggregateAllNodes(childData);
     childData = tempArray;
-    populateData(0);
+    Outline.populateData(0);
 };
 
-var aggregateAllNodes = function(array) {
+Outline.aggregateAllNodes = function(array) {
     var tempArray = [];
     for (var i = 0; i < array.length; i++) {
         array[i].isContainerOpen = true;
@@ -471,7 +472,7 @@ var aggregateAllNodes = function(array) {
         if (array[i].childs !== undefined && array[i].childs !== null &&
             array[i].childs.length !== 0) {
 
-            var childNodes = aggregateAllNodes(array[i].childs);
+            var childNodes = Outline.aggregateAllNodes(array[i].childs);
             for (var j = 0; j < childNodes.length; j++)
                 tempArray.push(childNodes[j]);
         }
@@ -479,34 +480,34 @@ var aggregateAllNodes = function(array) {
     return tempArray;
 };
 
-var collapseAll = function() {
+Outline.collapseAll = function() {
     for (var i = 0; i < childData.length; i++) {
         if (childData[i].isContainerOpen) {
-            toggleOpenState(i);
+            Outline.toggleOpenState(i);
         }
     }
 };
 
-var keypressaction = function(event, idx) {
+Outline.keypressaction = function(event, idx) {
     var newfocus;
     if (event.keyCode === 13) { //enter
         if (event.altKey) {
-            toggleOpenState(idx);
+            Outline.toggleOpenState(idx);
         } else if (event.ctrlKey) {
             //insert comment
         } else if (event.shiftKey) {
-            insertWithContent(idx);
+            Outline.insertWithContent(idx);
         } else {
-            insertNode(idx);
+            Outline.insertNode(idx);
         }
     } else if (event.keyCode === 9) { //tab
         if (event.shiftKey) {
-            indentOut(idx);
+            Outline.indentOut(idx);
         } else {
-            indentIn(idx);
+            Outline.indentIn(idx);
         }
     } else if (event.keyCode === 46 && event.ctrlKey) { //delete
-        deleteNode(idx);
+        Outline.deleteNode(idx);
     } else if (event.keyCode === 40) { //down arrow
         newfocus = idx + 1;
         $('textarea[id=outline' + newfocus + ']').focus().select();
@@ -515,23 +516,23 @@ var keypressaction = function(event, idx) {
         $('textarea[id=outline' + newfocus + ']').focus().select();
     } else if (event.charCode === 115 && event.ctrlKey) { //ctrl+s
         if (event.shiftKey) {
-	    //currently doesn't work
+        //currently doesn't work
             document.getElementById("mainTree").saveOPMLFileAs();
         } else {
-            saveFile();
+            Outline.saveFile();
         }
     } else {
-        assignContent(idx);
+        Outline.ssignContent(idx);
     }
 };
 
-var newFile = function (edit_status) {
+Outline.newFile = function (edit_status) {
     childData = [new Outline()];
-    populateData(0);
+    Outline.populateData(0);
     isEdited = edit_status;
 };
 
-var loadFile = function (chosenFile) {
+Outline.loadFile = function (chosenFile) {
     Components.utils.import("resource://gre/modules/NetUtil.jsm");
     NetUtil.asyncFetch(chosenFile, function(inputStream, status) {
         if (!Components.isSuccessCode(status)) {
@@ -543,9 +544,12 @@ var loadFile = function (chosenFile) {
             inputStream.available()
         );
 
-        parseOPML(stream);
-        populateData(0);
+        Outline.parseOPML(stream);
+        Outline.populateData(0);
     });
     file = chosenFile;
     isEdited = false;
 };
+
+window.Outline = Outline;
+})(window);
