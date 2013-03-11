@@ -19,8 +19,6 @@ along with Dentro. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-/* global Components: false */
-
 (function (document, window) {
     "use strict";
     
@@ -76,8 +74,7 @@ Main.saveOPMLFile = function () {
 };
 
 Main.toOpenWindowByType = function (inType, uri) {
-    var winopts =
-        "chrome,extrachrome,menubar,resizable,scrollbars,status,toolbar";
+    var winopts = "chrome,extrachrome,menubar,resizable,scrollbars,status,toolbar";
     window.open(uri, "_blank", winopts);
 };
 

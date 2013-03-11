@@ -19,7 +19,7 @@ along with Dentro. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-(function (window) {
+(function (document, window) {
  "use strict";
 
  var childData = [];
@@ -551,5 +551,5 @@ Outline.loadFile = function (chosenFile) {
     isEdited = false;
 };
 
-window.Outline = Outline;
-})(window);
+window.Outline = document.Outline = Outline;
+})(document, window);
