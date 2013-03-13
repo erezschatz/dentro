@@ -19,13 +19,18 @@ along with Dentro. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-"use strict";
+(function (document, window) {
+    "use strict";
+    
+    var Main = function(){
+        
+    };
 
-var newOPMLFile = function () {
-    document.getElementById('mainWindow').contentWindow.newFile();
+Main.newOPMLFile = function () {
+    document.getElementById('mainWindow').contentWindow.Outline.newFile();
 };
 
-var loadOPMLFile = function () {
+Main.loadOPMLFile = function () {
     var nsIFilePicker = Components.interfaces.nsIFilePicker;
     var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(
         nsIFilePicker
@@ -34,13 +39,13 @@ var loadOPMLFile = function () {
     var res = fp.open(function () {
         var file = fp.file;
         if (res != nsIFilePicker.returnCancel){
-           document.getElementById("mainWindow").contentWindow.loadFile(file);
+           document.getElementById("mainWindow").contentWindow.Outline.loadFile(file);
         }
         document.title = file.leafName;
     });
 };
 
-var saveOPMLFileAs = function () {
+Main.saveOPMLFileAs = function () {
     var nsIFilePicker = Components.interfaces.nsIFilePicker;
     var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(
         nsIFilePicker
@@ -55,33 +60,36 @@ var saveOPMLFileAs = function () {
     }
 };
 
-var init = function () {
+Main.init = function () {
     document.getElementById("mainWindow").setAttribute(
         'src',
         'chrome://dentro/content/test.html'
     );
 };
 
-var saveOPMLFile = function () {
+Main.saveOPMLFile = function () {
     if (!document.getElementById("mainWindow").contentWindow.saveFile()) {
-        saveOPMLFileAs();
+        Main.saveOPMLFileAs();
     }
 };
 
-var toOpenWindowByType = function (inType, uri) {
-    var winopts =
-        "chrome,extrachrome,menubar,resizable,scrollbars,status,toolbar";
+Main.toOpenWindowByType = function (inType, uri) {
+    var winopts = "chrome,extrachrome,menubar,resizable,scrollbars,status,toolbar";
     window.open(uri, "_blank", winopts);
 };
 
-var collapseAll = function() {
+Main.collapseAll = function() {
     document.getElementById('mainWindow').contentWindow.collapseAll();
 };
 
-var expandAll = function() {
-    document.getElementById('mainWindow').contentWindow.expandAll();
+Main.expandAll = function() {
+    document.getElementById('mainWindow').contentWindow.Dentro.expandAll();
 };
 
-var closeDentro = function() {
+Main.closeDentro = function() {
     window.close();
 };
+
+window.Main = document.Main = Main;
+
+})(document, window);
