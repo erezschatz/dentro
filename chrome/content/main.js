@@ -47,12 +47,13 @@ var saveOPMLFileAs = function () {
     );
     fp.init(window, "Select a File", nsIFilePicker.modeSave);
 
-    var res = fp.open();
-    if (res != nsIFilePicker.returnCancel){
+    var res = fp.open(function () {
         var file = fp.file;
-        document.getElementById("mainWindow").contentWindow.saveFile(file);
+        if (res != nsIFilePicker.returnCancel){
+            document.getElementById("mainWindow").contentWindow.saveFile(file);
+        }
         document.title = file.leafName;
-    }
+    });
 };
 
 var init = function () {

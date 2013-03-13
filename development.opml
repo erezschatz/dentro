@@ -3,7 +3,7 @@
   <head>
   <title>dentro.opml</title>
     <dateCreated>Sun Oct 28 2012 19:03:29 GMT+0200 (IST)</dateCreated>
-    <dateModified>Sat Mar 09 2013 17:26:05 GMT+0200 (IST)</dateModified>
+    <dateModified>Wed Mar 13 2013 08:48:19 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -269,7 +269,15 @@
         </outline>
         <outline text="forest">
         </outline>
+        <outline text="todo: change title when new file">
+        </outline>
+        <outline text="todo: save automatically as opml">
+        </outline>
 </outline>
     <outline text="0.4 - features">
+</outline>
+    <outline text="">
+</outline>
+    <outline text="">
 </outline>
 </body></opml>
