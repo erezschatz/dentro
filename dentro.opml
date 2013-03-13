@@ -3,7 +3,7 @@
   <head>
   <title>dentro.opml</title>
     <dateCreated>Tue Oct 23 2012 19:59:34 GMT+0200 (IST)</dateCreated>
-    <dateModified>Tue Feb 19 2013 08:57:03 GMT+0200 (IST)</dateModified>
+    <dateModified>Wed Mar 13 2013 08:47:50 GMT+0200 (IST)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -12,8 +12,8 @@
         <outline text="a cross platform single-pane outliner">
             <outline text="What is an Outliner?">
                 <outline text="According to Wikipedia">
-                  <outline text="a computer program that allows text to be organized into discrete sections that are related in a tree structure or hierarchy. Text may be collapsed into a node, or expanded and edited. Outliners are typically used for computer programming, collecting or organizing ideas, as personal information management or for project management.">
-                  </outline>
+                    <outline text="a computer program that allows text to be organized into discrete sections that are related in a tree structure or hierarchy. Text may be collapsed into a node, or expanded and edited. Outliners are typically used for computer programming, collecting or organizing ideas, as personal information management or for project management.">
+                    </outline>
                 </outline>
                 <outline text="for all our attempts to bridge the gap between man and machine, the most accessible, immediate solution is the tree structure, and its implementations, mostly the outliner. It fits with the way we think, with the way we organize our thoughts, and, most importantly, also applies to the way machines &quot;think&quot; ">
                 </outline>
