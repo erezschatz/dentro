@@ -24,8 +24,8 @@ along with Dentro.  If not, see <http://www.gnu.org/licenses/>.
     title="Dentro"
     width="300"
     height="300"
-    onload="init();"
-    onclose="closeDentro();"
+    onload="Main.init();"
+    onclose="Main.closeDentro();"
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
@@ -35,11 +35,11 @@ along with Dentro.  If not, see <http://www.gnu.org/licenses/>.
     <menubar>
       <menu id="file" label="File" accesskey="F">
         <menupopup>
-          <menuitem label="New" accesskey="N" oncommand="newOPMLFile()" />
-          <menuitem label="Open" accesskey="O" oncommand="loadOPMLFile()"/>
-          <menuitem label="Save" accesskey="S" oncommand="saveOPMLFile()"/>
-          <menuitem label="Save As" accesskey="A" oncommand="saveOPMLFileAs()"/>
-          <menuitem label="Quit" accesskey="Q" oncommand="closeDentro()" />
+          <menuitem label="New" accesskey="N" oncommand="Main.newOPMLFile()" />
+          <menuitem label="Open" accesskey="O" oncommand="Main.loadOPMLFile()"/>
+          <menuitem label="Save" accesskey="S" oncommand="Main.saveOPMLFile()"/>
+          <menuitem label="Save As" accesskey="A" oncommand="Main.saveOPMLFileAs()"/>
+          <menuitem label="Quit" accesskey="Q" oncommand="Main.closeDentro()" />
         </menupopup>
       </menu>
      <!-- <menu id="edit" label="Edit" accesskey="E">
@@ -50,14 +50,14 @@ along with Dentro.  If not, see <http://www.gnu.org/licenses/>.
       </menu> -->
       <menu id="outline" label="Outline" accesskey="o">
         <menupopup>
-          <menuitem label="Expand All Nodes" accesskey="x" oncommand="expandAll()" />
-          <menuitem label="Collapse All Nodes" accesskey="C" oncommand="collapseAll()" />
+          <menuitem label="Expand All Nodes" accesskey="x" oncommand="Main.expandAll()" />
+          <menuitem label="Collapse All Nodes" accesskey="C" oncommand="Main.collapseAll()" />
         </menupopup>
       </menu>
       <menu id="help" label="Help" accesskey="H">
         <menupopup>
           <menuitem label="About" accesskey="b" oncommand="" />
-          <menuitem label="Debug" accesskey="D" oncommand="start_venkman()" />
+          <menuitem label="Debug" accesskey="D" oncommand="start_venkman();" />
         </menupopup>
       </menu>
     </menubar>
