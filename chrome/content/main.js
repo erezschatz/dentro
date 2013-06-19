@@ -31,11 +31,9 @@ var loadOPMLFile = function () {
         nsIFilePicker
     );
     fp.init(window, "Select a File", nsIFilePicker.modeOpen);
-    var res = fp.open(function () {
+    fp.open(function () {
         var file = fp.file;
-        if (res != nsIFilePicker.returnCancel){
-           document.getElementById("mainWindow").contentWindow.loadFile(file);
-        }
+        document.getElementById("mainWindow").contentWindow.loadFile(file);
         document.title = file.leafName;
     });
 };
@@ -47,12 +45,11 @@ var saveOPMLFileAs = function () {
     );
     fp.init(window, "Select a File", nsIFilePicker.modeSave);
 
-    var res = fp.open();
-    if (res != nsIFilePicker.returnCancel){
+    fp.open( function () {
         var file = fp.file;
         document.getElementById("mainWindow").contentWindow.saveFile(file);
         document.title = file.leafName;
-    }
+    });
 };
 
 var init = function () {

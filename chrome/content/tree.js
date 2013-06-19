@@ -121,7 +121,9 @@ var formatOPMLElement = function (node, level) {
     var output = space + '<outline text="' + node.text.
         replace(/"/g, '&quot;').
         replace(/</g, '&lt;').
+        replace(/&/g, '&amp;').
         replace(/>/g, '&gt;') + '"';
+
     if (node.childs !== undefined &&
         node.childs.length > 0) {
         output += '>\n';
@@ -292,12 +294,15 @@ var toggleOpenState = function(idx) {
     populateData(idx);
 };
 
+// deletes the text from the cursor to the end of the node
+// creates a sibling node with the deleted text
+
 var insertWithContent = function (idx) {
     var point = document.getElementById('outline' + idx).selectionStart,
     nodeText = childData[idx].text,
     newText = nodeText.substring(point, nodeText.length);
 
-    childData[idx].text = nodeText.substring(0, point - 1);
+    childData[idx].text = nodeText.substring(0, point);
     insertNode(idx, newText);
 };
 
