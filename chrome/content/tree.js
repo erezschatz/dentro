@@ -75,7 +75,7 @@ var saveFile = function (toFile) {
         dateCreated = new Date();
     }
     var output =
-        '<?xml version="1.0" encoding="ISO-8859-1"?>\n' +
+        '<?xml version="1.0" encoding="UTF-8"?>\n' +
         '<opml version="2.0">\n' +
         '  <head>\n' +
         '  <title>dentro.opml</title>\n' +
