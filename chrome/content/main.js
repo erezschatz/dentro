@@ -65,11 +65,14 @@ var saveOPMLFile = function () {
     }
 };
 
+/*
 var toOpenWindowByType = function (inType, uri) {
     var winopts =
         "chrome,extrachrome,menubar,resizable,scrollbars,status,toolbar";
     window.open(uri, "_blank", winopts);
 };
+
+*/
 
 var collapseAll = function() {
     document.getElementById('mainWindow').contentWindow.collapseAll();
