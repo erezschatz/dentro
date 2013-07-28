@@ -25,7 +25,13 @@ var childData,
 file,
 objID = 0,
 dateCreated,
-isEdited = false;
+isEdited = false,
+direction = 'ltr';
+
+var togglePageDirection = function () {
+    direction = direction.split("").reverse().join("");
+    populateData();
+};
 
 var Outline = function () {
     this.id = objID++;
@@ -35,6 +41,42 @@ var Outline = function () {
     return this;
 };
 
+var postToWordpress = function () {
+    var name, password, server;
+
+    var blog_id;
+
+    if (no_blog) {
+        var request = new XmlRpcRequest(
+            server, "wp.getUsersBlogs", name, password
+        );
+        var response = request.send();
+        blog_id = response;
+    }
+
+    var request = new XmlRpcRequest(
+        server, "wp.newPost", blog_id, name, password
+    );
+
+    request.addParam( post_type,
+                      post_status,
+                      post_title,
+                      post_author,
+                      post_excerpt,
+                      post_content,
+                      post_date_gmt,
+                      post_format,
+                      post_name,
+                      post_password,
+                      comment_status,
+                      ping_status,
+                      sticky,
+                      post_thumbnail,
+                      post_parent,
+                      custom_fields
+                    );
+    var response = request.send();
+}
 // to figure level, go until the root, incrementing in each step
 var getLevel = function(idx) {
     var level = 0,
@@ -161,7 +203,8 @@ var populateData = function (idx) {
            'open' : 'closed';
         var level = getLevel(i) * 15;
 
-        output += '<div style="margin-left:' + level + 'px;">' +
+        output += '<div style="direction:' + direction +
+            ';margin-left:' + level + 'px;">' +
             '<div class="' + cssClass +
             '" onclick="toggleOpenState(' + i + ');">&nbsp;</div>' +
             '<div id="container' + i +

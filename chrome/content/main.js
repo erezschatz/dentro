@@ -85,3 +85,11 @@ var expandAll = function() {
 var closeDentro = function() {
     window.close();
 };
+
+var postToWordpress = function() {
+    document.getElementById('mainWindow').contentWindow.postToWordpress();
+};
+
+var togglePageDirection = function() {
+    document.getElementById('mainWindow').contentWindow.togglePageDirection();
+};

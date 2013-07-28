@@ -50,8 +50,15 @@ along with Dentro.  If not, see <http://www.gnu.org/licenses/>.
       </menu> -->
       <menu id="outline" label="Outline" accesskey="o">
         <menupopup>
+          <menuitem label="Toggle Outline direction" accesskey="T" oncommand="togglePageDirection()" />
           <menuitem label="Expand All Nodes" accesskey="x" oncommand="expandAll()" />
           <menuitem label="Collapse All Nodes" accesskey="C" oncommand="collapseAll()" />
+        </menupopup>
+      </menu>
+      <menu id="extras" label="Extras" accesskey="x">
+        <menupopup>
+          <menuitem label="Post to Wordpress" accesskey="w" oncommand="postToWordpress()" />
+          <menuitem label="RSS Reader" accesskey="R" oncommand="" />
         </menupopup>
       </menu>
       <menu id="help" label="Help" accesskey="H">
