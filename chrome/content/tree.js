@@ -221,7 +221,7 @@ var populateData = function (idx) {
 		elem = document.getElementById('outline' + i);
 		adjustNodeHeight(elem);
 	}
-	if ($(window).width() < winwidth) {
+	if ($(window).width() != winwidth) {
 		populateData(idx);
 	} else {
 		elem = $('textarea[id=outline' + idx + ']');
@@ -320,8 +320,7 @@ var toggleOpenState = function(idx) {
 		if (deletecount) {
 			childData.splice(idx + 1, deletecount);
 		}
-	}
-	else {
+	} else {
 		if (item.childs.length === 0) {
 			return;
 		}
@@ -542,6 +541,8 @@ var collapseAll = function() {
 		}
 	}
 };
+
+//keyboard actions
 
 var keypressaction = function(event, idx) {
 	var newfocus;

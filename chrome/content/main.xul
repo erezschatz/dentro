@@ -18,6 +18,7 @@ You should have received a copy of the GNU General Public License
 along with Dentro.  If not, see <http://www.gnu.org/licenses/>.
 
 -->
+
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <window
     id="main"
