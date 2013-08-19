@@ -58,25 +58,27 @@ var postToWordpress = function () {
 		server, "wp.newPost", blog_id, name, password
 	);
 
-	request.addParam( post_type,
-					  post_status,
-					  post_title,
-					  post_author,
-					  post_excerpt,
-					  post_content,
-					  post_date_gmt,
-					  post_format,
-					  post_name,
-					  post_password,
-					  comment_status,
-					  ping_status,
-					  sticky,
-					  post_thumbnail,
-					  post_parent,
-					  custom_fields
-					);
+	request.addParam( 
+		post_type,
+		post_status,
+		post_title,
+		post_author,
+		post_excerpt,
+		post_content,
+		post_date_gmt,
+		post_format,
+		post_name,
+		post_password,
+		comment_status,
+		ping_status,
+		sticky,
+		post_thumbnail,
+		post_parent,
+		custom_fields
+	);
 	var response = request.send();
-}
+};
+
 // to figure level, go until the root, incrementing in each step
 var getLevel = function(idx) {
 	var level = 0,
@@ -154,8 +156,9 @@ var saveFile = function (toFile) {
 };
 
 var formatOPMLElement = function (node, level) {
-	var space = '	';
-	var i = 0;
+	var space = '	', 
+		i;
+
 	for (i = 0; i < level; i++) {
 		space += '	';
 	}
@@ -206,7 +209,7 @@ var populateData = function (idx) {
 		output += '<div style="direction:' + direction +
 			';margin-left:' + level + 'px;">' +
 			'<div class="' + cssClass +
-			'" onclick="toggleOpenState(' + i + ');">&nbsp;</div>' +
+			'" draggable="true" ondragstart="alert(\'foo\')" onmouseup="toggleOpenState(' + i + ');">&nbsp;</div>' +
 			'<div id="container' + i +
 			'" style="display:inline-block"><textarea id="outline' + i +
 			'" onkeypress="keypressaction(event, ' + i +
