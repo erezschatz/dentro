@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <opml version="2.0">
   <head>
   <title>dentro.opml</title>
     <dateCreated>Sun Oct 28 2012 19:03:29 GMT+0200 (IST)</dateCreated>
-    <dateModified>Sat Mar 09 2013 17:32:00 GMT+0200 (IST)</dateModified>
+    <dateModified>Sun Aug 11 2013 09:42:56 GMT+0300 (IDT)</dateModified>
     <ownerName></ownerName>
     <ownerEmail></ownerEmail>
   </head>
@@ -231,7 +231,7 @@
             <outline text="e.g. http://google.com">
             </outline>
         </outline>
-        <outline text="different indications for node with childs and without childs">
+        <outline text="bug: different indications for node with childs and without childs">
             <outline text="maybe light gray for no childs">
             </outline>
         </outline>
@@ -241,7 +241,7 @@
             <outline text="redo">
             </outline>
         </outline>
-        <outline text="improve speed">
+        <outline text="rsrc:improve speed">
             <outline text="autoresize of textarea">
             </outline>
         </outline>
@@ -265,15 +265,17 @@
                 </outline>
             </outline>
         </outline>
-        <outline text="tags">
-        </outline>
-        <outline text="forest">
-        </outline>
         <outline text="todo: change title when new file">
         </outline>
         <outline text="todo: save automatically as opml">
         </outline>
+        <outline text="bug: indent-out broken">
+        </outline>
 </outline>
     <outline text="0.4 - features">
+        <outline text="tags">
+        </outline>
+        <outline text="forest">
+        </outline>
 </outline>
 </body></opml>
