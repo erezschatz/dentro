@@ -31,10 +31,16 @@ realised the only way to have my cake and eat
 it too will be to design a cake that can be both had and eaten.
 
 ### How to run Dentro
+
+!!!Proper Disclosure Alert!!!
+Dentro is a work in progress, and until I get some stuff sorted out, this is used as both a personal and project master.
+I am not making excuses, more explaining a current situation. To enjoy a buggy, yet working version, please use the
+[latest working version](https://github.com/erezschatz/dentro/zipball/master)
+
 You'll need XULrunner (not included), which you can get from
 [Mozilla's Site](https://developer.mozilla.org/en-US/docs/XULRunner), or
-from your package manager (if you
-happen to run a distro that happen to have XULRunner packaged, like [Debian](http://debian.org).
+from your package manager (if you happen to run a distro that happen to have XULRunner packaged, 
+like [Debian](http://debian.org).
 Once that's installed or unzipped, [download Dentro](https://github.com/erezschatz/dentro/zipball/master), 
 then run the following command from a terminal:
 
@@ -49,3 +55,7 @@ It should work from windows as well, just replace the paths with the appropriate
 + Alt-Enter expands/collapses the node.
 + Ctrl+Delete deletes the focused node.
 + Down and up arrow moves to the next/previous node
++ 
+
+---
+In the future, this will be written in Dentro.
