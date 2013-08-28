@@ -209,13 +209,12 @@ var populateData = function (idx) {
 		output += '<div style="direction:' + direction +
 			';margin-left:' + level + 'px;">' +
 			'<div class="' + cssClass +
-			'" draggable="true" ondragstart="alert(\'foo\')" onmouseup="toggleOpenState(' + i + ');">&nbsp;</div>' +
-			'<div id="container' + i +
-			'" style="display:inline-block"><textarea id="outline' + i +
+			'" draggable="true" onmouseup="toggleOpenState(' + i + ');">&nbsp;</div>' +
+			'<span style="display:inline-block" id="outline' + i +
 			'" onkeypress="keypressaction(event, ' + i +
 			');" onkeyup="assignContent(' + i +
 			');" style="width: ' + maxwidth + 'px;">' +
-			childData[i].text + '</textarea></div></div>';
+			childData[i].text + '</span></div>';
 	}
 
 	document.getElementById("mainTree").innerHTML = output;
