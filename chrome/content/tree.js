@@ -183,7 +183,7 @@ var formatOPMLElement = function (node, level) {
 	return output;
 };
 
-// checks whether the text has overflowed under the textarea size
+// checks whether the text has overflowed under the elemnt size
 var adjustNodeHeight = function (elem) {
 	if (elem.clientHeight < elem.scrollHeight) {
 		$(elem).height(elem.scrollHeight + 1);
@@ -191,7 +191,7 @@ var adjustNodeHeight = function (elem) {
 };
 
 /* iterates over 'childData' array, creates a bullet
-   div and a textarea for each item, indented it according to level, creating
+   div and a element for each item, indented it according to level, creating
    the illusion of nested lists */
 
 var populateData = function (idx) {
@@ -226,7 +226,7 @@ var populateData = function (idx) {
 	if ($(window).width() != winwidth) {
 		populateData(idx);
 	} else {
-		elem = $('textarea[id=outline' + idx + ']');
+		elem = $('span[id=outline' + idx + ']');
 		var elemLen = elem.text.length;
 		elem.selectionStart = elemLen;
 		elem.selectionEnd = elemLen;
@@ -235,7 +235,7 @@ var populateData = function (idx) {
 };
 
 var assignContent = function(idx) {
-	var elem = ('textarea[id=outline' + idx + ']');
+	var elem = ('span[id=outline' + idx + ']');
 	if (childData[idx].text !== $(elem).val()) {
 		adjustNodeHeight(elem);
 		childData[idx].text = $(elem).val();
@@ -509,7 +509,7 @@ var countAllOpenedChilds = function (baseNode) {
 		} 
 	}
 	return length + currentIdx;
-}
+};
 
 // What I need is to add all the nodes and subnodes,
 // in order to an array, and replace childData with that array.
@@ -529,8 +529,9 @@ var aggregateAllNodes = function(array) {
 			array[i].childs.length !== 0) {
 
 			var childNodes = aggregateAllNodes(array[i].childs);
-			for (var j = 0; j < childNodes.length; j++)
+			for (var j = 0; j < childNodes.length; j++) {
 				tempArray.push(childNodes[j]);
+			}
 		}
 	}
 	return tempArray;
@@ -568,10 +569,10 @@ var keypressaction = function(event, idx) {
 		deleteNode(idx);
 	} else if (event.keyCode === 40) { //down arrow
 		newfocus = idx + 1;
-		$('textarea[id=outline' + newfocus + ']').focus().select();
+		$('span[id=outline' + newfocus + ']').focus().select();
 	} else if (event.keyCode === 38) { //up arrow
 		newfocus = idx - 1;
-		$('textarea[id=outline' + newfocus + ']').focus().select();
+		$('span[id=outline' + newfocus + ']').focus().select();
 	} else if (event.charCode === 115 && event.ctrlKey) { //ctrl+s
 		if (event.shiftKey) {
 		//currently doesn't work
