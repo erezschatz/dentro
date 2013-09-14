@@ -105,186 +105,20 @@ var totalNodes = function(array) {
 	return total;
 };
 
-// currently generates OPML (standard not fully implemented)
-var saveFile = function (toFile) {
-	if (toFile !== undefined) {
-		file = toFile;
-	} else if (file === undefined) {
-		return false;
-	}
-
-	if (dateCreated === undefined ||
-		dateCreated === null ||
-		dateCreated === '') {
-		dateCreated = new Date();
-	}
-	var output =
-		'<?xml version="1.0" encoding="UTF-8"?>\n' +
-		'<opml version="2.0">\n' +
-		'  <head>\n' +
-		'  <title>dentro.opml</title>\n' +
-		'	<dateCreated>' + dateCreated + '</dateCreated>\n' +
-		'	<dateModified>' + new Date() + '</dateModified>\n' +
-		'	<ownerName></ownerName>\n' +
-		'	<ownerEmail></ownerEmail>\n' +
-		'  </head>\n' +
-		'  <body>\n';
-
-	for (var i = 0; i < childData.length; i++) {
-		//just top level nodes and recourse from there
-		if (childData[i].parent === undefined) {
-			output += formatOPMLElement(childData[i], getLevel(i));
-			output += '</outline>\n';
-		}
-	}
-	output += '</body></opml>';
-
-	var foStream =
-		Components.classes[
-			"@mozilla.org/network/file-output-stream;1"
-		].createInstance(Components.interfaces.nsIFileOutputStream);
-
-	foStream.init(file, 0x02 | 0x08 | 0x20, -1, 0);
-	var converter = Components.classes[
-		"@mozilla.org/intl/converter-output-stream;1"
-	].createInstance(Components.interfaces.nsIConverterOutputStream);
-	converter.init(foStream, "ISO-8859-1", 0, 0);
-	converter.writeString(output);
-	converter.close();
-	//saveContent();
-	return true;
-};
-
-var formatOPMLElement = function (node, level) {
-	var space = '	', 
-		i;
-
-	for (i = 0; i < level; i++) {
-		space += '	';
-	}
-
-	var output = space + '<outline text="' + node.text.
-		replace(/"/g, '&quot;').
-		replace(/</g, '&lt;').
-		replace(/&/g, '&amp;').
-		replace(/>/g, '&gt;') + '"';
-
-	if (node.childs !== undefined &&
-		node.childs.length > 0) {
-		output += '>\n';
-		for (i = 0; i < node.childs.length; i++) {
-			output += formatOPMLElement(node.childs[i], level + 1);
-			output += '	' + space + '</outline>\n';
-		}
-	} else {
-		output += '>\n';
-	}
-
-	return output;
-};
-
-// checks whether the text has overflowed under the textarea size
+// checks whether the text has overflowed under the element size
 var adjustNodeHeight = function (elem) {
 	if (elem.clientHeight < elem.scrollHeight) {
 		$(elem).height(elem.scrollHeight + 1);
 	}
 };
 
-/* iterates over 'childData' array, creates a bullet
-   div and a textarea for each item, indented it according to level, creating
-   the illusion of nested lists */
-
-var populateData = function (idx) {
-	var output = '',
-	winwidth = $(window).width(),
-	i = 0,
-	elem;
-
-	for (i = 0; i < childData.length; i++) {
-		var maxwidth =  winwidth - (30 + (getLevel(i) * 15));
-		var cssClass = childData[i].isContainerOpen ?
-		   'open' : 'closed';
-		var level = getLevel(i) * 15;
-
-		output += '<div style="direction:' + direction +
-			';margin-left:' + level + 'px;">' +
-			'<div class="' + cssClass +
-			'" draggable="true" ondragstart="alert(\'foo\')" onmouseup="toggleOpenState(' + i + ');">&nbsp;</div>' +
-			'<div id="container' + i +
-			'" style="display:inline-block"><textarea id="outline' + i +
-			'" onkeypress="keypressaction(event, ' + i +
-			');" onkeyup="assignContent(' + i +
-			');" style="width: ' + maxwidth + 'px;">' +
-			childData[i].text + '</textarea></div></div>';
-	}
-
-	document.getElementById("mainTree").innerHTML = output;
-
-	for (i = 0; i < childData.length; i++) {
-		elem = document.getElementById('outline' + i);
-		adjustNodeHeight(elem);
-	}
-	if ($(window).width() != winwidth) {
-		populateData(idx);
-	} else {
-		elem = $('textarea[id=outline' + idx + ']');
-		var elemLen = elem.text.length;
-		elem.selectionStart = elemLen;
-		elem.selectionEnd = elemLen;
-		elem.focus();
-	}
-};
-
 var assignContent = function(idx) {
-	var elem = ('textarea[id=outline' + idx + ']');
+	var elem = ('span[id=outline' + idx + ']');
 	if (childData[idx].text !== $(elem).val()) {
 		adjustNodeHeight(elem);
 		childData[idx].text = $(elem).val();
 		isEdited = true;
 	}
-};
-
-var parseOPML = function (input) {
-	var oParser = new DOMParser();
-	var oDOM = oParser.parseFromString(input, "text/xml");
-
-	var snapshot = oDOM.evaluate(
-		'/opml/head/dateCreated', oDOM, null,
-		XPathResult.FIRST_ORDERED_NODE_TYPE, null
-	);
-
-	dateCreated = snapshot.singleNodeValue.textContent;
-
-	var nodesSnapshot = oDOM.evaluate(
-		'/opml/body/outline', oDOM, null,
-		XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null
-	);
-
-	//initialise the main array;
-	childData = [];
-
-	for (var i = 0; i < nodesSnapshot.snapshotLength; i++) {
-		var node = $(nodesSnapshot.snapshotItem(i));
-		var outline = new Outline();
-		outline.text = node.attr("text");
-
-		node.children().each(function() {
-			outline.childs.push(generateChildNode(outline, this));
-		});
-
-		childData.push(outline);
-	}
-
-/*
-	var ctx = document.getElementById('canvas').getContext('2d');
-
-	// Clear the canvas
-	ctx.clearRect(0, 0, 300, 350);
-
-	// Move to the bottom middle of the canvas
-	ctx.translate(150, 350);
-	draw(ctx, childData);
-*/
 };
 
 var generateChildNode = function(parentNode, childNode) {
@@ -510,7 +344,7 @@ var countAllOpenedChilds = function (baseNode) {
 		} 
 	}
 	return length + currentIdx;
-}
+};
 
 // What I need is to add all the nodes and subnodes,
 // in order to an array, and replace childData with that array.
@@ -530,8 +364,9 @@ var aggregateAllNodes = function(array) {
 			array[i].childs.length !== 0) {
 
 			var childNodes = aggregateAllNodes(array[i].childs);
-			for (var j = 0; j < childNodes.length; j++)
+			for (var j = 0; j < childNodes.length; j++) {
 				tempArray.push(childNodes[j]);
+			}
 		}
 	}
 	return tempArray;
@@ -569,10 +404,10 @@ var keypressaction = function(event, idx) {
 		deleteNode(idx);
 	} else if (event.keyCode === 40) { //down arrow
 		newfocus = idx + 1;
-		$('textarea[id=outline' + newfocus + ']').focus().select();
+		$('span[id=outline' + newfocus + ']').focus().select();
 	} else if (event.keyCode === 38) { //up arrow
 		newfocus = idx - 1;
-		$('textarea[id=outline' + newfocus + ']').focus().select();
+		$('span[id=outline' + newfocus + ']').focus().select();
 	} else if (event.charCode === 115 && event.ctrlKey) { //ctrl+s
 		if (event.shiftKey) {
 		//currently doesn't work
