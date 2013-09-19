@@ -42,3 +42,43 @@ var populateData = function (idx) {
 		elem.focus();
 	}
 };
+
+//keyboard actions
+
+var keypressaction = function(event, idx) {
+	var newfocus;
+	if (event.keyCode === 13) { //enter
+		if (event.altKey) {
+			toggleOpenState(idx);
+		} else if (event.ctrlKey) {
+			//insert comment
+		} else if (event.shiftKey) {
+			insertWithContent(idx);
+		} else {
+			insertNode(idx);
+		}
+	} else if (event.keyCode === 9) { //tab
+		if (event.shiftKey) {
+			indentOut(idx);
+		} else {
+			indentIn(idx);
+		}
+	} else if (event.keyCode === 46 && event.ctrlKey) { //delete
+		deleteNode(idx);
+	} else if (event.keyCode === 40) { //down arrow
+		newfocus = idx + 1;
+		$('span[id=outline' + newfocus + ']').focus().select();
+	} else if (event.keyCode === 38) { //up arrow
+		newfocus = idx - 1;
+		$('span[id=outline' + newfocus + ']').focus().select();
+	} else if (event.charCode === 115 && event.ctrlKey) { //ctrl+s
+		if (event.shiftKey) {
+		//currently doesn't work
+			document.getElementById("mainTree").saveOPMLFileAs();
+		} else {
+			saveFile();
+		}
+	} else {
+		assignContent(idx);
+	}
+};

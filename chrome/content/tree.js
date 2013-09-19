@@ -163,11 +163,10 @@ var toggleOpenState = function(idx) {
 		}
 		item.isContainerOpen = true;
 
-		var toinsert = item.childs;
-		var length = toinsert ? toinsert.length : 0;
+		var length = item.childs ? item.childs.length : 0;
 
 		for (var i = 0; i < length; i++) {
-			childData.splice(idx + i + 1, 0, toinsert[i]);
+			childData.splice(idx + i + 1, 0, item.childs[i]);
 		}
 	}
 	populateData(idx);
@@ -380,45 +379,7 @@ var collapseAll = function() {
 	}
 };
 
-//keyboard actions
 
-var keypressaction = function(event, idx) {
-	var newfocus;
-	if (event.keyCode === 13) { //enter
-		if (event.altKey) {
-			toggleOpenState(idx);
-		} else if (event.ctrlKey) {
-			//insert comment
-		} else if (event.shiftKey) {
-			insertWithContent(idx);
-		} else {
-			insertNode(idx);
-		}
-	} else if (event.keyCode === 9) { //tab
-		if (event.shiftKey) {
-			indentOut(idx);
-		} else {
-			indentIn(idx);
-		}
-	} else if (event.keyCode === 46 && event.ctrlKey) { //delete
-		deleteNode(idx);
-	} else if (event.keyCode === 40) { //down arrow
-		newfocus = idx + 1;
-		$('span[id=outline' + newfocus + ']').focus().select();
-	} else if (event.keyCode === 38) { //up arrow
-		newfocus = idx - 1;
-		$('span[id=outline' + newfocus + ']').focus().select();
-	} else if (event.charCode === 115 && event.ctrlKey) { //ctrl+s
-		if (event.shiftKey) {
-		//currently doesn't work
-			document.getElementById("mainTree").saveOPMLFileAs();
-		} else {
-			saveFile();
-		}
-	} else {
-		assignContent(idx);
-	}
-};
 
 var newFile = function (edit_status) {
 	childData = [new Outline()];
