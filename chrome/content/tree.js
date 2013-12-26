@@ -402,6 +402,10 @@ var deleteNode = function (idx) {
 	populateData(idx);
 };
 
+var reparentElement = function (idx) {
+
+};
+
 // if element before selected is the same level, indent under
 // if not, indent under element's parent
 var indentIn = function (idx) {
