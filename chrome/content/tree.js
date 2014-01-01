@@ -402,8 +402,24 @@ var deleteNode = function (idx) {
 	populateData(idx);
 };
 
-var reparentElement = function (idx) {
+var reparentElement = function (idx, oldParent, newParent) {
+	var item = childData[idx];
+	var isOpen = item.isContainerOpen;
+	
+	if (isOpen) {
+		toggleOpenState(idx);
+	}
 
+	var siblings = oldParent.childs;
+	for (i = 0; i < siblings.length; i++) {
+		if (siblings[i].id === lastItem.id) {
+			siblings.splice(i, 1);
+			break;
+		}
+	}
+	
+	newParent.childs.push(id);
+	item.parent = newParent.id;
 };
 
 // if element before selected is the same level, indent under
