@@ -3,7 +3,7 @@
   <head>
   <title>dentro.opml</title>
 	<dateCreated>Sun Oct 28 2012 19:03:29 GMT+0200 (IST)</dateCreated>
-	<dateModified>Tue Aug 20 2013 15:59:24 GMT+0300 (IDT)</dateModified>
+	<dateModified>Fri May 15 2015 19:54:03 GMT+0300 (IDT)</dateModified>
 	<ownerName></ownerName>
 	<ownerEmail></ownerEmail>
   </head>
@@ -83,10 +83,6 @@
 		</outline>
 		<outline text="open last opened file">
 			<outline text="also save a &amp;quot;recent files&amp;quot; list">
-			</outline>
-		</outline>
-		<outline text="statusnet client">
-			<outline text="http://status.net/wiki/JavaScript_API">
 			</outline>
 		</outline>
 </outline>
@@ -219,6 +215,8 @@
 		</outline>
 </outline>
 	<outline text="0.3 - in development">
+		<outline text="also save a &amp;quot;recent files&amp;quot; list">
+		</outline>
 		<outline text="todo: implement OPML format">
 			<outline text="OPML comments">
 				<outline text="ctrl+enter">

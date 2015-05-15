@@ -25,6 +25,7 @@ along with Dentro.  If not, see <http://www.gnu.org/licenses/>.
     title="Dentro"
     width="300"
     height="300"
+	resizable="1"
     onload="init();"
     onclose="closeDentro();"
     xmlns:html="http://www.w3.org/1999/xhtml"
