@@ -32,7 +32,6 @@ along with Dentro.  If not, see <http://www.gnu.org/licenses/>.
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
   <script type="application/javascript" src="chrome://dentro/content/main.js"/>
-  <script src="chrome://venkman/content/venkman-overlay.js" />
   <toolbox>
     <menubar>
       <menu id="file" label="File" accesskey="F">
@@ -66,7 +65,6 @@ along with Dentro.  If not, see <http://www.gnu.org/licenses/>.
       <menu id="help" label="Help" accesskey="H">
         <menupopup>
           <menuitem label="About" accesskey="b" oncommand="" />
-          <menuitem label="Debug" accesskey="D" oncommand="start_venkman()" />
         </menupopup>
       </menu>
     </menubar>

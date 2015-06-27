@@ -58,7 +58,7 @@ var postToWordpress = function () {
 		server, "wp.newPost", blog_id, name, password
 	);
 
-	request.addParam( 
+	request.addParam(
 		post_type,
 		post_status,
 		post_title,
@@ -156,7 +156,7 @@ var saveFile = function (toFile) {
 };
 
 var formatOPMLElement = function (node, level) {
-	var space = '	', 
+	var space = '	',
 		i;
 
 	for (i = 0; i < level; i++) {
@@ -201,9 +201,11 @@ var populateData = function (idx) {
 	elem;
 
 	for (i = 0; i < childData.length; i++) {
-		var maxwidth =  winwidth - (30 + (getLevel(i) * 15));
-		var cssClass = childData[i].isContainerOpen ?
-		   'open' : 'closed';
+	    var maxwidth =  winwidth - (30 + (getLevel(i) * 15));
+	    var cssClass = childData[i].childs.length ?
+                childData[i].isContainerOpen ?
+		'open' : 'closedwith' :
+                'closed';
 		var level = getLevel(i) * 15;
 
 		output += '<div style="direction:' + direction +
@@ -507,7 +509,7 @@ var countAllOpenedChilds = function (baseNode) {
 		}
 		if (childData[i].id == baseNode.id) {
 			currentIdx = i;
-		} 
+		}
 	}
 	return length + currentIdx;
 }

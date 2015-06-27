@@ -1,5 +1,14 @@
-.closed {
+.closedwith {
     background: url('arrowRight.png') no-repeat left;
+    padding-right: 5px;
+    display:inline-block;
+    cursor: default;
+    background-position:top;
+    float:left;
+}
+
+.closed {
+    background: url('ArrowRight-gray.png') no-repeat left;
     padding-right: 5px;
     display:inline-block;
     cursor: default;
