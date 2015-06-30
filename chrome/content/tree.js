@@ -256,10 +256,15 @@ var parseOPML = function (input) {
 
 	dateCreated = snapshot.singleNodeValue.textContent;
 
-	var nodesSnapshot = oDOM.evaluate(
-		'/opml/body/outline', oDOM, null,
-		XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null
-	);
+	var nodesSnapshot;
+	try {
+		nodesSnapshot = oDOM.evaluate(
+			'/opml/body/outline', oDOM, null,
+			XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null
+		);
+	} catch (e) {
+		return e.message;
+	}
 
 	//initialise the main array;
 	childData = [];
