@@ -211,7 +211,7 @@ var populateData = function (idx) {
 		output += '<div style="direction:' + direction +
 			';margin-left:' + level + 'px;">' +
 			'<div class="' + cssClass +
-			'" draggable="true" ondragstart="alert(\'foo\')" onmouseup="toggleOpenState(' + i + ');">&nbsp;</div>' +
+			'" draggable="true" ondragstart="alert(\'drag\')" onmouseup="toggleOpenState(' + i + ');">&nbsp;</div>' +
 			'<div id="container' + i +
 			'" style="display:inline-block"><textarea id="outline' + i +
 			'" onkeypress="keypressaction(event, ' + i +
@@ -249,7 +249,6 @@ var assignContent = function(idx) {
 var parseOPML = function (input) {
 	var oParser = new DOMParser();
 	var oDOM = oParser.parseFromString(input, "text/xml");
-
 	var snapshot = oDOM.evaluate(
 		'/opml/head/dateCreated', oDOM, null,
 		XPathResult.FIRST_ORDERED_NODE_TYPE, null
