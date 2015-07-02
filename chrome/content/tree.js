@@ -41,6 +41,7 @@ var Outline = function () {
 	return this;
 };
 
+/*
 var postToWordpress = function () {
 	var name, password, server;
 
@@ -77,14 +78,14 @@ var postToWordpress = function () {
 		custom_fields
 	);
 	var response = request.send();
-};
+}; */
 
 // to figure level, go until the root, incrementing in each step
 var getLevel = function(idx) {
 	var level = 0,
 	checked_element = childData[idx];
 
-	while (checked_element !== undefined && checked_element != null &&
+	while (checked_element !== undefined && checked_element !== null &&
 		   checked_element.parent !== undefined) {
 		level++;
 		checked_element = checked_element.parent;
@@ -415,7 +416,7 @@ var indentIn = function (idx) {
 	siblingIdx = -1,
 	i;
 
-	if (idx == 0) return;
+	if (idx === 0) return;
 
 	if (getLevel(idx - 1) === getLevel(idx)) {
 		siblingIdx = idx - 1;
@@ -516,7 +517,7 @@ var countAllOpenedChilds = function (baseNode) {
 		}
 	}
 	return length + currentIdx;
-}
+};
 
 // What I need is to add all the nodes and subnodes,
 // in order to an array, and replace childData with that array.
